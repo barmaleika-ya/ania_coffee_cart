@@ -326,6 +326,62 @@ section,.strip,[id^="strip-"]{scroll-margin-top:calc(64px + env(safe-area-inset-
 .topnav.compact.open .links{display:grid}
 .topnav.compact .links .navlink{background:var(--card);border-color:var(--rule);border-radius:10px;padding:8px 12px;text-align:left}
 .topnav.compact .links .navlink[aria-current="true"]{background:var(--panel);border-color:var(--line)}
+
+/* ===== design system: one type scale, one label style, two button styles, three radii ===== */
+:root{
+  --t-label:.75rem;  /* uppercase labels only */
+  --t-s:.9rem;       /* secondary text, tables, answer panel */
+  --t-m:1rem;        /* body */
+  --t-l:1.25rem;     /* subtitles, captions, comic UI */
+  --t-xl:1.6rem;     /* card and strip titles */
+  --t-xxl:2.4rem;    /* section headings */
+  --t-disp:clamp(2.6rem,6vw,3.6rem);
+  --r-ctl:8px; --r-card:12px; --r-pill:999px;
+  --ink-soft:rgba(26,28,25,.32);
+}
+h1{font-size:var(--t-disp)} h2{font-size:var(--t-xxl)} h3{font-size:var(--t-xl)}
+body{font-size:var(--t-m)}
+.lede{font-size:var(--t-m)}
+.sub2{font-family:var(--f-comic);font-size:var(--t-l);margin-top:-14px}
+.stmt-head .sub2{margin-top:-2px}
+/* one label style */
+.eyebrow,.chip,.lbl,.land .lbl,.strip-head .pchip,.st tr.grp td,.rules th,.sumtbl th,.terms th,.ws th,.fx b,.trap .x+span~*,.ln.sub{font-size:var(--t-label);letter-spacing:.08em;text-transform:uppercase;font-weight:700}
+.chip{padding:2px 8px;border-radius:var(--r-pill)}
+/* cards */
+.strip,.st,.lk,.pr,.trap,.idea>div,.read,.legend button,.theory,.page,.tblwrap .terms tr{border-radius:var(--r-card)}
+/* strip header + answer panel: calmer, larger text */
+.strip-head h3{font-size:var(--t-xl)}
+.strip-head .no{font-size:var(--t-s)}
+.land{gap:8px}
+.land .box{font-size:var(--t-s);line-height:1.5;border:1.5px solid var(--ink-soft);border-radius:var(--r-ctl);padding:8px 10px}
+.land .box.warn{border:1.5px dashed var(--line)}
+.land .je,.land .fx span{font-size:.82rem}
+.narr{font-size:var(--t-l);line-height:1.3}
+.dcl{display:block;font-family:var(--f-body);font-size:.78rem;color:var(--muted);margin-top:4px;grid-column:1/-1}
+/* hero: comic panels sit directly on the page */
+#hero.page{background:none;border:none;padding:0}
+/* two button styles */
+.skipbtn,.quizt,.menubtn,.totop{font-family:var(--f-comic);font-size:var(--t-l);border:2.5px solid var(--line);box-shadow:2px 2px 0 var(--ink-soft)}
+.skipbtn,.quizt{border-radius:var(--r-card)}
+.menubtn,.totop{border-radius:var(--r-pill);font-size:1.1rem}
+.go,.btn,.strip-head .sn a,.stripnav a,.land .go{font-family:var(--f-body);font-size:.85rem;font-weight:700;border:1.5px solid var(--line);border-radius:var(--r-ctl);background:var(--card);color:var(--fg);padding:5px 11px;line-height:1.3}
+.land .go{background:var(--bubble);color:var(--line)}
+.stripnav a{min-width:38px;height:36px;padding:0 8px;font-family:var(--f-comic);font-size:1.1rem;font-weight:400}
+.btn[aria-pressed="true"]{border-width:2.5px}
+.go:hover,.btn:hover,.strip-head .sn a:hover,.stripnav a:hover{background:var(--panel);color:var(--line)}
+.navlink{font-size:1.08rem}
+.skiplink{font-size:var(--t-s)}
+/* tables share one size */
+.st table,.rules,.sumtbl,.ws,.tools,.lk .ln{font-size:var(--t-s)}
+.trap .myth{font-size:var(--t-l)}
+.trap .real,.trap .ex,.steps2 li,.legend button,.pr p{font-size:var(--t-s)}
+.pr h3{font-size:var(--t-l)}
+.pr .ru{font-size:.8rem}
+
+.land .lbl,.land .fx b{font-family:var(--f-body)}
+.land .box{line-height:1.42}
+.land .je,.land .fx span{font-size:.8rem;line-height:1.45}
+@media (min-width:821px){.panels{grid-template-columns:minmax(0,1.22fr) minmax(0,1fr)}}
 </style>
 
 </head>
@@ -531,7 +587,7 @@ const prop={
   cal:(x,y,l,used=0)=>{let g=`<rect class="w" x="${x-38}" y="${y-64}" width="76" height="64" rx="4"/>`+S(`M${x-38} ${y-46} L${x+38} ${y-46} M${x-20} ${y-70} L${x-20} ${y-58} M${x+20} ${y-70} L${x+20} ${y-58}`)+lbl(x,y-51,l,66);let k=0;for(let r=0;r<3;r++)for(let c=0;c<5;c++){const cx=x-26+c*13,cy=y-35+r*12;g+=k<used?S(`M${cx-3} ${cy-3} L${cx+3} ${cy+3} M${cx+3} ${cy-3} L${cx-3} ${cy+3}`):`<circle class="dot" cx="${cx}" cy="${cy}" r="1.6"/>`;k++;}return g},
   clock:(x,y)=>`<circle class="w" cx="${x}" cy="${y-24}" r="24"/>`+S(`M${x} ${y-24} L${x} ${y-40} M${x} ${y-24} L${x+11} ${y-19}`),
   cart:(x,y,face)=>`<rect class="w" x="${x-52}" y="${y-62}" width="104" height="44" rx="4"/>`+S(`M${x-50} ${y-62} L${x-50} ${y-100} M${x+50} ${y-62} L${x+50} ${y-100}`)+`<path class="w" d="M${x-60} ${y-104} L${x+60} ${y-104} L${x+60} ${y-94} q-10 10 -20 0 q-10 10 -20 0 q-10 10 -20 0 q-10 10 -20 0 q-10 10 -20 0 q-10 10 -20 0 Z"/>`+`<circle class="w" cx="${x-30}" cy="${y-12}" r="11"/><circle class="w" cx="${x+30}" cy="${y-12}" r="11"/>`+(face?`<circle class="dot" cx="${x-10}" cy="${y-46}" r="2.2"/><circle class="dot" cx="${x+10}" cy="${y-46}" r="2.2"/>`+S(`M${x-8} ${y-36} Q${x} ${y-29} ${x+8} ${y-36}`):lbl(x,y-35,'COFFEE',80)),
-  book:(x,y)=>`<path class="w" d="M${x-62} ${y-62} L${x} ${y-52} L${x+62} ${y-62} L${x+62} ${y} L${x} ${y+8} L${x-62} ${y} Z"/>`+S(`M${x} ${y-52} L${x} ${y+8}`)+[0,1,2,3].map(i=>S(`M${x-50} ${y-40+i*10} L${x-10} ${y-34+i*10} M${x+10} ${y-34+i*10} L${x+50} ${y-40+i*10}`)).join('')+lbl(x-30,y-46,'ASSETS',40)+lbl(x+30,y-46,'L + E',40),
+  book:(x,y)=>`<path class="w" d="M${x-62} ${y-62} L${x} ${y-52} L${x+62} ${y-62} L${x+62} ${y} L${x} ${y+8} L${x-62} ${y} Z"/>`+S(`M${x} ${y-52} L${x} ${y+8}`)+[0,1,2,3].map(i=>S(`M${x-50} ${y-40+i*10} L${x-10} ${y-34+i*10} M${x+10} ${y-34+i*10} L${x+50} ${y-40+i*10}`)).join('')+`<g transform="rotate(8.5 ${x-30} ${y-45})">${lbl(x-30,y-45,'ASSETS',40)}</g><g transform="rotate(-8.5 ${x+30} ${y-45})">${lbl(x+30,y-45,'L + E',40)}</g>`,
   acct:(x,y,a,b)=>`<rect class="w" x="${x-38}" y="${y-50}" width="76" height="50" rx="6"/>`+S(`M${x-38} ${y-38} L${x+38} ${y-38}`)+lbl(x,y-19,a,64).replace('class="tl"','class="tl" style="font-weight:700"')+lbl(x,y-6,b,64),
   umbrella:(x,y)=>`<path class="w" d="M${x-42} ${y-52} Q${x-40} ${y-96} ${x} ${y-98} Q${x+40} ${y-96} ${x+42} ${y-52} q-10.5 -9 -21 0 q-10.5 -9 -21 0 q-10.5 -9 -21 0 q-10.5 -9 -21 0 Z"/>`+S(`M${x} ${y-98} L${x} ${y-104} M${x} ${y-52} L${x} ${y-12} q0 10 -10 10 q-8 0 -8 -8`),
   magnifier:(x,y)=>`<circle class="w" cx="${x-10}" cy="${y-58}" r="30"/>`+S(`M${x+11} ${y-37} L${x+36} ${y-10}`)+`<path class="s" style="stroke-width:6" d="M${x+16} ${y-32} L${x+34} ${y-12}"/>`+lbl(x-10,y-53,'15 zł',40),
@@ -724,7 +780,7 @@ document.getElementById('strips').innerHTML=T.map(t=>{
    <div class="scene"><p class="narr">${t.story}</p><div class="ledger">${scene(t.art())}</div></div>
    <div class="land">
      <div class="box"><span class="lbl">What it means</span>${t.means}</div>
-     <div class="box je"><span class="lbl">What the accountant writes · Dr = debit, Cr = credit</span>${t.je.map(([s,a,v])=>`<span>${s}</span><span class="${s==='Cr'?'cr':''}">${a}</span><span>${f(v)}</span>`).join('')}</div>
+     <div class="box je"><span class="lbl">What the accountant writes</span>${t.je.map(([s,a,v])=>`<span>${s}</span><span class="${s==='Cr'?'cr':''}">${a}</span><span>${f(v)}</span>`).join('')}<span class="dcl">Dr = debit · Cr = credit</span></div>
      <div class="box fx"><span class="lbl">Where it lands</span>
        <b class="bs">Balance sheet</b><span>${e.bs.join(' · ')||'no change'}</span>
        <b class="is">Income statement</b><span>${e.isL.length?e.isL.join(' · ')+` → profit ${sg(e.ni)}`:'no change'}</span>
