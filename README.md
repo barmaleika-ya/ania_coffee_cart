@@ -10,6 +10,6 @@ on the statement of financial position, the income statement and the statement o
 - Glossary in UK/EU (IFRS), US, Polish and Russian terms
 - Swipeable PDF version: [ania-coffee-cart.pdf](ania-coffee-cart.pdf)
 
-© 2026 Tatyana Emelyanova. All rights reserved. Made with my pal Claude.
+© 2026 Tatyana Emelyanova. All rights reserved.
 
-The story, text and drawings are original. The accounting itself (the formulas, the statements, the accounting cycle) is timeless: it comes from the many books, articles and courses taught at Kozminski University.
+The story, text and drawings are original. The accounting behind it (the formulas, the statements and the accounting cycle) is standard theory from the books, articles and courses we study at Kozminski University.
