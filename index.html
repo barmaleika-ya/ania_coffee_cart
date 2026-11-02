@@ -11,16 +11,16 @@
 <title>Ania's Coffee Cart</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Atkinson+Hyperlegible:wght@400;700&family=IBM+Plex+Mono:wght@500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shantell+Sans:wght@400;500;600;700;800&display=swap">
 <style>
 /* Layout: comic strips printed on accounting ledger paper (ruled lines + red margin); prose sits between strips like captions. */
 :root{
   --paper:#F4F5F1; --fg:#1C1E1B; --muted:#596059; --card:#FFFFFF; --rule:#D5DAD3;
   --panel:#C6E6CF; --ledger:#A3CFB0; --floor:#A9D6B6; --margin:#D7735F; --line:#1A1C19; --bubble:#FFFFFF; --narr:#FFF7D6;
   --bs:#2F6FB3; --is:#2E8B57; --cf:#B5532E; --hi:#FFF1C9;
-  --f-comic:"Patrick Hand","Comic Neue","Comic Sans MS",cursive;
-  --f-body:"Atkinson Hyperlegible",system-ui,sans-serif;
-  --f-num:"IBM Plex Mono",ui-monospace,monospace;
+  --f-comic:"Shantell Sans",system-ui,sans-serif;
+  --f-body:"IBM Plex Sans",system-ui,sans-serif;
+  --f-num:"IBM Plex Sans",system-ui,sans-serif;
 }
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
   --paper:#141714; --fg:#E9EDE6; --muted:#A2ABA1; --card:#1E221E; --rule:#343B33;
@@ -382,6 +382,52 @@ body{font-size:var(--t-m)}
 .land .box{line-height:1.42}
 .land .je,.land .fx span{font-size:.8rem;line-height:1.45}
 @media (min-width:821px){.panels{grid-template-columns:minmax(0,1.22fr) minmax(0,1fr)}}
+
+/* figures: tabular numbers so columns line up */
+body{font-variant-numeric:tabular-nums lining-nums}
+.je,.fx span,.st td.n,.ln .v,.ws td,.rules .up,.taccount svg text{font-weight:500}
+.strip-head .no{font-family:var(--f-comic);font-size:var(--t-l);color:var(--muted)}
+
+/* ===== one font: Shantell Sans · three text levels ===== */
+:root{--f-comic:"Shantell Sans","Comic Neue",system-ui,sans-serif;--f-body:"Shantell Sans",system-ui,sans-serif;--f-num:"Shantell Sans",system-ui,sans-serif}
+body{font-family:var(--f-body);font-variant-numeric:tabular-nums lining-nums}
+/* level 1: headings */
+h1{font-weight:800;letter-spacing:-.015em}
+h2{font-weight:800;letter-spacing:-.01em}
+h3,.strip-head h3,.pr h3,.lk h3,.st h3,.trap .myth,.side .big{font-weight:700}
+.navlink,.menubtn,.totop,.skipbtn,.quizt,.stripnav a,.topnav .brand{font-weight:600}
+/* level 2: main text */
+.lede{color:var(--fg);font-size:var(--t-m)}
+.narr{font-weight:500;font-size:1.1rem}
+.narr b{font-weight:700}
+/* level 3: one secondary style */
+.pr .ru,.pr .ex,.pr a,.skiplink,.bridge,.sub,.st .sub,.ex,.trap .ex,.trap a,.dcl,.side .sm,.swipehint,.sitefoot .fbot{font-size:.85rem;color:var(--muted);font-weight:400}
+.pr .ru b{font-weight:600}
+.pr a,.trap a,.skiplink{text-decoration:underline;text-underline-offset:3px;border:none}
+/* principle cards: icon next to title, terms full width below */
+.pr{grid-template-columns:64px minmax(0,1fr);gap:6px 12px;align-items:center}
+.pr .ico{grid-row:auto;width:64px;height:64px}
+.pr h3{font-size:1.15rem;line-height:1.2}
+.pr .ru,.pr p,.pr a{grid-column:1/-1}
+.pr .ru:first-of-type{margin-top:4px}
+.pr p{font-size:var(--t-s);color:var(--fg)}
+.pr p.ex{color:var(--fg);font-size:var(--t-s)}
+.pr p.ex b{font-weight:600}
+/* comic lettering */
+svg .t{font-weight:500}
+svg .tl{font-weight:600;letter-spacing:.02em}
+
+button,input,select,textarea{font-family:inherit}
+.pr{grid-template-columns:80px minmax(0,1fr)}
+.pr .ico{width:80px;height:80px}
+.navlink{font-size:.98rem;padding:4px 7px}
+.topnav .brand{font-size:1.15rem}
+@media (min-width:821px){
+  .land .box{font-size:.86rem;line-height:1.4;padding:7px 9px}
+  .land .je,.land .fx span{font-size:.78rem}
+  .land{gap:7px;padding:9px}
+  .narr{font-size:1.02rem;padding:6px 12px}
+}
 </style>
 
 </head>
@@ -393,7 +439,7 @@ body{font-size:var(--t-m)}
 <header style="display:flex;flex-direction:column;gap:18px">
   <div class="page" id="hero"></div>
   <div style="display:flex;flex-direction:column;gap:10px">
-    <span class="eyebrow">An illustrated guide to the basic accounting conventions · © 2026 Tatyana Emelyanova</span>
+    <span class="eyebrow">An illustrated guide to the basic accounting conventions<br>© 2026 Tatyana Emelyanova</span>
     <h1>Ania's Coffee Cart</h1>
     <p class="lede">Ania opens a coffee cart and runs it for one month. Each comic strip is one thing that happens to her business. The left panel tells the story; the right panel shows what an accountant writes down and where it lands on the balance sheet, income statement and cash flow statement. At the bottom, the three statements fill up step by step.</p>
     <p class="theory"><b>First, a little theory.</b> The next three short sections (the big idea, the 12 accounting conventions, and debit and credit) make the comics much easier to follow. About 5 minutes.</p>
@@ -403,7 +449,7 @@ body{font-size:var(--t-m)}
 
 <section id="big-idea">
   <h2>The big idea</h2>
-  <p class="sub2">Everything a business owns came from somewhere</p>
+  <p class="lede">Everything a business owns came from somewhere.</p>
   <div class="eq ledger">Assets = Liabilities + Equity</div>
   <p>What the business <b>has</b> (assets) was paid for either by <b>borrowing</b> (liabilities) or by the <b>owners</b> (equity, which also includes profit kept in the business). Every transaction keeps this equation balanced, because each one touches at least two places. That is double-entry bookkeeping.</p>
   <div class="idea">
@@ -421,16 +467,14 @@ body{font-size:var(--t-m)}
 <section id="principles">
   <a class="skiplink" href="#comics">Skip to the comics ↓</a>
   <h2>12 conventions</h2>
-  <p class="sub2">The rules of the game, in plain English</p>
-  <p class="lede">Each card gives the meaning in one line, a tiny example, and a link to the strip where it happens to Ania. Under each name: the other name you may meet, then the Polish and Russian terms.</p>
+  <p class="lede">The rules of the game in plain English. Each card gives the meaning, a tiny example and the strip where it happens to Ania, plus the other name you may meet and the Polish and Russian terms.</p>
   <div class="grid" id="prGrid"></div>
 </section>
 
 <section id="drcr">
   <a class="skiplink" href="#comics">Skip to the comics ↓</a>
   <h2>Debit & credit</h2>
-  <p class="sub2">Dr and Cr in one minute</p>
-  <p class="lede">Every strip shows what the accountant writes, with <b>Dr</b> and <b>Cr</b> in front of each line. They are just the two sides of an account, nothing more.</p>
+  <p class="lede">Dr and Cr in one minute. Every strip shows what the accountant writes, with <b>Dr</b> and <b>Cr</b> in front of each line. They are just the two sides of an account, nothing more.</p>
   <div class="dc">
     <div style="display:flex;flex-direction:column;gap:14px;min-width:0">
       <div class="sides">
@@ -467,7 +511,7 @@ body{font-size:var(--t-m)}
 
 <section id="comics">
   <h2>The comics</h2>
-  <p class="sub2">One month at the coffee cart</p>
+  <p class="lede">One month at the coffee cart.</p>
   <div class="toolbar">
     <div class="seg" role="group" aria-label="Paper style">
       <span>Paper:</span>
@@ -485,7 +529,7 @@ body{font-size:var(--t-m)}
   <div class="stmt-head">
     <div style="display:flex;flex-direction:column;gap:6px">
       <h2>The statements</h2>
-  <p class="sub2">Watch them fill up, one transaction at a time</p>
+  <p class="lede">Watch them fill up, one transaction at a time.</p>
     </div>
     <div class="stepper">
       <button class="btn" id="prev" aria-label="Previous transaction">◀</button>
@@ -500,8 +544,7 @@ body{font-size:var(--t-m)}
 
 <section id="links">
   <h2>How they connect</h2>
-  <p class="sub2">Where each of Ania's sums travels between the three statements</p>
-  <p class="lede">The three statements are one story told three ways. The same numbers travel between them, and if one is wrong, the others stop agreeing. Here is where each of Ania's November sums goes.</p>
+  <p class="lede">Where each of Ania's sums travels between the three statements. The three statements are one story told three ways. The same numbers travel between them, and if one is wrong, the others stop agreeing. Here is where each of Ania's November sums goes.</p>
   <div class="ov" id="ovDiagram"></div>
   <ul class="legend" id="legend"></ul>
   <p class="bridge">Tap a number to light up where that sum appears in each statement.</p>
@@ -517,8 +560,7 @@ body{font-size:var(--t-m)}
 
 <section id="cycle">
   <h2>Accounting cycle</h2>
-  <p class="sub2">From receipt to report</p>
-  <p class="lede">Every month an accountant walks the same eight steps. Most of the thinking happens in step 1; the month-end adjustments in step 5 are where profit gets fixed to the right month.</p>
+  <p class="lede">From receipt to report. Every month an accountant walks the same eight steps. Most of the thinking happens in step 1; the month-end adjustments in step 5 are where profit gets fixed to the right month.</p>
   <div class="cyc">
     <div id="ring"></div>
     <ol class="steps2" id="cycSteps"></ol>
@@ -531,8 +573,7 @@ body{font-size:var(--t-m)}
 
 <section id="traps">
   <h2>Easy to mix up</h2>
-  <p class="sub2">Common traps for people new to accounting</p>
-  <p class="lede">These feel obvious but are wrong, and they catch most people who are new to accounting. Each one shows what people often think, what is actually true, and a number from Ania's cart.</p>
+  <p class="lede">Common traps for people new to accounting. These feel obvious but are wrong, and they catch most people who are new to accounting. Each one shows what people often think, what is actually true, and a number from Ania's cart.</p>
   <div class="traps">
     <div class="tgrp"><h3>Loans and interest</h3><div class="tgrid"><article class="trap"><div class="myth"><span class="x" aria-label="Myth">✗</span><span>“Taking a loan is income”</span></div><p class="real"><b>Actually:</b> A loan is money you must give back, so it is a liability. Profit does not change.</p><p class="ex">Strip 2: cash +5,000 zł and bank loan +5,000 zł. Revenue stays 0.</p><a href="#strip-2">See strip 2 ↓</a></article><article class="trap"><div class="myth"><span class="x" aria-label="Myth">✗</span><span>“All the interest is recorded on the day you borrow”</span></div><p class="real"><b>Actually:</b> Interest is the price of using money over time. Only the 5,000 zł you received is recorded on day 2. Interest builds up month by month and is recorded as it accrues.</p><p class="ex">November's share is 5,000 × 6% ÷ 12 = 25 zł, recorded on 30 November, not 300 zł on day 2.</p><a href="#strip-13">See strip 13 ↓</a></article><article class="trap"><div class="myth"><span class="x" aria-label="Myth">✗</span><span>“A loan repayment is an expense”</span></div><p class="real"><b>Actually:</b> Each repayment has two parts. The principal part only reduces the debt. Only the interest part is an expense.</p><p class="ex">If Ania later pays the bank 1,025 zł: 1,000 zł only reduces the loan. The 25 zł is interest, the only expense part, and it was already recorded as it built up (strip 13), so the payment just clears it.</p></article></div></div>
     <div class="tgrp"><h3>Spending money</h3><div class="tgrid"><article class="trap"><div class="myth"><span class="x" aria-label="Myth">✗</span><span>“Buying a machine is an expense”</span></div><p class="real"><b>Actually:</b> Something that will serve for years is an asset. Its cost reaches the income statement slowly, through depreciation.</p><p class="ex">Strip 3: 6,000 zł becomes equipment. November's expense is only 100 zł of depreciation.</p><a href="#strip-3">See strip 3 ↓</a></article><article class="trap"><div class="myth"><span class="x" aria-label="Myth">✗</span><span>“Buying stock is an expense”</span></div><p class="real"><b>Actually:</b> Goods on the shelf are inventory, an asset. They become an expense (cost of sales) only when they are sold.</p><p class="ex">2,000 zł of beans bought, 1,500 zł used, 500 zł still an asset on 30 November.</p><a href="#strip-5">See strip 5 ↓</a></article><article class="trap"><div class="myth"><span class="x" aria-label="Myth">✗</span><span>“Paying a bill is when the expense happens”</span></div><p class="real"><b>Actually:</b> The expense happens when something is used up. Paying the bill only settles the debt.</p><p class="ex">Strip 10: paying the roaster 1,500 zł changes cash and payables, not profit.</p><a href="#strip-10">See strip 10 ↓</a></article><article class="trap"><div class="myth"><span class="x" aria-label="Myth">✗</span><span>“Rent paid ahead is this month's cost”</span></div><p class="real"><b>Actually:</b> Only the part used this month is an expense. The rest is prepaid, an asset.</p><p class="ex">1,500 zł paid for three months: 500 zł expense in November, 1,000 zł asset.</p><a href="#strip-4">See strip 4 ↓</a></article><article class="trap"><div class="myth"><span class="x" aria-label="Myth">✗</span><span>“The price of an asset is just its sticker price”</span></div><p class="real"><b>Actually:</b> The cost of an asset includes what it takes to get it working: delivery, installation, set-up.</p><p class="ex">If delivering the machine had cost 200 zł, equipment would be 6,200 zł.</p></article></div></div>
@@ -544,7 +585,7 @@ body{font-size:var(--t-m)}
 
 <section id="ratios">
   <h2>Ratios</h2>
-  <p class="sub2">Divide one number by another</p>
+  <p class="lede">Divide one number by another.</p>
   <div class="idea" id="ratioBox"></div>
 </section>
 
