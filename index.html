@@ -383,6 +383,9 @@ body{font-size:var(--t-m)}
 .land .je,.land .fx span{font-size:.8rem;line-height:1.45}
 @media (min-width:821px){.panels{grid-template-columns:minmax(0,1.22fr) minmax(0,1fr)}}
 
+
+.subtitle{font-family:var(--f-comic);font-size:1.45rem;line-height:1.25;color:var(--muted);margin:-4px 0 0;max-width:none;text-wrap:balance}
+@media (max-width:600px){.subtitle{font-size:1.2rem}.subtitle br{display:none}}
 </style>
 
 </head>
@@ -394,8 +397,9 @@ body{font-size:var(--t-m)}
 <header style="display:flex;flex-direction:column;gap:18px">
   <div class="page" id="hero"></div>
   <div style="display:flex;flex-direction:column;gap:10px">
-    <span class="eyebrow">An illustrated guide to the basic accounting conventions<br>© 2026 Tatyana Emelyanova</span>
     <h1>Ania's Coffee Cart</h1>
+    <p class="subtitle">An illustrated guide to the basic accounting conventions,<br>or how to remember what you read, hear and practise when you study accounting</p>
+    <span class="eyebrow">© 2026 Tatyana Emelyanova</span>
     <p class="lede">Ania opens a coffee cart and runs it for one month. Each comic strip is one thing that happens to her business. The left panel tells the story; the right panel shows what an accountant writes down and where it lands on the balance sheet, income statement and cash flow statement. At the bottom, the three statements fill up step by step.</p>
     <p class="theory"><b>First, a little theory.</b> The next three short sections (the big idea, the 12 accounting conventions, and debit and credit) make the comics much easier to follow. About 5 minutes.</p>
     <a class="skipbtn" href="#comics"><span>Nah, skip the boring stuff →<small>Straight to the comics. You can always come back.</small></span></a>
@@ -636,12 +640,15 @@ function layout(root){
 
 /* ---------- title page: original 3-panel strip ---------- */
 const hp=(x)=>{let g=`<rect class="pl" x="${x}" y="8" width="284" height="274" rx="5"/><g clip-path="url(#c${x})">`;for(let yy=32;yy<282;yy+=24)g+=`<path class="lg" d="M${x} ${yy} L${x+284} ${yy}"/>`;return g+`</g><clipPath id="c${x}"><rect x="${x}" y="8" width="284" height="274"/></clipPath>`};
+const hcap=(x,t)=>`<rect x="${x+1.75}" y="9.75" width="280.5" height="32" style="fill:var(--narr)"/><path class="s" d="M${x+1.75} 41.75 L${x+282.25} 41.75" style="stroke-width:2.5"/><text class="t" x="${x+142}" y="31" text-anchor="middle" style="font-size:14.5px">${t}</text>`;
+const bulb=(x,y)=>`<circle class="w" cx="${x}" cy="${y}" r="11"/><path class="w" d="M${x-5} ${y+9} L${x-5} ${y+16} L${x+5} ${y+16} L${x+5} ${y+9}"/>`+S(`M${x-4} ${y+19} L${x+4} ${y+19} M${x} ${y-17} L${x} ${y-24} M${x-14} ${y-10} L${x-19} ${y-15} M${x+14} ${y-10} L${x+19} ${y-15} M${x-18} ${y+1} L${x-24} ${y+1} M${x+18} ${y+1} L${x+24} ${y+1} M${x-3} ${y+4} q3 -8 6 0`);
 const heroArt=`
 ${hp(8)}${hp(308)}${hp(608)}
 ${S('M12 262 L288 262 M312 262 L588 262 M612 262 L888 262')}
-${fig(150,260,{f:1,pose:'think'})}${think(150,66,'A coffee cart!|Let\'s do it.',152,116,8,292)}
-${fig(372,260,{f:1,pose:'point'})}${prop.cart(510,260,1)}${say(430,62,'Where does|every złoty go?',375,114,308,592)}
-${fig(670,260,{f:1,pose:'cheer'})}${prop.book(800,250)}${burst(770,70,'Follow the|money!',608,892)}
+${hcap(8,'Ania decides to start her own business.')}${hcap(308,'She opens a coffee cart.')}${hcap(608,'So she learns to follow the money.')}
+${fig(150,260,{f:1,pose:'cheer'})}${bulb(72,112)}${say(168,74,'My own coffee|cart. Let\'s do it!',150,122,20,290)}
+${fig(372,260,{f:1,pose:'point'})}${prop.cart(510,260,1)}${say(445,72,'Where does|every złoty go?',380,122,330,592)}
+${fig(670,260,{f:1,pose:'cheer'})}${prop.book(800,250)}${burst(770,98,'Follow the|money!',608,892)}
 `;
 document.getElementById('hero').innerHTML=`<div class="heroP" role="img" aria-label="Three-panel comic: Ania decides to open a coffee cart, wonders where every złoty goes, and says follow the money">${[0,300,600].map(x=>`<svg viewBox="${x+4} 4 292 282" aria-hidden="true">${heroArt}</svg>`).join('')}</div><p class="swipehint">Swipe the panels →</p>`;
 
