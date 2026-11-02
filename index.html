@@ -419,6 +419,51 @@ p,.lede,.theory,.bridge,.sitefoot .fbot span{max-width:none}
 .subtitle{text-wrap:wrap}
 
 .read{width:fit-content;max-width:100%}
+
+/* ===== spacing & measure: one 4px-based scale ===== */
+:root{--s2:8px;--s3:12px;--s4:16px;--s5:24px;--s6:32px;--s7:48px;--s8:88px}
+body{line-height:1.6}
+.wrap{gap:var(--s8);padding-block:var(--s6) var(--s8)}
+header{gap:var(--s5)!important}
+header>div{gap:var(--s3)!important}
+section{gap:var(--s5)}
+h1,h2,h3{line-height:1.15}
+section>h2{margin-top:var(--s2)}
+section>h2+.sub2,.stmt-head .sub2{margin-top:calc(var(--s3) * -1)}
+/* comfortable line length: long paragraphs stay readable, larger text on wide screens */
+.lede{font-size:clamp(1rem,.92rem + .35vw,1.18rem);line-height:1.65;max-width:43em}
+section>p,.theory-t{max-width:43em}
+.subtitle{margin-top:calc(var(--s2) * -1)}
+/* cards and grids */
+.grid,.idea,.tgrid,.lkgrid,.stmts,.legend{gap:var(--s5)}
+.pr,.trap,.idea>div,.st,.lk,.side{padding:var(--s5)}
+.pr p,.trap .real{line-height:1.6}
+.theory-row{padding:var(--s5)}
+.tgrp{gap:var(--s4)}
+.traps{gap:var(--s7)}
+/* tables breathe */
+.st td{padding:6px 6px}
+.st tr.grp td{padding-top:var(--s4)}
+.rules td,.sumtbl td,.tools td{padding:10px 8px}
+.ln{padding:6px 4px}
+/* comics: a little more room between strips, panels unchanged */
+#strips{gap:var(--s6)!important}
+.strip{padding:var(--s3);gap:var(--s3)}
+.strip-head{padding:2px 4px}
+.toolbar{gap:var(--s4)}
+.stripnav{gap:var(--s2)}
+/* footer */
+.sitefoot{gap:var(--s5);padding-top:var(--s6)}
+@media (max-width:600px){
+  :root{--s8:64px}
+  .pr,.trap,.idea>div,.st,.lk,.side,.theory-row{padding:var(--s4)}
+}
+
+.grid{grid-template-columns:repeat(auto-fill,minmax(min(100%,350px),1fr))}
+.tgrid{grid-template-columns:repeat(auto-fill,minmax(min(100%,340px),1fr))}
+
+/* the story opening: main text, not secondary */
+header .lede{color:var(--fg);font-size:clamp(1.12rem,1rem + .45vw,1.32rem);line-height:1.6;max-width:42em}
 </style>
 
 </head>
