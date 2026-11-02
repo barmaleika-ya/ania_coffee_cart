@@ -468,6 +468,10 @@ header .lede{color:var(--fg);font-size:clamp(1.12rem,1rem + .45vw,1.32rem);line-
 .backlink{align-self:flex-start;font-size:.85rem;font-weight:700;color:var(--muted);text-decoration:none;border-bottom:1.5px dashed var(--muted);margin-bottom:-8px}
 .backlink:hover{color:var(--fg);border-color:var(--fg)}
 .backlink:focus-visible{outline:3px solid var(--bs);outline-offset:2px}
+
+/* skip and back links share one spot: top right of the section */
+.skiplink,.backlink{align-self:flex-end;margin:0 0 -8px;font-size:.85rem;font-weight:700;color:var(--muted);text-decoration:none;border:none;border-bottom:1.5px dashed var(--muted)}
+.skiplink:hover,.backlink:hover{color:var(--fg);border-color:var(--fg)}
 </style>
 
 </head>
