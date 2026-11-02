@@ -472,6 +472,13 @@ header .lede{color:var(--fg);font-size:clamp(1.12rem,1rem + .45vw,1.32rem);line-
 /* skip and back links share one spot: top right of the section */
 .skiplink,.backlink{align-self:flex-end;margin:0 0 -8px;font-size:.85rem;font-weight:700;color:var(--muted);text-decoration:none;border:none;border-bottom:1.5px dashed var(--muted)}
 .skiplink:hover,.backlink:hover{color:var(--fg);border-color:var(--fg)}
+
+/* byline under the subtitle; © lives in the footer */
+.byline{font-family:var(--f-comic);font-size:1.15rem;color:var(--fg);margin:-4px 0 0}
+/* full-width text and calmer section spacing */
+header .lede,section>p,.theory-t,.lede{max-width:none}
+:root{--s8:56px}
+@media (max-width:600px){:root{--s8:44px}}
 </style>
 
 </head>
@@ -485,7 +492,7 @@ header .lede{color:var(--fg);font-size:clamp(1.12rem,1rem + .45vw,1.32rem);line-
   <div style="display:flex;flex-direction:column;gap:10px">
     <h1>Ania's Coffee Cart</h1>
     <p class="subtitle">An illustrated guide to the basic accounting conventions, or how to remember what you read, hear and practise when you study accounting</p>
-    <span class="eyebrow">© 2026 Tatyana Emelyanova</span>
+    <p class="byline">by Tatyana Emelyanova</p>
     <p class="lede">Ania opens a coffee cart and runs it for one month. Each comic strip is one thing that happens to her business. The left panel tells the story; the right panel shows what an accountant writes down and where it lands on the balance sheet, income statement and cash flow statement. At the bottom, the three statements fill up step by step.</p>
     <div class="theory-row"><p class="theory-t"><b>First, a little theory.</b> The next three short sections (the big idea, the 12 accounting conventions, and debit and credit) make the comics much easier to follow. About 5 minutes.</p><a class="skipbtn" href="#comics"><span>Nah, skip the boring stuff →<small>Straight to the comics. You can always come back.</small></span></a></div>
   </div>
