@@ -104,6 +104,9 @@ svg .floor{fill:var(--floor)}
 .land .go{align-self:flex-start;background:var(--bubble);border:2px solid var(--line);color:var(--line);font:inherit;font-weight:700;font-size:.82rem;border-radius:6px;padding:4px 10px;cursor:pointer}
 .cover{position:absolute;inset:0;display:none;align-items:center;justify-content:center;flex-direction:column;gap:8px;background:var(--panel);border:none;border-radius:3px;font-family:var(--f-comic);font-size:1.4rem;color:var(--line);cursor:pointer;width:100%;padding:16px;text-align:center}
 .quiz .land:not(.shown) .cover{display:flex}
+.land .btns{display:flex;flex-wrap:wrap;gap:8px}
+.land .rehide{display:none}
+.quiz .land.shown .rehide{display:inline-block;background:var(--narr)}
 /* statements */
 .stmt-head{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between}
 .stepper{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
@@ -211,6 +214,39 @@ ol.steps{margin:0;padding-left:1.3em;display:flex;flex-direction:column;gap:8px}
 .trap .real b{color:var(--is)}
 .trap .ex{font-size:.86rem;color:var(--muted);border-top:1px dashed var(--rule);padding-top:8px}
 .trap a{font-size:.82rem;font-weight:700;color:var(--fg)}
+
+.dc{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:20px;align-items:start}
+.sides{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.side{border:2px solid var(--fg);border-radius:10px;padding:12px;background:var(--card)}
+.side .big{font-family:var(--f-comic);font-size:2rem;line-height:1}
+.side .sm{font-size:.85rem;color:var(--muted)}
+.rules{width:100%;border-collapse:collapse;font-size:.9rem}
+.rules th{text-align:left;font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);padding:6px;border-bottom:2px solid var(--fg)}
+.rules td{padding:7px 6px;border-bottom:1px solid var(--rule)}
+.rules td:first-child{font-weight:700}
+.rules .up{font-family:var(--f-num);font-weight:500}
+.dealer{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.dealer span{display:inline-grid;place-items:center;min-width:34px;height:34px;padding:0 6px;border-radius:8px;border:2px solid var(--fg);font-family:var(--f-comic);font-size:1.3rem;background:var(--card)}
+.dealer span.d{background:var(--panel);color:var(--line)}
+.dealer span.c{background:var(--narr);color:var(--line)}
+.dealer em{font-style:normal;color:var(--muted);font-size:.85rem;margin:0 6px}
+.taccount svg text{fill:var(--fg);font-family:var(--f-num);font-size:13px}
+.taccount svg .h{font-family:var(--f-comic);font-size:22px}
+.taccount svg .lab{font-family:var(--f-body);font-size:11px;fill:var(--muted)}
+.taccount svg .ln2{stroke:var(--fg);stroke-width:2.5}
+.read{background:var(--card);border:1px solid var(--rule);border-radius:12px;padding:14px;display:grid;grid-template-columns:auto minmax(0,1fr);gap:6px 14px;font-size:.92rem;align-items:baseline}
+.read code{font-family:var(--f-num);font-size:.85rem;white-space:nowrap}
+@media (max-width:820px){.dc{grid-template-columns:minmax(0,1fr)}}
+
+.quizt{display:inline-flex;align-items:center;gap:12px;cursor:pointer;font-family:var(--f-comic);font-size:1.35rem;line-height:1.15;color:var(--line);background:var(--panel);border:3px solid var(--line);border-radius:12px;padding:10px 16px;box-shadow:4px 4px 0 var(--line);transition:transform .08s,box-shadow .08s,background .15s;max-width:100%}
+.quizt:hover{transform:translate(-1px,-1px);box-shadow:5px 5px 0 var(--line)}
+.quizt:active{transform:translate(3px,3px);box-shadow:1px 1px 0 var(--line)}
+.quizt input{appearance:none;-webkit-appearance:none;flex:none;width:30px;height:30px;margin:0;border:3px solid var(--line);border-radius:7px;background:var(--bubble);display:grid;place-items:center;cursor:pointer}
+.quizt input::after{content:"";width:9px;height:16px;border:solid var(--line);border-width:0 4px 4px 0;transform:rotate(45deg) translate(-1px,-2px);opacity:0;transition:opacity .1s}
+.quizt input:checked::after{opacity:1}
+.quizt:has(input:checked){background:var(--narr)}
+.quizt input:focus-visible{outline:3px solid var(--bs);outline-offset:3px}
+.quizt small{display:block;font-family:var(--f-body);font-size:.78rem;color:var(--line);opacity:.75}
 </style>
 
 </head>
@@ -250,6 +286,44 @@ ol.steps{margin:0;padding-left:1.3em;display:flex;flex-direction:column;gap:8px}
   <div class="grid" id="prGrid"></div>
 </section>
 
+<section id="drcr">
+  <span class="eyebrow">Before the comics</span>
+  <h2>Dr and Cr: debit and credit in one minute</h2>
+  <p class="lede">Every strip shows what the accountant writes, with <b>Dr</b> and <b>Cr</b> in front of each line. They are just the two sides of an account, nothing more.</p>
+  <div class="dc">
+    <div style="display:flex;flex-direction:column;gap:14px;min-width:0">
+      <div class="sides">
+        <div class="side"><div class="big">Dr</div><b>Debit = the left side</b><div class="sm">Polish: Wn (Winien) · Russian: Дт (дебет)</div></div>
+        <div class="side"><div class="big">Cr</div><b>Credit = the right side</b><div class="sm">Polish: Ma · Russian: Кт (кредит)</div></div>
+      </div>
+      <p><b>The one rule:</b> in every entry, the debits add up to the same amount as the credits. That is double entry, and it is why A = L + E always balances.</p>
+      <div class="tblwrap"><table class="rules">
+        <thead><tr><th>Account type</th><th>Goes up with</th><th>Goes down with</th><th>Ends up on</th></tr></thead>
+        <tbody>
+          <tr><td>Assets (cash, inventory, machine)</td><td class="up">Dr</td><td class="up">Cr</td><td>Balance sheet</td></tr>
+          <tr><td>Expenses (rent, wages)</td><td class="up">Dr</td><td class="up">Cr</td><td>Income statement</td></tr>
+          <tr><td>Liabilities (loan, unpaid bills)</td><td class="up">Cr</td><td class="up">Dr</td><td>Balance sheet</td></tr>
+          <tr><td>Equity (owner's capital)</td><td class="up">Cr</td><td class="up">Dr</td><td>Balance sheet</td></tr>
+          <tr><td>Revenue (sales)</td><td class="up">Cr</td><td class="up">Dr</td><td>Income statement</td></tr>
+        </tbody></table></div>
+      <div style="display:flex;flex-direction:column;gap:6px">
+        <b>Memory trick: DEALER</b>
+        <div class="dealer"><span class="d">D</span><span class="d">E</span><span class="d">A</span><em>grow with Dr</em><span class="c">L</span><span class="c">E</span><span class="c">R</span><em>grow with Cr</em></div>
+        <p class="bridge" style="margin:0">Drawings, Expenses, Assets · Liabilities, Equity, Revenue</p>
+      </div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:12px;min-width:0">
+      <div class="taccount page" id="tacc"></div>
+      <p class="bridge" id="taccNote"></p>
+    </div>
+  </div>
+  <div class="read">
+    <code>Dr Cash 10,000</code><span>Cash is an asset. It goes up, so it is a debit.</span>
+    <code>Cr Owner's capital 10,000</code><span>Capital is equity. It goes up, so it is a credit. 10,000 = 10,000, so the entry balances.</span>
+    <span style="grid-column:1 / -1;color:var(--muted);font-size:.86rem">That is strip 1, read out loud. Statements never print “Dr” or “Cr”: each account's final balance simply becomes one line, as the Cash account on the right shows.</span>
+  </div>
+</section>
+
 <section id="comics">
   <span class="eyebrow">The comic series</span>
   <h2>One month at the coffee cart</h2>
@@ -260,7 +334,7 @@ ol.steps{margin:0;padding-left:1.3em;display:flex;flex-direction:column;gap:8px}
       <button class="btn" data-paper="graph" aria-pressed="false"><i class="sw" style="background:#D3E5F3"></i>Graph blue</button>
       <button class="btn" data-paper="kraft" aria-pressed="false"><i class="sw" style="background:#E6D2AE"></i>Kraft</button>
     </div>
-    <label style="display:flex;gap:8px;align-items:center;font-weight:700;font-size:.9rem"><input type="checkbox" id="quiz"> Quiz mode: hide the answer panel until I guess</label>
+    <label class="quizt"><input type="checkbox" id="quiz"><span>Quiz mode!<small>Hide the answers until I guess</small></span></label>
   </div>
   <div id="strips" style="display:flex;flex-direction:column;gap:20px"></div>
 </section>
@@ -563,7 +637,7 @@ document.getElementById('strips').innerHTML=T.map(t=>{
    <div class="scene"><p class="narr">${t.story}</p><div class="ledger">${scene(t.art())}</div></div>
    <div class="land">
      <div class="box"><span class="lbl">What it means</span>${t.means}</div>
-     <div class="box je"><span class="lbl">What the accountant writes</span>${t.je.map(([s,a,v])=>`<span>${s}</span><span class="${s==='Cr'?'cr':''}">${a}</span><span>${f(v)}</span>`).join('')}</div>
+     <div class="box je"><span class="lbl">What the accountant writes · Dr = debit, Cr = credit</span>${t.je.map(([s,a,v])=>`<span>${s}</span><span class="${s==='Cr'?'cr':''}">${a}</span><span>${f(v)}</span>`).join('')}</div>
      <div class="box fx"><span class="lbl">Where it lands</span>
        <b class="bs">Balance sheet</b><span>${e.bs.join(' · ')||'no change'}</span>
        <b class="is">Income statement</b><span>${e.isL.length?e.isL.join(' · ')+` → profit ${sg(e.ni)}`:'no change'}</span>
@@ -571,7 +645,7 @@ document.getElementById('strips').innerHTML=T.map(t=>{
        <span style="margin-top:4px">Check: assets ${sg(e.A)} = liabilities ${sg(e.L)} + equity ${sg(e.E)}</span>
      </div>
      <div class="box warn"><span class="lbl">Watch out</span>${t.watch}</div>
-     <button class="go" data-go="${t.n}">See it on the statements ↓</button>
+     <div class="btns"><button class="go" data-go="${t.n}">See it on the statements ↓</button><button class="go rehide" data-hide>Hide the answer ↺</button></div>
      <button class="cover" data-reveal>Which statements move?<span style="font-size:1rem">Tap to reveal</span></button>
    </div></div></article>`}).join('');
 
@@ -621,10 +695,30 @@ document.getElementById('prev').onclick=()=>render(Math.max(0,+stepEl.value-1));
 document.getElementById('next').onclick=()=>render(Math.min(13,+stepEl.value+1));
 document.getElementById('strips').addEventListener('click',e=>{
   const g=e.target.closest('[data-go]');if(g){render(+g.dataset.go);document.getElementById('statements').scrollIntoView();}
-  const c=e.target.closest('[data-reveal]');if(c)c.closest('.land').classList.add('shown');
+  const c=e.target.closest('[data-reveal]');if(c){const l=c.closest('.land');l.classList.add('shown');const h=l.querySelector('[data-hide]');if(h)h.focus({preventScroll:true});}
+  const hd=e.target.closest('[data-hide]');if(hd){const l=hd.closest('.land');l.classList.remove('shown');const cv=l.querySelector('[data-reveal]');if(cv)cv.focus({preventScroll:true});}
 });
 document.getElementById('quiz').addEventListener('change',e=>{document.body.classList.toggle('quiz',e.target.checked);document.querySelectorAll('.land').forEach(l=>l.classList.remove('shown'));});
 render(13);
+
+/* ---------- T-account for Cash ---------- */
+(function(){
+  const L=[],R=[];T.forEach(t=>{const c=t.d.cash;if(c>0)L.push([t.n,c]);else if(c<0)R.push([t.n,-c]);});
+  const sL=L.reduce((a,x)=>a+x[1],0),sR=R.reduce((a,x)=>a+x[1],0),rows=Math.max(L.length,R.length),rh=24,top=78,W=440,mid=W/2;
+  const H=top+rows*rh+86;
+  let g=`<text class="h" x="${mid}" y="32" text-anchor="middle">Cash</text>
+   <text class="lab" x="${mid-14}" y="58" text-anchor="end">Dr · money in</text><text class="lab" x="${mid+14}" y="58" text-anchor="start">Cr · money out</text>
+   <line class="ln2" x1="20" y1="66" x2="${W-20}" y2="66"/><line class="ln2" x1="${mid}" y1="66" x2="${mid}" y2="${top+rows*rh+6}"/>`;
+  L.forEach(([n,v],i)=>g+=`<text class="lab" x="30" y="${top+i*rh+12}">strip ${n}</text><text x="${mid-14}" y="${top+i*rh+12}" text-anchor="end">${f(v)}</text>`);
+  R.forEach(([n,v],i)=>g+=`<text class="lab" x="${mid+14}" y="${top+i*rh+12}">strip ${n}</text><text x="${W-30}" y="${top+i*rh+12}" text-anchor="end">${f(v)}</text>`);
+  const y2=top+rows*rh+10;
+  g+=`<line x1="${mid-110}" y1="${y2}" x2="${mid-10}" y2="${y2}" style="stroke:var(--muted);stroke-width:1"/><line x1="${W-130}" y1="${y2}" x2="${W-30}" y2="${y2}" style="stroke:var(--muted);stroke-width:1"/>
+   <text x="${mid-14}" y="${y2+18}" text-anchor="end" style="font-weight:700">${f(sL)}</text><text x="${W-30}" y="${y2+18}" text-anchor="end" style="font-weight:700">${f(sR)}</text>
+   <rect x="20" y="${y2+32}" width="${W-40}" height="34" rx="8" style="fill:var(--hi);stroke:var(--fg);stroke-width:1.5"/>
+   <text x="${mid}" y="${y2+54}" text-anchor="middle" style="font-family:var(--f-body);font-size:14px;font-weight:700">Balance ${f(sL-sR)} Dr → Cash on the balance sheet</text>`;
+  document.getElementById('tacc').innerHTML=`<svg viewBox="0 0 ${W} ${y2+74}" role="img" aria-label="T-account for Cash: debits ${f(sL)}, credits ${f(sR)}, balance ${f(sL-sR)}">${g}</svg>`;
+  document.getElementById('taccNote').textContent=`This is a T-account: Ania's whole month of cash in one picture. Money in sits on the left (Dr), money out on the right (Cr). The difference, ${f(sL-sR)} zł, is the cash line on the balance sheet.`;
+})();
 
 /* ---------- statement links + accounting cycle ---------- */
 (function(){
