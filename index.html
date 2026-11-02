@@ -406,6 +406,12 @@ body{font-size:var(--t-m)}
 .tl button.todo{opacity:.5}
 .tl button:hover{opacity:1;border-color:var(--fg)}
 .tl button:focus-visible{outline:3px solid var(--bs);outline-offset:2px}
+
+/* text and diagrams use the full page column and resize with the window */
+p,.lede,.theory,.bridge,.sitefoot .fbot span{max-width:none}
+.ov{max-width:none}
+.ov svg{max-height:70vh}
+.wrap{max-width:min(1280px,100%)}
 </style>
 
 </head>
