@@ -138,6 +138,65 @@ ol.steps{margin:0;padding-left:1.3em;display:flex;flex-direction:column;gap:8px}
   .panels,.two,.stmts,.idea{grid-template-columns:minmax(0,1fr)}
 }
 @media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+
+/* links + cycle */
+.ov{max-width:760px}
+.ov svg text{fill:var(--fg);font-family:var(--f-body);font-size:13px}
+.ov svg .bxt{font-family:var(--f-comic);font-size:20px}
+.ov svg .ar{stroke:var(--fg);stroke-width:2;fill:none}
+.ov svg .ah{fill:var(--fg)}
+.ov svg .num{fill:var(--card);stroke:var(--fg);stroke-width:2}
+.ov svg .numt{font-family:var(--f-num);font-size:12px;text-anchor:middle}
+.lkgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;align-items:start}
+.lk{background:var(--card);border:1px solid var(--rule);border-radius:12px;padding:12px;min-width:0}
+.lk h3{font-size:1.25rem;margin-bottom:6px}
+.ln{display:grid;grid-template-columns:minmax(0,1fr) auto auto;gap:6px;align-items:center;padding:3px 4px;border-bottom:1px dashed var(--rule);font-size:.86rem;border-radius:4px;transition:background .15s}
+.ln .v{font-family:var(--f-num);font-variant-numeric:tabular-nums;white-space:nowrap;text-align:right}
+.ln.t{font-weight:700;border-bottom:2px solid var(--fg)}
+.ln.sub{color:var(--muted);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;font-weight:700;border:none;padding-top:8px}
+.bd{display:flex;gap:3px;justify-content:flex-end;min-width:22px}
+.b{display:inline-grid;place-items:center;width:20px;height:20px;border-radius:50%;border:1.5px solid var(--fg);font-family:var(--f-num);font-size:.68rem;background:var(--card);color:var(--fg)}
+.ln.on{background:var(--hi)}
+.ln.on .b.m{background:var(--fg);color:var(--card)}
+.legend{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:10px;list-style:none;margin:0;padding:0}
+.legend button{all:unset;box-sizing:border-box;display:grid;grid-template-columns:auto minmax(0,1fr);gap:10px;align-items:start;width:100%;cursor:pointer;background:var(--card);border:1px solid var(--rule);border-radius:10px;padding:10px 12px;font-size:.92rem;line-height:1.45}
+.legend button[aria-pressed="true"]{border-color:var(--fg);background:var(--hi)}
+.legend button:focus-visible{outline:3px solid var(--bs);outline-offset:2px}
+.legend .b{margin-top:2px}
+.sumtbl{width:100%;border-collapse:collapse;font-size:.9rem;min-width:620px}
+.sumtbl th{text-align:left;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);padding:6px;border-bottom:2px solid var(--fg)}
+.sumtbl td{padding:7px 6px;border-bottom:1px solid var(--rule);vertical-align:top}
+.sumtbl td:first-child{font-weight:700}
+.cyc{display:grid;grid-template-columns:minmax(0,400px) minmax(0,1fr);gap:24px;align-items:start}
+.cyc svg text{fill:var(--line);font-family:var(--f-comic);font-size:15px;text-anchor:middle}
+.cyc svg .ctr{fill:var(--fg);font-size:20px}
+.cyc svg .ctr2{fill:var(--muted);font-family:var(--f-body);font-size:12px}
+.cyc svg .node{fill:var(--panel);stroke:var(--line);stroke-width:2.5;cursor:pointer}
+.cyc svg .node.adj{fill:var(--narr)}
+.cyc svg g.on .node{stroke-width:4.5}
+.cyc svg g[data-s]{outline:none;cursor:pointer}
+.cyc svg g[data-s]:focus-visible .node{stroke:var(--bs);stroke-width:4.5}
+.cyc svg .ring{stroke:var(--fg);stroke-width:2;fill:none}
+.cyc svg .rh{fill:var(--fg)}
+.cyc svg .nn{font-family:var(--f-num);font-size:11px}
+.steps2{display:flex;flex-direction:column;gap:8px;margin:0;padding:0;list-style:none}
+.steps2 li{display:grid;grid-template-columns:30px minmax(0,1fr);gap:10px;background:var(--card);border:1px solid var(--rule);border-radius:10px;padding:10px 12px;scroll-margin-top:16px}
+.steps2 li.adj{border:2px dashed var(--fg)}
+.steps2 li.on{background:var(--hi)}
+.steps2 .n{font-family:var(--f-num);font-weight:500;font-size:1.05rem}
+.steps2 b{display:block}
+.steps2 .ex{color:var(--muted);font-size:.9rem}
+.ws{width:100%;border-collapse:collapse;font-size:.86rem;min-width:680px}
+.ws th,.ws td{padding:5px 8px;border-bottom:1px solid var(--rule)}
+.ws th{font-size:.7rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);text-align:right}
+.ws th:first-child,.ws td:first-child{text-align:left}
+.ws td{text-align:right;font-family:var(--f-num);font-variant-numeric:tabular-nums;white-space:nowrap}
+.ws td:first-child{font-family:var(--f-body)}
+.ws .grp th{text-align:center;border-bottom:1px solid var(--rule)}
+.ws .adjc{background:var(--hi)}
+.ws tr.tot td{font-weight:700;border-top:2px solid var(--fg);border-bottom:2px solid var(--fg)}
+.ws .ref{font-size:.7rem;color:var(--muted);margin-left:4px}
+@media (max-width:820px){.lkgrid,.cyc{grid-template-columns:minmax(0,1fr)}}
 </style>
 
 </head>
@@ -147,7 +206,7 @@ ol.steps{margin:0;padding-left:1.3em;display:flex;flex-direction:column;gap:8px}
 <header style="display:flex;flex-direction:column;gap:18px">
   <div class="page" id="hero"></div>
   <div style="display:flex;flex-direction:column;gap:10px">
-    <span class="eyebrow">An illustrated guide to the basic accounting conventions · by Tatyana Emelyanova</span>
+    <span class="eyebrow">An illustrated guide to the basic accounting conventions · © 2026 Tatyana Emelyanova</span>
     <h1>Ania's Coffee Cart</h1>
     <p class="lede">Ania opens a coffee cart and runs it for one month. Each comic strip is one thing that happens to her business. The left panel tells the story; the right panel shows what an accountant writes down and where it lands on the balance sheet, income statement and cash flow statement. At the bottom, the three statements fill up step by step.</p>
   </div>
@@ -207,6 +266,37 @@ ol.steps{margin:0;padding-left:1.3em;display:flex;flex-direction:column;gap:8px}
   <p class="now" id="now"></p>
   <div class="stmts" id="stmts"></div>
   <p class="bridge" id="bridge"></p>
+</section>
+
+<section id="links">
+  <span class="eyebrow">Putting it together</span>
+  <h2>How the three statements connect</h2>
+  <p class="lede">The three statements are one story told three ways. The same numbers travel between them, and if one is wrong, the others stop agreeing. Here is where each of Ania's November sums goes.</p>
+  <div class="ov" id="ovDiagram"></div>
+  <ul class="legend" id="legend"></ul>
+  <p class="bridge">Tap a number to light up where that sum appears in each statement.</p>
+  <div class="lkgrid" id="lkgrid"></div>
+  <div class="tblwrap"><table class="sumtbl">
+    <thead><tr><th>Statement</th><th>Shows</th><th>Covers</th><th>Starts with</th><th>Ends with</th></tr></thead>
+    <tbody>
+      <tr><td>Income statement</td><td>Performance: did the business earn more than it used up?</td><td>A period (November)</td><td>Revenue</td><td>Profit for the period</td></tr>
+      <tr><td>Statement of financial position</td><td>Position: what it has and who funded it</td><td>One day (30 November)</td><td>Assets</td><td>Liabilities + equity, equal to assets</td></tr>
+      <tr><td>Statement of cash flows</td><td>Where real cash came from and went</td><td>A period (November)</td><td>Profit (indirect method)</td><td>Closing cash, equal to cash on the statement of financial position</td></tr>
+    </tbody></table></div>
+</section>
+
+<section id="cycle">
+  <span class="eyebrow">Behind the scenes</span>
+  <h2>The accounting cycle: from receipt to report</h2>
+  <p class="lede">Every month an accountant walks the same eight steps. Most of the thinking happens in step 1; the month-end adjustments in step 5 are where profit gets fixed to the right month.</p>
+  <div class="cyc">
+    <div id="ring"></div>
+    <ol class="steps2" id="cycSteps"></ol>
+  </div>
+  <h3>Ania's trial balance, before and after the adjustments</h3>
+  <p>A trial balance lists every account with its debit or credit balance. Debits must equal credits. The adjustments column shows the three month-end entries from strips 11–13.</p>
+  <div class="tblwrap"><table class="ws" id="ws"></table></div>
+  <p class="bridge" id="wsNote"></p>
 </section>
 
 <section id="ratios">
@@ -502,6 +592,106 @@ document.getElementById('strips').addEventListener('click',e=>{
 });
 document.getElementById('quiz').addEventListener('change',e=>{document.body.classList.toggle('quiz',e.target.checked);document.querySelectorAll('.land').forEach(l=>l.classList.remove('shown'));});
 render(13);
+
+/* ---------- statement links + accounting cycle ---------- */
+(function(){
+  const sum=(from,to)=>{const s={};T.slice(from,to).forEach(t=>Object.entries(t.d).forEach(([k,v])=>s[k]=(s[k]||0)+v));return k=>s[k]||0};
+  const v=sum(0,T.length);
+  const exp=EXP.reduce((a,k)=>a+v(k),0),ni=v('rev')-exp;
+  const ff=n=>n<0?'('+f(-n)+')':f(Math.abs(n));
+  const opCash=v('cfo'),wc=opCash-ni-v('dep');
+  /* overview diagram */
+  const box=(x,y,w,t,sub,col)=>`<rect x="${x}" y="${y}" width="${w}" height="62" rx="10" style="fill:var(--card);stroke:var(${col});stroke-width:3"/><text class="bxt" x="${x+w/2}" y="${y+28}" text-anchor="middle">${t}</text><text x="${x+w/2}" y="${y+48}" text-anchor="middle" style="fill:var(--muted);font-size:12px">${sub}</text>`;
+  const arr=(d,hx,hy,ang)=>`<path class="ar" d="${d}"/><path class="ah" d="M${hx} ${hy} l${-10*Math.cos(ang-.45)} ${-10*Math.sin(ang-.45)} l${10*Math.cos(ang-.45)-10*Math.cos(ang+.45)} ${10*Math.sin(ang-.45)-10*Math.sin(ang+.45)} z"/>`;
+  const num=(x,y,n)=>`<circle class="num" cx="${x}" cy="${y}" r="11"/><text class="numt" x="${x}" y="${y+4}">${n}</text>`;
+  const lab=(x,y,t,a='middle')=>`<text x="${x}" y="${y}" text-anchor="${a}">${t}</text>`;
+  document.getElementById('ovDiagram').innerHTML=`<svg viewBox="0 0 720 330" role="img" aria-label="Diagram: profit flows from the income statement to equity and to the first line of the cash flow statement; balance changes explain operating cash; closing cash equals cash on the statement of financial position">
+   ${box(20,20,220,'Income statement','November: what was earned','--is')}
+   ${box(480,20,220,'Financial position','30 November: what it has','--bs')}
+   ${box(250,248,220,'Cash flows','November: where cash went','--cf')}
+   ${arr('M240 51 L478 51',478,51,0)}${num(359,51,2)}${lab(359,38,'profit '+f(ni)+' → equity')}
+   ${arr('M120 82 L300 246',300,246,Math.atan2(164,180))}${num(205,160,1)}${lab(186,190,'profit is the',"end")}${lab(186,206,'first line',"end")}
+   ${arr('M560 82 L425 246',425,246,Math.atan2(164,-135))}${num(492,164,4)}${lab(515,168,'balance changes',"start")}${lab(515,184,'explain operating cash',"start")}
+   ${arr('M470 290 C640 300 690 200 650 84',650,84,Math.atan2(-116,-40))}${num(636,236,7)}${lab(666,266,'closing cash',"middle")}${lab(666,282,'= cash '+f(v('cash')),"middle")}
+  </svg>`;
+  /* detailed linked statements */
+  const L=(label,val,ids=[],cls='')=>`<div class="ln ${cls}" data-l="${ids.join(' ')}"><span>${label}</span><span class="v">${val===''?'':ff(val)}</span><span class="bd">${ids.map(i=>`<span class="b">${i}</span>`).join('')}</span></div>`;
+  const IS=`<div class="lk"><span class="chip c-is">Income statement</span><h3>November</h3>
+   ${L('Revenue',v('rev'))}${L('Cost of sales',-v('cogs'))}${L('Rent expense',-v('rent'))}${L('Wages expense',-v('wag'))}${L('Depreciation',-v('dep'),[3])}${L('Interest expense',-v('int'))}${L('Profit for the period',ni,[1,2],'t')}</div>`;
+  const CF=`<div class="lk"><span class="chip c-cf">Statement of cash flows</span><h3>November, indirect method</h3>
+   ${L('Operating activities','',[],'sub')}${L('Profit for the period',ni,[1])}${L('Add back depreciation (no cash left)',v('dep'),[3])}${L('Increase in inventory',-v('inv'),[4])}${L('Increase in prepaid rent',-v('pre'),[4])}${v('ar')?L('Increase in trade receivables',-v('ar'),[4]):''}${L('Increase in trade payables',v('ap'),[4])}${L('Increase in accrued interest',v('ip'),[4])}${L('Cash from operating activities',opCash,[],'t')}
+   ${L('Investing activities','',[],'sub')}${L('Espresso machine bought',v('cfi'),[5])}
+   ${L('Financing activities','',[],'sub')}${L("Owner's money in",v('cap'),[6])}${L('Bank loan',v('loan'),[6])}
+   ${L('Change in cash',v('cfo')+v('cfi')+v('cff'),[],'t')}${L('Opening cash',0)}${L('Closing cash',v('cash'),[7],'t')}</div>`;
+  const BS=`<div class="lk"><span class="chip c-bs">Statement of financial position</span><h3>30 November</h3>
+   ${L('Assets','',[],'sub')}${L('Cash',v('cash'),[7])}${L('Inventory',v('inv'),[4])}${L('Prepaid rent',v('pre'),[4])}${L('Equipment at cost',v('eq'),[5])}${L('Accumulated depreciation',v('ad'),[3])}${L('Total assets',ASSET.reduce((a,k)=>a+v(k),0),[],'t')}
+   ${L('Liabilities','',[],'sub')}${L('Trade payables',v('ap'),[4])}${L('Accrued interest',v('ip'),[4])}${L('Bank loan',v('loan'),[6])}
+   ${L('Equity','',[],'sub')}${L("Owner's capital",v('cap'),[6])}${L('Profit for the period',ni,[2])}${L('Total liabilities + equity',LIAB.reduce((a,k)=>a+v(k),0)+v('cap')+ni,[],'t')}</div>`;
+  document.getElementById('lkgrid').innerHTML=IS+CF+BS;
+  const LG=[
+   [1,`<b>Profit starts the cash story.</b> The statement of cash flows opens with the ${f(ni)} zł profit and then corrects it for everything that was not cash.`],
+   [2,`<b>Profit belongs to the owner.</b> The same ${f(ni)} zł is added to equity: ${f(v('cap'))} capital + ${f(ni)} profit = ${f(v('cap')+ni)} zł. In a company this line is retained earnings, after any dividends.`],
+   [3,`<b>Depreciation is a cost without cash.</b> The ${f(v('dep'))} zł lowers profit, so it is added back in cash flows. On the other side it builds up as accumulated depreciation, so the machine shows ${f(v('eq')+v('ad'))} zł.`],
+   [4,`<b>Balance changes explain the gap.</b> Cash went into beans (${f(v('inv'))}) and rent paid ahead (${f(v('pre'))}), while some bills are still unpaid (${f(v('ap')+v('ip'))}). Together they turn ${f(ni+v('dep'))} into ${f(opCash)} zł of operating cash.`],
+   [5,`<b>Buying long-lasting assets is investing.</b> The ${f(-v('cfi'))} zł machine is a cash outflow and appears as equipment on the statement of financial position.`],
+   [6,`<b>Owner and bank money is financing.</b> The ${f(v('cap'))} zł from Ania and the ${f(v('loan'))} zł loan come in as cash and appear as capital and debt.`],
+   [7,`<b>Closing cash must match.</b> ${f(v('cash'))} zł at the end of the cash flow statement equals cash on the statement of financial position. This is the first check an accountant makes.`]];
+  const lg=document.getElementById('legend');
+  lg.innerHTML=LG.map(([n,t])=>`<li><button type="button" data-n="${n}" aria-pressed="false"><span class="b">${n}</span><span>${t}</span></button></li>`).join('');
+  lg.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;const on=b.getAttribute('aria-pressed')!=='true';
+    lg.querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed','false'));if(on)b.setAttribute('aria-pressed','true');
+    document.querySelectorAll('#lkgrid .ln').forEach(r=>{const ids=r.dataset.l.split(' ');const hit=on&&ids.includes(b.dataset.n);r.classList.toggle('on',hit);r.querySelectorAll('.b').forEach(x=>x.classList.toggle('m',hit&&x.textContent===b.dataset.n))});});
+
+  /* accounting cycle */
+  const ORDER=['cash','ar','inv','pre','eq','ad','ap','ip','loan','cap','rev','cogs','rent','wag','dep','int'];
+  const DEBITN=new Set([...ASSET,...EXP]);
+  const u=sum(0,10),a=sum(10,13),j=sum(0,13);
+  const side=(k,val)=>{const dr=DEBITN.has(k)?val:-val;return dr>=0?[dr,0]:[0,-dr]};
+  const tbU={dr:0,cr:0},tbA={dr:0,cr:0},tbJ={dr:0,cr:0};
+  const refs={rent:'a',pre:'a',dep:'b',ad:'b',int:'c',ip:'c'};
+  let rows='';
+  ORDER.forEach(k=>{
+    if(!u(k)&&!a(k)&&!j(k))return;
+    const [ud,uc]=side(k,u(k)),[ad_,ac]=side(k,a(k)),[jd,jc]=side(k,j(k));
+    tbU.dr+=ud;tbU.cr+=uc;tbA.dr+=ad_;tbA.cr+=ac;tbJ.dr+=jd;tbJ.cr+=jc;
+    const c=x=>x?f(x):'';
+    rows+=`<tr><td>${LBL[k]}</td><td>${c(ud)}</td><td>${c(uc)}</td><td class="adjc">${c(ad_)}${ad_&&refs[k]?`<span class="ref">(${refs[k]})</span>`:''}</td><td class="adjc">${c(ac)}${ac&&refs[k]?`<span class="ref">(${refs[k]})</span>`:''}</td><td>${c(jd)}</td><td>${c(jc)}</td></tr>`;
+  });
+  document.getElementById('ws').innerHTML=`<thead><tr class="grp"><th></th><th colspan="2">Unadjusted (after strip 10)</th><th colspan="2" class="adjc">Adjustments</th><th colspan="2">Adjusted</th></tr>
+   <tr><th>Account</th><th>Debit</th><th>Credit</th><th class="adjc">Debit</th><th class="adjc">Credit</th><th>Debit</th><th>Credit</th></tr></thead><tbody>${rows}
+   <tr class="tot"><td>Totals</td><td>${f(tbU.dr)}</td><td>${f(tbU.cr)}</td><td class="adjc">${f(tbA.dr)}</td><td class="adjc">${f(tbA.cr)}</td><td>${f(tbJ.dr)}</td><td>${f(tbJ.cr)}</td></tr></tbody>`;
+  const nu=u('rev')-EXP.reduce((s,k)=>s+u(k),0);
+  document.getElementById('wsNote').textContent=`(a) rent used up, strip 11 · (b) depreciation, strip 12 · (c) interest owed, strip 13. Before adjusting, November's profit looks like ${f(nu)} zł; after the three adjustments it is ${f(ni)} zł. Debits equal credits in every column.`;
+  const ST=[
+   ['Analyse the transaction','What happened, which accounts change, and does each go up or down?','Beans arrive on credit (strip 5): inventory, an asset, goes up; trade payables, a liability, go up.'],
+   ['Record it in the journal','Write a dated entry with debits and credits that are equal.',`Dr Inventory 2,000 / Cr Trade payables 2,000.`],
+   ['Post to the ledger','Copy each line to that account\'s own page (a T-account) to keep a running balance.',`After strip 10 the cash account shows ${f(u('cash'))} zł.`],
+   ['Unadjusted trial balance','List every balance and check that debits equal credits.',`Debits ${f(tbU.dr)} = credits ${f(tbU.cr)}.`],
+   ['Adjusting entries','At month end, fix timing: costs used up, income earned, costs owed but not yet billed.',`Rent used ${f(a('rent'))}, depreciation ${f(a('dep'))}, interest ${f(a('int'))} (strips 11–13).`],
+   ['Adjusted trial balance','List the balances again, now including the adjustments.',`Debits ${f(tbJ.dr)} = credits ${f(tbJ.cr)}.`],
+   ['Prepare the statements','Income statement first, then the statement of financial position, then cash flows.',`Profit ${f(ni)} zł; total assets ${f(ASSET.reduce((s,k)=>s+v(k),0))} zł; closing cash ${f(v('cash'))} zł.`],
+   ['Close the period','Reset revenue and expense accounts to zero and move the profit into equity.',`${f(ni)} zł moves into Ania's equity. December starts again at step 1.`]];
+  document.getElementById('cycSteps').innerHTML=ST.map(([t,d,e],i)=>`<li id="cyc-${i+1}" class="${i===4?'adj':''}"><span class="n">${i+1}</span><div><b>${t}</b>${d}<div class="ex">Ania: ${e}</div></div></li>`).join('');
+  const short=['Analyse','Journal','Ledger','Trial|balance','Adjust','Adjusted|TB','Statements','Close'];
+  const R=150,cx=200,cy=200,nr=38;let g='';
+  for(let i=0;i<8;i++){
+    const a1=(i/8)*Math.PI*2-Math.PI/2,a2=((i+1)/8)*Math.PI*2-Math.PI/2,off=0.33;
+    const sx=cx+R*Math.cos(a1+off),sy=cy+R*Math.sin(a1+off),ex=cx+R*Math.cos(a2-off),ey=cy+R*Math.sin(a2-off);
+    g+=`<path class="ring" d="M${sx.toFixed(1)} ${sy.toFixed(1)} A${R} ${R} 0 0 1 ${ex.toFixed(1)} ${ey.toFixed(1)}"/>`;
+    const ta=a2-off,tx=-Math.sin(ta),ty=Math.cos(ta);
+    g+=`<path class="rh" d="M${ex.toFixed(1)} ${ey.toFixed(1)} l${(-tx*9+ty*-5).toFixed(1)} ${(-ty*9-tx*-5).toFixed(1)} l${(ty*10).toFixed(1)} ${(-tx*10).toFixed(1)} z"/>`;
+  }
+  for(let i=0;i<8;i++){
+    const ang=(i/8)*Math.PI*2-Math.PI/2,x=cx+R*Math.cos(ang),y=cy+R*Math.sin(ang),Ls=short[i].split('|');
+    g+=`<g data-s="${i+1}" tabindex="0" role="button" aria-label="Step ${i+1}: ${short[i].replace('|',' ')}"><circle class="node ${i===4?'adj':''}" cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${nr}"/><text class="nn" x="${x.toFixed(1)}" y="${(y-(Ls.length>1?16:9)).toFixed(1)}">${i+1}</text>${Ls.map((l,k)=>`<text x="${x.toFixed(1)}" y="${(y+(Ls.length>1?2:8)+k*16).toFixed(1)}">${l}</text>`).join('')}</g>`;
+  }
+  g+=`<text class="ctr" x="${cx}" y="${cy-4}">One month</text><text class="ctr2" x="${cx}" y="${cy+16}">repeats every period</text>`;
+  const ring=document.getElementById('ring');
+  ring.innerHTML=`<svg viewBox="0 0 400 400" role="img" aria-label="The accounting cycle in eight steps">${g}</svg>`;
+  const pick=n=>{ring.querySelectorAll('g[data-s]').forEach(x=>x.classList.toggle('on',x.dataset.s===n));document.querySelectorAll('#cycSteps li').forEach(li=>li.classList.toggle('on',li.id==='cyc-'+n));};
+  ring.addEventListener('click',e=>{const g=e.target.closest('g[data-s]');if(g)pick(g.dataset.s)});
+  ring.addEventListener('keydown',e=>{const g=e.target.closest('g[data-s]');if(g&&(e.key==='Enter'||e.key===' ')){e.preventDefault();pick(g.dataset.s)}});
+})();
 </script>
 
 </body>
