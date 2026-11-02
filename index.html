@@ -412,6 +412,13 @@ p,.lede,.theory,.bridge,.sitefoot .fbot span{max-width:none}
 .ov{max-width:none}
 .ov svg{max-height:70vh}
 .wrap{max-width:min(1280px,100%)}
+
+.theory-row{display:flex;flex-wrap:wrap;gap:14px 24px;align-items:center;justify-content:space-between;background:var(--card);border:1px solid var(--rule);border-radius:12px;padding:14px 16px}
+.theory-row .theory-t{flex:1 1 420px;margin:0;font-size:1rem}
+.theory-row .skipbtn{flex:none;align-self:center}
+.subtitle{text-wrap:wrap}
+
+.read{width:fit-content;max-width:100%}
 </style>
 
 </head>
@@ -424,11 +431,10 @@ p,.lede,.theory,.bridge,.sitefoot .fbot span{max-width:none}
   <div class="page" id="hero"></div>
   <div style="display:flex;flex-direction:column;gap:10px">
     <h1>Ania's Coffee Cart</h1>
-    <p class="subtitle">An illustrated guide to the basic accounting conventions,<br>or how to remember what you read, hear and practise when you study accounting</p>
+    <p class="subtitle">An illustrated guide to the basic accounting conventions, or how to remember what you read, hear and practise when you study accounting</p>
     <span class="eyebrow">© 2026 Tatyana Emelyanova</span>
     <p class="lede">Ania opens a coffee cart and runs it for one month. Each comic strip is one thing that happens to her business. The left panel tells the story; the right panel shows what an accountant writes down and where it lands on the balance sheet, income statement and cash flow statement. At the bottom, the three statements fill up step by step.</p>
-    <p class="theory"><b>First, a little theory.</b> The next three short sections (the big idea, the 12 accounting conventions, and debit and credit) make the comics much easier to follow. About 5 minutes.</p>
-    <a class="skipbtn" href="#comics"><span>Nah, skip the boring stuff →<small>Straight to the comics. You can always come back.</small></span></a>
+    <div class="theory-row"><p class="theory-t"><b>First, a little theory.</b> The next three short sections (the big idea, the 12 accounting conventions, and debit and credit) make the comics much easier to follow. About 5 minutes.</p><a class="skipbtn" href="#comics"><span>Nah, skip the boring stuff →<small>Straight to the comics. You can always come back.</small></span></a></div>
   </div>
 </header>
 
@@ -500,12 +506,6 @@ p,.lede,.theory,.bridge,.sitefoot .fbot span{max-width:none}
   <h2>The comics</h2>
   <p class="sub2">One month at the coffee cart</p>
   <div class="toolbar">
-    <div class="seg" role="group" aria-label="Paper style">
-      <span>Paper:</span>
-      <button class="btn" data-paper="ledger" aria-pressed="true"><i class="sw" style="background:#C6E6CF"></i>Ledger green</button>
-      <button class="btn" data-paper="graph" aria-pressed="false"><i class="sw" style="background:#D3E5F3"></i>Graph blue</button>
-      <button class="btn" data-paper="kraft" aria-pressed="false"><i class="sw" style="background:#E6D2AE"></i>Kraft</button>
-    </div>
     <label class="quizt"><input type="checkbox" id="quiz"><span>Quiz mode!<small>Hide the answers until I guess</small></span></label>
   </div>
   <nav class="stripnav" id="stripnav" aria-label="Jump to a strip"><span>Jump to strip:</span></nav>
@@ -835,7 +835,7 @@ let _rw=innerWidth,_rt;addEventListener('resize',()=>{clearTimeout(_rt);_rt=setT
 /* ---------- paper switcher ---------- */
 function setPaper(p){document.body.dataset.paper=p;document.querySelectorAll('[data-paper]').forEach(b=>{if(b.tagName==='BUTTON')b.setAttribute('aria-pressed',b.dataset.paper===p)});try{localStorage.setItem('paper',p)}catch(e){}}
 document.querySelectorAll('button[data-paper]').forEach(b=>b.addEventListener('click',()=>setPaper(b.dataset.paper)));
-try{const p=localStorage.getItem('paper');if(p)setPaper(p)}catch(e){}
+try{localStorage.removeItem('paper')}catch(e){}
 
 /* ---------- statements ---------- */
 const stepEl=document.getElementById('step');
