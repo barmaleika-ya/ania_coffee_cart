@@ -464,6 +464,10 @@ section>p,.theory-t{max-width:43em}
 
 /* the story opening: main text, not secondary */
 header .lede{color:var(--fg);font-size:clamp(1.12rem,1rem + .45vw,1.32rem);line-height:1.6;max-width:42em}
+
+.backlink{align-self:flex-start;font-size:.85rem;font-weight:700;color:var(--muted);text-decoration:none;border-bottom:1.5px dashed var(--muted);margin-bottom:-8px}
+.backlink:hover{color:var(--fg);border-color:var(--fg)}
+.backlink:focus-visible{outline:3px solid var(--bs);outline-offset:2px}
 </style>
 
 </head>
@@ -558,6 +562,7 @@ header .lede{color:var(--fg);font-size:clamp(1.12rem,1rem + .45vw,1.32rem);line-
 </section>
 
 <section id="statements">
+  <a class="backlink" href="#comics">↑ Back to the comics<span class="to"></span></a>
   <div class="stmt-head">
     <div style="display:flex;flex-direction:column;gap:6px">
       <h2>The statements</h2>
@@ -576,6 +581,7 @@ header .lede{color:var(--fg);font-size:clamp(1.12rem,1rem + .45vw,1.32rem);line-
 </section>
 
 <section id="links">
+  <a class="backlink" href="#comics">↑ Back to the comics<span class="to"></span></a>
   <h2>How they connect</h2>
   <p class="sub2">Where each of Ania's sums travels between the three statements</p>
   <p class="lede">The three statements are one story told three ways. The same numbers travel between them, and if one is wrong, the others stop agreeing. Here is where each of Ania's November sums goes.</p>
@@ -593,6 +599,7 @@ header .lede{color:var(--fg);font-size:clamp(1.12rem,1rem + .45vw,1.32rem);line-
 </section>
 
 <section id="cycle">
+  <a class="backlink" href="#comics">↑ Back to the comics<span class="to"></span></a>
   <h2>Accounting cycle</h2>
   <p class="sub2">From receipt to report</p>
   <p class="lede">Every month an accountant walks the same eight steps. Most of the thinking happens in step 1; the month-end adjustments in step 5 are where profit gets fixed to the right month.</p>
@@ -607,6 +614,7 @@ header .lede{color:var(--fg);font-size:clamp(1.12rem,1rem + .45vw,1.32rem);line-
 </section>
 
 <section id="traps">
+  <a class="backlink" href="#comics">↑ Back to the comics<span class="to"></span></a>
   <h2>Easy to mix up</h2>
   <p class="sub2">Common traps for people new to accounting</p>
   <p class="lede">These feel obvious but are wrong, and they catch most people who are new to accounting. Each one shows what people often think, what is actually true, and a number from Ania's cart.</p>
@@ -620,6 +628,7 @@ header .lede{color:var(--fg);font-size:clamp(1.12rem,1rem + .45vw,1.32rem);line-
 </section>
 
 <section id="ratios">
+  <a class="backlink" href="#comics">↑ Back to the comics<span class="to"></span></a>
   <h2>Ratios</h2>
   <p class="sub2">Divide one number by another</p>
   <div class="idea" id="ratioBox"></div>
@@ -935,6 +944,18 @@ document.getElementById('strips').addEventListener('click',e=>{
 });
 document.getElementById('quiz').addEventListener('change',e=>{document.body.classList.toggle('quiz',e.target.checked);document.querySelectorAll('.land').forEach(l=>l.classList.remove('shown'));});
 render(13);
+
+/* ---------- back to the comics (returns to the last strip you read) ---------- */
+(function(){
+  let last=null;const strips=[...document.querySelectorAll('.strip')];
+  const track=()=>{const mid=innerHeight*0.45;strips.forEach(s=>{const r=s.getBoundingClientRect();if(r.top<mid&&r.bottom>mid)last=s.id})};
+  addEventListener('scroll',()=>requestAnimationFrame(track),{passive:true});
+  document.querySelectorAll('.backlink').forEach(a=>{
+    a.addEventListener('click',e=>{const el=last&&document.getElementById(last);if(el){e.preventDefault();el.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});history.replaceState(null,'','#'+last);}});
+  });
+  const upd=()=>document.querySelectorAll('.backlink .to').forEach(s=>s.textContent=last?` (No. ${last.split('-')[1]})`:'');
+  addEventListener('scroll',()=>requestAnimationFrame(upd),{passive:true});
+})();
 
 /* ---------- navigation ---------- */
 (function(){
