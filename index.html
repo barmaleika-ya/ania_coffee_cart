@@ -274,6 +274,39 @@ section,.strip,[id^="strip-"]{scroll-margin-top:calc(64px + env(safe-area-inset-
 .skipbtn:focus-visible{outline:3px solid var(--bs);outline-offset:3px}
 .skiplink{align-self:flex-end;font-size:.85rem;font-weight:700;color:var(--muted);text-decoration:none;border-bottom:1.5px dashed var(--muted);margin-top:-8px}
 .skiplink:hover{color:var(--fg);border-color:var(--fg)}
+
+/* responsive: hero panels, phone comic text, stacked tables */
+.heroP{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0}
+.heroP svg{display:block;width:100%;height:auto}
+.swipehint{display:none;font-size:.8rem;color:var(--muted);text-align:center;margin-top:6px}
+@media (max-width:600px){
+  .heroP{grid-template-columns:none;grid-auto-flow:column;grid-auto-columns:86%;overflow-x:auto;scroll-snap-type:x mandatory;gap:8px;scrollbar-width:none;padding-bottom:2px}
+  .heroP::-webkit-scrollbar{display:none}
+  .heroP svg{scroll-snap-align:center}
+  .swipehint{display:block}
+  .scene svg .t{font-size:19px}
+  .scene svg .tl{font-size:12.5px}
+  .strip{padding:8px}
+  .panels{gap:8px}
+  .narr{font-size:1.05rem}
+  table.stack,table.stack tbody,table.stack tr,table.stack td{display:block;width:100%}
+  table.stack{min-width:0!important}
+  table.stack thead{display:none}
+  table.stack caption{display:block;padding:0 0 8px}
+  table.stack tr{border:1px solid var(--rule);border-radius:10px;padding:8px 10px;margin-bottom:8px;background:var(--card)}
+  table.stack td{border:none!important;padding:3px 0!important;display:grid;grid-template-columns:96px minmax(0,1fr);gap:8px;white-space:normal!important}
+  table.stack td::before{content:attr(data-l);font-size:.68rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);padding-top:3px}
+  table.stack td:first-child{font-weight:700;font-size:1rem}
+}
+
+.topnav .in{max-width:1280px}
+@media (min-width:821px){
+  .land{padding:10px;gap:7px}
+  .land .box{font-size:.85rem;line-height:1.4;padding:7px 9px}
+  .land .fx span{font-size:.74rem}
+  .land .je{font-size:.76rem}
+  .strip{padding:10px;gap:8px}
+}
 </style>
 
 </head>
@@ -303,10 +336,10 @@ section,.strip,[id^="strip-"]{scroll-margin-top:calc(64px + env(safe-area-inset-
     <div><span class="chip c-is">Income statement</span><h3>A movie</h3><p>Did the business earn more than it used up during the month? Revenue minus expenses equals profit. Profit then moves into equity on the balance sheet.</p></div>
     <div><span class="chip c-cf">Statement of cash flows</span><h3>The bank story</h3><p>Where real cash came from and went: operating (selling coffee, paying bills), investing (buying the machine) and financing (owner and bank money).</p></div>
   </div>
-  <div class="tblwrap"><table class="tools terms" aria-label="Accounting terms in UK, US, Polish and Russian">
+  <div class="tblwrap"><table class="stack tools terms" aria-label="Accounting terms in UK, US, Polish and Russian">
     <caption>Same thing, four names. This guide uses the IFRS terms used in the UK and the EU.</caption>
     <thead><tr><th>UK / EU (IFRS)</th><th>US</th><th>Polish</th><th>Russian</th></tr></thead>
-    <tbody><tr><td>Statement of financial position</td><td>Balance sheet</td><td>Bilans</td><td>Отчёт о финансовом положении (бухгалтерский баланс)</td></tr><tr><td>Income statement</td><td>Income statement, P&amp;L</td><td>Rachunek zysków i strat</td><td>Отчёт о прибыли или убытке (в РСБУ: отчёт о финансовых результатах)</td></tr><tr><td>Statement of cash flows</td><td>Cash flow statement</td><td>Rachunek przepływów pieniężnych</td><td>Отчёт о движении денежных средств</td></tr><tr><td>Revenue</td><td>Revenue, sales</td><td>Przychody ze sprzedaży</td><td>Выручка</td></tr><tr><td>Cost of sales</td><td>Cost of goods sold (COGS)</td><td>Koszt własny sprzedaży</td><td>Себестоимость продаж</td></tr><tr><td>Profit for the period</td><td>Net income</td><td>Zysk netto</td><td>Чистая прибыль</td></tr><tr><td>Property, plant and equipment</td><td>Fixed assets, PP&amp;E</td><td>Rzeczowe aktywa trwałe</td><td>Основные средства</td></tr><tr><td>Depreciation</td><td>Depreciation</td><td>Amortyzacja</td><td>Амортизация</td></tr><tr><td>Inventories</td><td>Inventory</td><td>Zapasy</td><td>Запасы</td></tr><tr><td>Trade receivables</td><td>Accounts receivable</td><td>Należności z tytułu dostaw i usług</td><td>Дебиторская задолженность</td></tr><tr><td>Trade payables</td><td>Accounts payable</td><td>Zobowiązania z tytułu dostaw i usług</td><td>Кредиторская задолженность</td></tr><tr><td>Prepaid expenses</td><td>Prepaid expenses</td><td>Czynne rozliczenia międzyokresowe kosztów</td><td>Расходы будущих периодов</td></tr><tr><td>Accrued expenses</td><td>Accrued liabilities</td><td>Bierne rozliczenia międzyokresowe kosztów</td><td>Начисленные обязательства</td></tr><tr><td>Equity</td><td>Owner's / stockholders' equity</td><td>Kapitał własny</td><td>Собственный капитал</td></tr><tr><td>Retained earnings</td><td>Retained earnings</td><td>Zyski zatrzymane</td><td>Нераспределённая прибыль</td></tr><tr><td>Prudence convention</td><td>Conservatism</td><td>Zasada ostrożności</td><td>Принцип осмотрительности</td></tr></tbody>
+    <tbody><tr><td data-l="UK / EU">Statement of financial position</td><td data-l="US">Balance sheet</td><td data-l="Polish">Bilans</td><td data-l="Russian">Отчёт о финансовом положении (бухгалтерский баланс)</td></tr><tr><td data-l="UK / EU">Income statement</td><td data-l="US">Income statement, P&amp;L</td><td data-l="Polish">Rachunek zysków i strat</td><td data-l="Russian">Отчёт о прибыли или убытке (в РСБУ: отчёт о финансовых результатах)</td></tr><tr><td data-l="UK / EU">Statement of cash flows</td><td data-l="US">Cash flow statement</td><td data-l="Polish">Rachunek przepływów pieniężnych</td><td data-l="Russian">Отчёт о движении денежных средств</td></tr><tr><td data-l="UK / EU">Revenue</td><td data-l="US">Revenue, sales</td><td data-l="Polish">Przychody ze sprzedaży</td><td data-l="Russian">Выручка</td></tr><tr><td data-l="UK / EU">Cost of sales</td><td data-l="US">Cost of goods sold (COGS)</td><td data-l="Polish">Koszt własny sprzedaży</td><td data-l="Russian">Себестоимость продаж</td></tr><tr><td data-l="UK / EU">Profit for the period</td><td data-l="US">Net income</td><td data-l="Polish">Zysk netto</td><td data-l="Russian">Чистая прибыль</td></tr><tr><td data-l="UK / EU">Property, plant and equipment</td><td data-l="US">Fixed assets, PP&amp;E</td><td data-l="Polish">Rzeczowe aktywa trwałe</td><td data-l="Russian">Основные средства</td></tr><tr><td data-l="UK / EU">Depreciation</td><td data-l="US">Depreciation</td><td data-l="Polish">Amortyzacja</td><td data-l="Russian">Амортизация</td></tr><tr><td data-l="UK / EU">Inventories</td><td data-l="US">Inventory</td><td data-l="Polish">Zapasy</td><td data-l="Russian">Запасы</td></tr><tr><td data-l="UK / EU">Trade receivables</td><td data-l="US">Accounts receivable</td><td data-l="Polish">Należności z tytułu dostaw i usług</td><td data-l="Russian">Дебиторская задолженность</td></tr><tr><td data-l="UK / EU">Trade payables</td><td data-l="US">Accounts payable</td><td data-l="Polish">Zobowiązania z tytułu dostaw i usług</td><td data-l="Russian">Кредиторская задолженность</td></tr><tr><td data-l="UK / EU">Prepaid expenses</td><td data-l="US">Prepaid expenses</td><td data-l="Polish">Czynne rozliczenia międzyokresowe kosztów</td><td data-l="Russian">Расходы будущих периодов</td></tr><tr><td data-l="UK / EU">Accrued expenses</td><td data-l="US">Accrued liabilities</td><td data-l="Polish">Bierne rozliczenia międzyokresowe kosztów</td><td data-l="Russian">Начисленные обязательства</td></tr><tr><td data-l="UK / EU">Equity</td><td data-l="US">Owner's / stockholders' equity</td><td data-l="Polish">Kapitał własny</td><td data-l="Russian">Собственный капитал</td></tr><tr><td data-l="UK / EU">Retained earnings</td><td data-l="US">Retained earnings</td><td data-l="Polish">Zyski zatrzymane</td><td data-l="Russian">Нераспределённая прибыль</td></tr><tr><td data-l="UK / EU">Prudence convention</td><td data-l="US">Conservatism</td><td data-l="Polish">Zasada ostrożności</td><td data-l="Russian">Принцип осмотрительности</td></tr></tbody>
   </table></div>
 </section>
 
@@ -397,12 +430,12 @@ section,.strip,[id^="strip-"]{scroll-margin-top:calc(64px + env(safe-area-inset-
   <ul class="legend" id="legend"></ul>
   <p class="bridge">Tap a number to light up where that sum appears in each statement.</p>
   <div class="lkgrid" id="lkgrid"></div>
-  <div class="tblwrap"><table class="sumtbl">
+  <div class="tblwrap"><table class="stack sumtbl">
     <thead><tr><th>Statement</th><th>Shows</th><th>Covers</th><th>Starts with</th><th>Ends with</th></tr></thead>
     <tbody>
-      <tr><td>Income statement</td><td>Performance: did the business earn more than it used up?</td><td>A period (November)</td><td>Revenue</td><td>Profit for the period</td></tr>
-      <tr><td>Balance sheet (statement of financial position)</td><td>Position: what it has and who funded it</td><td>One day (30 November)</td><td>Assets</td><td>Liabilities + equity, equal to assets</td></tr>
-      <tr><td>Statement of cash flows</td><td>Where real cash came from and went</td><td>A period (November)</td><td>Profit (indirect method)</td><td>Closing cash, equal to cash on the balance sheet</td></tr>
+      <tr><td data-l="Statement">Income statement</td><td data-l="Shows">Performance: did the business earn more than it used up?</td><td data-l="Covers">A period (November)</td><td data-l="Starts with">Revenue</td><td data-l="Ends with">Profit for the period</td></tr>
+      <tr><td data-l="Statement">Balance sheet (statement of financial position)</td><td data-l="Shows">Position: what it has and who funded it</td><td data-l="Covers">One day (30 November)</td><td data-l="Starts with">Assets</td><td data-l="Ends with">Liabilities + equity, equal to assets</td></tr>
+      <tr><td data-l="Statement">Statement of cash flows</td><td data-l="Shows">Where real cash came from and went</td><td data-l="Covers">A period (November)</td><td data-l="Starts with">Profit (indirect method)</td><td data-l="Ends with">Closing cash, equal to cash on the balance sheet</td></tr>
     </tbody></table></div>
 </section>
 
@@ -526,13 +559,14 @@ function layout(root){
 
 /* ---------- title page: original 3-panel strip ---------- */
 const hp=(x)=>{let g=`<rect class="pl" x="${x}" y="8" width="284" height="274" rx="5"/><g clip-path="url(#c${x})">`;for(let yy=32;yy<282;yy+=24)g+=`<path class="lg" d="M${x} ${yy} L${x+284} ${yy}"/>`;return g+`</g><clipPath id="c${x}"><rect x="${x}" y="8" width="284" height="274"/></clipPath>`};
-document.getElementById('hero').innerHTML=`<svg viewBox="0 0 900 290" role="img" aria-label="Three-panel comic: Ania decides to open a coffee cart, wonders where every złoty goes, and says follow the money">
+const heroArt=`
 ${hp(8)}${hp(308)}${hp(608)}
 ${S('M12 262 L288 262 M312 262 L588 262 M612 262 L888 262')}
 ${fig(150,260,{f:1,pose:'think'})}${think(150,66,'A coffee cart!|Let\'s do it.',152,116,8,292)}
 ${fig(372,260,{f:1,pose:'point'})}${prop.cart(510,260,1)}${say(430,62,'Where does|every złoty go?',375,114,308,592)}
 ${fig(670,260,{f:1,pose:'cheer'})}${prop.book(800,250)}${burst(770,70,'Follow the|money!',608,892)}
-</svg>`;
+`;
+document.getElementById('hero').innerHTML=`<div class="heroP" role="img" aria-label="Three-panel comic: Ania decides to open a coffee cart, wonders where every złoty goes, and says follow the money">${[0,300,600].map(x=>`<svg viewBox="${x+4} 4 292 282" aria-hidden="true">${heroArt}</svg>`).join('')}</div><p class="swipehint">Swipe the panels →</p>`;
 
 /* ---------- transactions ---------- */
 const T=[
@@ -685,6 +719,7 @@ document.getElementById('strips').innerHTML=T.map(t=>{
 const doLayout=()=>{layout(document);fitIcons(document)};
 doLayout();
 if(document.fonts&&document.fonts.ready)document.fonts.ready.then(doLayout);
+let _rw=innerWidth,_rt;addEventListener('resize',()=>{clearTimeout(_rt);_rt=setTimeout(()=>{if(Math.abs(innerWidth-_rw)>40){_rw=innerWidth;doLayout();}},200)});
 
 /* ---------- paper switcher ---------- */
 function setPaper(p){document.body.dataset.paper=p;document.querySelectorAll('[data-paper]').forEach(b=>{if(b.tagName==='BUTTON')b.setAttribute('aria-pressed',b.dataset.paper===p)});try{localStorage.setItem('paper',p)}catch(e){}}
