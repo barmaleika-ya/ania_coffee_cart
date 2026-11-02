@@ -61,10 +61,10 @@ svg .mg{stroke:var(--margin);stroke-width:1.4}
 .idea .chip{align-self:flex-start}
 .eq{font-family:var(--f-comic);font-size:clamp(1.6rem,4vw,2.3rem);text-align:center;padding:14px;border:3px solid var(--line);border-radius:10px;color:var(--line)}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px}
-.pr{background:var(--card);border:1px solid var(--rule);border-radius:12px;padding:16px;display:grid;grid-template-columns:64px minmax(0,1fr);gap:4px 14px;align-content:start}
-.pr .ico svg .s,.pr .ico svg .w{vector-effect:non-scaling-stroke;stroke-width:2.2}
-.pr .ico svg .tl{font-size:11px}
-.pr .ico{grid-row:span 3;width:64px;height:64px;display:block;border:2.5px solid var(--line);border-radius:10px;overflow:hidden}
+.pr{background:var(--card);border:1px solid var(--rule);border-radius:12px;padding:16px;display:grid;grid-template-columns:96px minmax(0,1fr);gap:4px 14px;align-content:start}
+.pr .ico svg .s,.pr .ico svg .w{vector-effect:non-scaling-stroke;stroke-width:2.6}
+.pr .ico svg .tl{font-weight:700;letter-spacing:0}
+.pr .ico{grid-row:span 3;width:96px;height:96px;display:block;border:2.5px solid var(--line);border-radius:10px;overflow:hidden}
 .pr h3{font-size:1.35rem}
 .pr .ru{font-size:.82rem;color:var(--muted)}
 .pr p{grid-column:1 / -1;font-size:.95rem}
@@ -516,7 +516,7 @@ const PR=[
 ];
 const icon=t=>`<svg viewBox="0 0 120 120" aria-hidden="true" class="ledger"><g class="icn">${({cart:prop.cart(60,110,1),bag:prop.bag(60,100),cal:prop.cal(60,100,'NOV',5),clock:prop.clock(60,100),machine:prop.machine(60,100),bank:prop.bank(60,100),paper:prop.paper(60,100,'NOTE'),cup:prop.cup(60,100),sack:prop.sack(60,100),umbrella:prop.umbrella(60,100),magnifier:prop.magnifier(60,100),loop:prop.loop(60,100)})[t]}</g></svg>`;
 /* fit every icon drawing into the same 72×72 box, centred in the 120×120 tile */
-function fitIcons(root){root.querySelectorAll('g.icn').forEach(g=>{g.removeAttribute('transform');const bb=g.getBBox();if(!bb.width)return;const pad=3,box=72,k=box/Math.max(bb.width+pad*2,bb.height+pad*2);const cx=bb.x+bb.width/2,cy=bb.y+bb.height/2;g.setAttribute('transform',`translate(60 60) scale(${k.toFixed(3)}) translate(${(-cx).toFixed(1)} ${(-cy).toFixed(1)})`);});}
+function fitIcons(root){root.querySelectorAll('g.icn').forEach(g=>{g.removeAttribute('transform');const bb=g.getBBox();if(!bb.width)return;const pad=2,box=94,k=box/Math.max(bb.width+pad*2,bb.height+pad*2);const cx=bb.x+bb.width/2,cy=bb.y+bb.height/2;g.setAttribute('transform',`translate(60 60) scale(${k.toFixed(3)}) translate(${(-cx).toFixed(1)} ${(-cy).toFixed(1)})`);g.querySelectorAll('.tl').forEach(t=>{let fs=13/k;t.style.fontSize=fs+'px';const m=+t.dataset.fit||60;while(t.getBBox().width>m&&fs>5){fs-=.25;t.style.fontSize=fs+'px';}});});}
 document.getElementById('prGrid').innerHTML=PR.map(([n,aka,pl,ru,m,ex,s,ic])=>`<article class="pr"><div class="ico">${icon(ic)}</div><h3>${n}</h3><span class="ru">Also called: ${aka}</span><span class="ru"><b>PL</b> ${pl}<br><b>RU</b> ${ru}</span><p>${m}</p><p class="ex"><b>Example:</b> ${ex}</p>${s?`<a href="#strip-${s}">See it in strip ${s} ↓</a>`:''}</article>`).join('');
 
 /* ---------- strips ---------- */
