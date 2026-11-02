@@ -62,7 +62,9 @@ svg .mg{stroke:var(--margin);stroke-width:1.4}
 .eq{font-family:var(--f-comic);font-size:clamp(1.6rem,4vw,2.3rem);text-align:center;padding:14px;border:3px solid var(--line);border-radius:10px;color:var(--line)}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px}
 .pr{background:var(--card);border:1px solid var(--rule);border-radius:12px;padding:16px;display:grid;grid-template-columns:64px minmax(0,1fr);gap:4px 14px;align-content:start}
-.pr .ico{grid-row:span 3;width:64px;height:64px;border:2.5px solid var(--line);border-radius:10px;overflow:hidden}
+.pr .ico svg .s,.pr .ico svg .w{vector-effect:non-scaling-stroke;stroke-width:2.2}
+.pr .ico svg .tl{font-size:11px}
+.pr .ico{grid-row:span 3;width:64px;height:64px;display:block;border:2.5px solid var(--line);border-radius:10px;overflow:hidden}
 .pr h3{font-size:1.35rem}
 .pr .ru{font-size:.82rem;color:var(--muted)}
 .pr p{grid-column:1 / -1;font-size:.95rem}
@@ -346,6 +348,9 @@ const prop={
   cart:(x,y,face)=>`<rect class="w" x="${x-52}" y="${y-62}" width="104" height="44" rx="4"/>`+S(`M${x-50} ${y-62} L${x-50} ${y-100} M${x+50} ${y-62} L${x+50} ${y-100}`)+`<path class="w" d="M${x-60} ${y-104} L${x+60} ${y-104} L${x+60} ${y-94} q-10 10 -20 0 q-10 10 -20 0 q-10 10 -20 0 q-10 10 -20 0 q-10 10 -20 0 q-10 10 -20 0 Z"/>`+`<circle class="w" cx="${x-30}" cy="${y-12}" r="11"/><circle class="w" cx="${x+30}" cy="${y-12}" r="11"/>`+(face?`<circle class="dot" cx="${x-10}" cy="${y-46}" r="2.2"/><circle class="dot" cx="${x+10}" cy="${y-46}" r="2.2"/>`+S(`M${x-8} ${y-36} Q${x} ${y-29} ${x+8} ${y-36}`):lbl(x,y-35,'COFFEE',80)),
   book:(x,y)=>`<path class="w" d="M${x-62} ${y-62} L${x} ${y-52} L${x+62} ${y-62} L${x+62} ${y} L${x} ${y+8} L${x-62} ${y} Z"/>`+S(`M${x} ${y-52} L${x} ${y+8}`)+[0,1,2,3].map(i=>S(`M${x-50} ${y-40+i*10} L${x-10} ${y-34+i*10} M${x+10} ${y-34+i*10} L${x+50} ${y-40+i*10}`)).join('')+lbl(x-30,y-46,'ASSETS',40)+lbl(x+30,y-46,'L + E',40),
   acct:(x,y,a,b)=>`<rect class="w" x="${x-38}" y="${y-50}" width="76" height="50" rx="6"/>`+S(`M${x-38} ${y-38} L${x+38} ${y-38}`)+lbl(x,y-19,a,64).replace('class="tl"','class="tl" style="font-weight:700"')+lbl(x,y-6,b,64),
+  umbrella:(x,y)=>`<path class="w" d="M${x-42} ${y-52} Q${x-40} ${y-96} ${x} ${y-98} Q${x+40} ${y-96} ${x+42} ${y-52} q-10.5 -9 -21 0 q-10.5 -9 -21 0 q-10.5 -9 -21 0 q-10.5 -9 -21 0 Z"/>`+S(`M${x} ${y-98} L${x} ${y-104} M${x} ${y-52} L${x} ${y-12} q0 10 -10 10 q-8 0 -8 -8`),
+  magnifier:(x,y)=>`<circle class="w" cx="${x-10}" cy="${y-58}" r="30"/>`+S(`M${x+11} ${y-37} L${x+36} ${y-10}`)+`<path class="s" style="stroke-width:6" d="M${x+16} ${y-32} L${x+34} ${y-12}"/>`+lbl(x-10,y-53,'15 zł',40),
+  loop:(x,y)=>{const cx=x,cy=y-50,r=32;return S(`M${cx+r} ${cy} A${r} ${r} 0 0 1 ${cx-r*0.5} ${cy+r*0.87}`)+S(`M${cx-r} ${cy} A${r} ${r} 0 0 1 ${cx+r*0.5} ${cy-r*0.87}`)+`<path class="dot" d="M${cx-r*0.5-7} ${cy+r*0.87-9} l7 9 l-11 3 z"/><path class="dot" d="M${cx+r*0.5+7} ${cy-r*0.87+9} l-7 -9 l11 -3 z"/>`+lbl(cx,cy+4,'SAME',40)},
   arrow:(x1,y1,x2,y2)=>{const a=Math.atan2(y2-y1,x2-x1),h=9;return S(`M${x1} ${y1} L${x2} ${y2} M${x2} ${y2} L${x2-h*Math.cos(a-.5)} ${y2-h*Math.sin(a-.5)} M${x2} ${y2} L${x2-h*Math.cos(a+.5)} ${y2-h*Math.sin(a+.5)}`)}
 };
 /* scene: 400 × 270, feet at 256, heads near 134, speech band above y≈110 */
@@ -505,11 +510,13 @@ const PR=[
  ['Accruals convention','accrual basis','Zasada memoriału','Принцип начисления','Profit is revenue earned minus expenses used up, not cash in minus cash out.','Interest owed for November is recorded in November, even if paid later.',13,'paper'],
  ['Revenue recognition','realisation','Zasada realizacji przychodów','Принцип признания выручки','Count revenue when you have earned it by delivering the goods or service.','Catering delivered today is revenue today; payment next month is just cash catching up.',7,'cup'],
  ['Matching convention','expense recognition','Zasada współmierności przychodów i kosztów','Принцип соответствия доходов и расходов','Put expenses in the same period as the revenue they helped earn.','Beans used to make this month\'s coffee are this month\'s expense.',6,'sack'],
- ['Prudence convention','conservatism','Zasada ostrożności','Принцип осмотрительности','When unsure, don\'t overstate what you have or what you earned. Record losses early, gains only when sure.','If 200 zł of beans went stale, write them down now; don\'t wait.',null,'sack'],
- ['Materiality convention','materiality','Zasada istotności','Принцип существенности','Small amounts that would not change anyone\'s decision can be handled the simple way.','A 15 zł stapler is just an expense, not a 5-year asset.',null,'paper'],
- ['Consistency convention','consistency','Zasada ciągłości','Принцип последовательности','Once you pick a method, keep using it, so periods can be compared.','If the machine is depreciated straight-line this year, it stays straight-line next year.',null,'clock']
+ ['Prudence convention','conservatism','Zasada ostrożności','Принцип осмотрительности','When unsure, don\'t overstate what you have or what you earned. Record losses early, gains only when sure.','If 200 zł of beans went stale, write them down now; don\'t wait.',null,'umbrella'],
+ ['Materiality convention','materiality','Zasada istotności','Принцип существенности','Small amounts that would not change anyone\'s decision can be handled the simple way.','A 15 zł stapler is just an expense, not a 5-year asset.',null,'magnifier'],
+ ['Consistency convention','consistency','Zasada ciągłości','Принцип последовательности','Once you pick a method, keep using it, so periods can be compared.','If the machine is depreciated straight-line this year, it stays straight-line next year.',null,'loop']
 ];
-const icon=t=>`<svg viewBox="0 0 120 120" aria-hidden="true" class="ledger">${({cart:prop.cart(60,114,1),bag:`<g transform="translate(-60 -90) scale(2)">${prop.bag(60,96)}</g>`,cal:prop.cal(60,94,'NOV',5),clock:`<g transform="translate(-60 -60) scale(2)">${prop.clock(60,84)}</g>`,machine:prop.machine(60,98),bank:prop.bank(60,108),paper:`<g transform="translate(-36 -46) scale(1.6)">${prop.paper(60,100,'NOTE')}</g>`,cup:`<g transform="translate(-60 -86) scale(2)">${prop.cup(60,96)}</g>`,sack:`<g transform="translate(-36 -50) scale(1.6)">${prop.sack(60,98)}</g>`})[t]}</svg>`;
+const icon=t=>`<svg viewBox="0 0 120 120" aria-hidden="true" class="ledger"><g class="icn">${({cart:prop.cart(60,110,1),bag:prop.bag(60,100),cal:prop.cal(60,100,'NOV',5),clock:prop.clock(60,100),machine:prop.machine(60,100),bank:prop.bank(60,100),paper:prop.paper(60,100,'NOTE'),cup:prop.cup(60,100),sack:prop.sack(60,100),umbrella:prop.umbrella(60,100),magnifier:prop.magnifier(60,100),loop:prop.loop(60,100)})[t]}</g></svg>`;
+/* fit every icon drawing into the same 72×72 box, centred in the 120×120 tile */
+function fitIcons(root){root.querySelectorAll('g.icn').forEach(g=>{g.removeAttribute('transform');const bb=g.getBBox();if(!bb.width)return;const pad=3,box=72,k=box/Math.max(bb.width+pad*2,bb.height+pad*2);const cx=bb.x+bb.width/2,cy=bb.y+bb.height/2;g.setAttribute('transform',`translate(60 60) scale(${k.toFixed(3)}) translate(${(-cx).toFixed(1)} ${(-cy).toFixed(1)})`);});}
 document.getElementById('prGrid').innerHTML=PR.map(([n,aka,pl,ru,m,ex,s,ic])=>`<article class="pr"><div class="ico">${icon(ic)}</div><h3>${n}</h3><span class="ru">Also called: ${aka}</span><span class="ru"><b>PL</b> ${pl}<br><b>RU</b> ${ru}</span><p>${m}</p><p class="ex"><b>Example:</b> ${ex}</p>${s?`<a href="#strip-${s}">See it in strip ${s} ↓</a>`:''}</article>`).join('');
 
 /* ---------- strips ---------- */
@@ -542,7 +549,7 @@ document.getElementById('strips').innerHTML=T.map(t=>{
      <button class="cover" data-reveal>Which statements move?<span style="font-size:1rem">Tap to reveal</span></button>
    </div></div></article>`}).join('');
 
-const doLayout=()=>layout(document);
+const doLayout=()=>{layout(document);fitIcons(document)};
 doLayout();
 if(document.fonts&&document.fonts.ready)document.fonts.ready.then(doLayout);
 
