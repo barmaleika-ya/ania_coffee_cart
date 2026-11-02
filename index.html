@@ -1,0 +1,508 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Ania's Coffee Cart: an illustrated, interactive guide to basic accounting conventions, by Tatyana Emelyanova.">
+<meta name="author" content="Tatyana Emelyanova">
+<meta property="og:title" content="Ania's Coffee Cart">
+<meta property="og:description" content="One coffee cart, one month, 13 transactions: see where each one lands on the financial statements.">
+<style>:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;font:14px system-ui,sans-serif}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Ania's Coffee Cart</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Atkinson+Hyperlegible:wght@400;700&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+/* Layout: comic strips printed on accounting ledger paper (ruled lines + red margin); prose sits between strips like captions. */
+:root{
+  --paper:#F4F5F1; --fg:#1C1E1B; --muted:#596059; --card:#FFFFFF; --rule:#D5DAD3;
+  --panel:#C6E6CF; --ledger:#A3CFB0; --floor:#A9D6B6; --margin:#D7735F; --line:#1A1C19; --bubble:#FFFFFF; --narr:#FFF7D6;
+  --bs:#2F6FB3; --is:#2E8B57; --cf:#B5532E; --hi:#FFF1C9;
+  --f-comic:"Patrick Hand","Comic Neue","Comic Sans MS",cursive;
+  --f-body:"Atkinson Hyperlegible",system-ui,sans-serif;
+  --f-num:"IBM Plex Mono",ui-monospace,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --paper:#141714; --fg:#E9EDE6; --muted:#A2ABA1; --card:#1E221E; --rule:#343B33;
+  --bs:#7FB1E6; --is:#73C795; --cf:#E9926E; --hi:#43401C; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#141714; --fg:#E9EDE6; --muted:#A2ABA1; --card:#1E221E; --rule:#343B33;
+  --bs:#7FB1E6; --is:#73C795; --cf:#E9926E; --hi:#43401C; color-scheme:dark}
+/* paper options (panels stay light in both themes: they are printed pages) */
+body[data-paper="graph"]{--floor:#B4D0E8;--panel:#D3E5F3;--ledger:#A9C9E3;--margin:#D7735F}
+body[data-paper="kraft"]{--floor:#D2B88B;--panel:#E6D2AE;--ledger:#CFB48A;--margin:#A9472A}
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--fg);font-family:var(--f-body);font-size:16px;line-height:1.55}
+.wrap{max-width:1080px;margin:0 auto;padding-block:28px 64px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:flex;flex-direction:column;gap:56px}
+h1,h2,h3{font-family:var(--f-comic);font-weight:400;line-height:1.1;text-wrap:balance;margin:0}
+h1{font-size:clamp(2.4rem,6vw,3.6rem)}
+h2{font-size:clamp(1.9rem,4vw,2.5rem)}
+h3{font-size:1.5rem}
+p{margin:0;max-width:65ch}
+.lede{font-size:1.1rem;color:var(--muted)}
+section{display:flex;flex-direction:column;gap:20px}
+.eyebrow{font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:700}
+.page{background:var(--card);border:1px solid var(--rule);border-radius:14px;padding:10px}
+svg{display:block;width:100%;height:auto}
+svg .s{stroke:var(--line);fill:none;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round}
+svg .w{fill:var(--bubble);stroke:var(--line);stroke-width:2.4;stroke-linejoin:round}
+svg .wf{fill:var(--bubble)}
+svg .dot{fill:var(--line)}
+svg .t{font-family:var(--f-comic);fill:var(--line);font-size:16px}
+svg .tl{font-family:var(--f-comic);fill:var(--line);font-size:11px;letter-spacing:.04em}
+svg .pl{fill:var(--panel);stroke:var(--line);stroke-width:3.5}
+svg .lg{stroke:var(--ledger);stroke-width:1}
+svg .mg{stroke:var(--margin);stroke-width:1.4}
+.ledger{background-color:var(--panel);background-image:repeating-linear-gradient(to bottom,transparent 0 23px,var(--ledger) 23px 24px)}
+.chip{display:inline-flex;align-items:center;gap:6px;font-weight:700;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;padding:2px 8px;border-radius:999px;border:1.5px solid currentColor}
+.c-bs{color:var(--bs)} .c-is{color:var(--is)} .c-cf{color:var(--cf)}
+.idea{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.idea > div{background:var(--card);border:1px solid var(--rule);border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:8px;min-width:0}
+.idea .chip{align-self:flex-start}
+.eq{font-family:var(--f-comic);font-size:clamp(1.6rem,4vw,2.3rem);text-align:center;padding:14px;border:3px solid var(--line);border-radius:10px;color:var(--line)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px}
+.pr{background:var(--card);border:1px solid var(--rule);border-radius:12px;padding:16px;display:grid;grid-template-columns:64px minmax(0,1fr);gap:4px 14px;align-content:start}
+.pr .ico{grid-row:span 3;width:64px;height:64px;border:2.5px solid var(--line);border-radius:10px;overflow:hidden}
+.pr h3{font-size:1.35rem}
+.pr .ru{font-size:.82rem;color:var(--muted)}
+.pr p{grid-column:1 / -1;font-size:.95rem}
+.pr .ex{color:var(--muted)}
+.pr a{grid-column:1 / -1;font-size:.85rem;color:var(--fg);font-weight:700}
+.toolbar{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center}
+.seg{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+.seg span{font-weight:700;font-size:.9rem}
+.btn{font:inherit;font-weight:700;font-size:.85rem;padding:6px 12px;border-radius:8px;border:2px solid var(--rule);background:var(--card);color:var(--fg);cursor:pointer}
+.btn[aria-pressed="true"]{border-color:var(--fg)}
+.btn .sw{display:inline-block;width:12px;height:12px;border-radius:3px;border:1.5px solid var(--line);margin-right:6px;vertical-align:-1px}
+.btn:focus-visible,input:focus-visible,a:focus-visible,button:focus-visible{outline:3px solid var(--bs);outline-offset:2px}
+/* strips */
+.strip{background:var(--card);border:1px solid var(--rule);border-radius:14px;padding:12px;display:flex;flex-direction:column;gap:10px;scroll-margin-top:16px}
+.strip-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 12px}
+.strip-head .no{font-family:var(--f-num);font-size:.85rem;color:var(--muted)}
+.strip-head h3{font-size:clamp(1.5rem,3.4vw,1.9rem)}
+.strip-head .pchip{font-size:.75rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.panels{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:10px}
+.scene{border:3.5px solid var(--line);border-radius:6px;overflow:hidden;display:flex;flex-direction:column}
+.scene > .ledger{flex:1;display:flex;align-items:center}
+.scene > .ledger svg{width:100%;overflow:visible}
+svg .floor{fill:var(--floor)}
+.narr{max-width:none;background:var(--narr);color:var(--line);border-bottom:3px solid var(--line);padding:8px 12px;font-family:var(--f-comic);font-size:1.12rem;line-height:1.3}
+.narr b{font-weight:400;text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:3px}
+.land{position:relative;border:3.5px solid var(--line);border-radius:6px;padding:12px;display:flex;flex-direction:column;gap:9px;color:var(--line);background:var(--panel)}
+.land .box{background:var(--bubble);border:2px solid var(--line);border-radius:8px;padding:8px 10px;font-size:.9rem;line-height:1.45}
+.land .lbl{display:block;font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:2px}
+.je{font-family:var(--f-num);font-size:.8rem;display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:2px 8px}
+.je .lbl{grid-column:1 / -1;font-family:var(--f-body)}
+.je .cr{padding-left:14px}
+.fx{display:flex;flex-direction:column;gap:2px}
+.fx b{font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;margin-top:3px}
+.fx .bs{color:#1F5490} .fx .is{color:#1E6B41} .fx .cf{color:#8E3A1A}
+.fx span{font-family:var(--f-num);font-size:.78rem}
+.warn{border-style:dashed!important}
+.land .go{align-self:flex-start;background:var(--bubble);border:2px solid var(--line);color:var(--line);font:inherit;font-weight:700;font-size:.82rem;border-radius:6px;padding:4px 10px;cursor:pointer}
+.cover{position:absolute;inset:0;display:none;align-items:center;justify-content:center;flex-direction:column;gap:8px;background:var(--panel);border:none;border-radius:3px;font-family:var(--f-comic);font-size:1.4rem;color:var(--line);cursor:pointer;width:100%;padding:16px;text-align:center}
+.quiz .land:not(.shown) .cover{display:flex}
+/* statements */
+.stmt-head{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between}
+.stepper{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.stepper input{width:220px;max-width:60vw;accent-color:var(--cf)}
+.now{font-family:var(--f-comic);font-size:1.25rem}
+.stmts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;align-items:start}
+.st{background:var(--card);border:1px solid var(--rule);border-radius:12px;padding:14px;min-width:0}
+.st h3{font-size:1.35rem;margin-bottom:2px}
+.st .sub{font-size:.8rem;color:var(--muted);margin-bottom:8px}
+.st table{width:100%;border-collapse:collapse;font-size:.88rem}
+.st td{padding:3px 4px;border-bottom:1px dashed var(--rule)}
+.st td.n{text-align:right;font-family:var(--f-num);font-variant-numeric:tabular-nums;white-space:nowrap}
+.st tr.tot td{font-weight:700;border-bottom:2px solid var(--fg)}
+.st tr.grp td{font-weight:700;color:var(--muted);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;border:none;padding-top:10px}
+.st tr.hit td{background:var(--hi)}
+.bal{margin-top:10px;font-weight:700;font-size:.85rem}
+.bal.ok{color:var(--is)}
+.bridge{font-size:.9rem;color:var(--muted)}
+.two{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:24px}
+ol.steps{margin:0;padding-left:1.3em;display:flex;flex-direction:column;gap:8px}
+.tools{width:100%;border-collapse:collapse;font-size:.92rem}
+.tools td{padding:8px 6px;border-bottom:1px solid var(--rule);vertical-align:top}
+.tools td:first-child{font-weight:700;white-space:nowrap}
+.tblwrap{overflow-x:auto}
+.terms caption{caption-side:top;text-align:left;font-weight:700;padding:0 6px 8px}
+.terms th{text-align:left;font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);padding:6px;border-bottom:2px solid var(--fg)}
+.terms td{white-space:normal!important}
+.terms td:first-child{font-weight:700}
+.terms{min-width:640px}
+
+.src{font-size:.8rem;color:var(--muted)}
+.src a{color:var(--muted)}
+@media (max-width:820px){
+  .panels,.two,.stmts,.idea{grid-template-columns:minmax(0,1fr)}
+}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+</style>
+
+</head>
+<body>
+<div class="wrap">
+
+<header style="display:flex;flex-direction:column;gap:18px">
+  <div class="page" id="hero"></div>
+  <div style="display:flex;flex-direction:column;gap:10px">
+    <span class="eyebrow">An illustrated guide to the basic accounting conventions · by Tatyana Emelyanova</span>
+    <h1>Ania's Coffee Cart</h1>
+    <p class="lede">Ania opens a coffee cart and runs it for one month. Each comic strip is one thing that happens to her business. The left panel tells the story; the right panel shows what an accountant writes down and where it lands on the balance sheet, income statement and cash flow statement. At the bottom, the three statements fill up step by step.</p>
+  </div>
+</header>
+
+<section>
+  <span class="eyebrow">The big idea</span>
+  <h2>Everything a business owns came from somewhere</h2>
+  <div class="eq ledger">Assets = Liabilities + Equity</div>
+  <p>What the business <b>has</b> (assets) was paid for either by <b>borrowing</b> (liabilities) or by the <b>owners</b> (equity, which also includes profit kept in the business). Every transaction keeps this equation balanced, because each one touches at least two places. That is double-entry bookkeeping.</p>
+  <div class="idea">
+    <div><span class="chip c-bs">Statement of financial position</span><h3>A photo</h3><p>What the business has and owes on one specific day. “On 30 November the cart has 10,200 zł in cash and owes the bank 5,000 zł.”</p></div>
+    <div><span class="chip c-is">Income statement</span><h3>A movie</h3><p>Did the business earn more than it used up during the month? Revenue minus expenses equals profit. Profit then moves into equity on the balance sheet.</p></div>
+    <div><span class="chip c-cf">Statement of cash flows</span><h3>The bank story</h3><p>Where real cash came from and went: operating (selling coffee, paying bills), investing (buying the machine) and financing (owner and bank money).</p></div>
+  </div>
+  <div class="tblwrap"><table class="tools terms" aria-label="Accounting terms in UK, US, Polish and Russian">
+    <caption>Same thing, four names. This guide uses the IFRS terms used in the UK and the EU.</caption>
+    <thead><tr><th>UK / EU (IFRS)</th><th>US</th><th>Polish</th><th>Russian</th></tr></thead>
+    <tbody><tr><td>Statement of financial position</td><td>Balance sheet</td><td>Bilans</td><td>Отчёт о финансовом положении (бухгалтерский баланс)</td></tr><tr><td>Income statement</td><td>Income statement, P&amp;L</td><td>Rachunek zysków i strat</td><td>Отчёт о прибыли или убытке (в РСБУ: отчёт о финансовых результатах)</td></tr><tr><td>Statement of cash flows</td><td>Cash flow statement</td><td>Rachunek przepływów pieniężnych</td><td>Отчёт о движении денежных средств</td></tr><tr><td>Revenue</td><td>Revenue, sales</td><td>Przychody ze sprzedaży</td><td>Выручка</td></tr><tr><td>Cost of sales</td><td>Cost of goods sold (COGS)</td><td>Koszt własny sprzedaży</td><td>Себестоимость продаж</td></tr><tr><td>Profit for the period</td><td>Net income</td><td>Zysk netto</td><td>Чистая прибыль</td></tr><tr><td>Property, plant and equipment</td><td>Fixed assets, PP&amp;E</td><td>Rzeczowe aktywa trwałe</td><td>Основные средства</td></tr><tr><td>Depreciation</td><td>Depreciation</td><td>Amortyzacja</td><td>Амортизация</td></tr><tr><td>Inventories</td><td>Inventory</td><td>Zapasy</td><td>Запасы</td></tr><tr><td>Trade receivables</td><td>Accounts receivable</td><td>Należności z tytułu dostaw i usług</td><td>Дебиторская задолженность</td></tr><tr><td>Trade payables</td><td>Accounts payable</td><td>Zobowiązania z tytułu dostaw i usług</td><td>Кредиторская задолженность</td></tr><tr><td>Prepaid expenses</td><td>Prepaid expenses</td><td>Czynne rozliczenia międzyokresowe kosztów</td><td>Расходы будущих периодов</td></tr><tr><td>Accrued expenses</td><td>Accrued liabilities</td><td>Bierne rozliczenia międzyokresowe kosztów</td><td>Начисленные обязательства</td></tr><tr><td>Equity</td><td>Owner's / stockholders' equity</td><td>Kapitał własny</td><td>Собственный капитал</td></tr><tr><td>Retained earnings</td><td>Retained earnings</td><td>Zyski zatrzymane</td><td>Нераспределённая прибыль</td></tr><tr><td>Prudence convention</td><td>Conservatism</td><td>Zasada ostrożności</td><td>Принцип осмотрительности</td></tr></tbody>
+  </table></div>
+</section>
+
+<section id="principles">
+  <span class="eyebrow">The rules of the game</span>
+  <h2>12 accounting principles in plain English</h2>
+  <p class="lede">Each card gives the meaning in one line, a tiny example, and a link to the strip where it happens to Ania. Under each name: the other name you may meet, then the Polish and Russian terms.</p>
+  <div class="grid" id="prGrid"></div>
+</section>
+
+<section id="comics">
+  <span class="eyebrow">The comic series</span>
+  <h2>One month at the coffee cart</h2>
+  <div class="toolbar">
+    <div class="seg" role="group" aria-label="Paper style">
+      <span>Paper:</span>
+      <button class="btn" data-paper="ledger" aria-pressed="true"><i class="sw" style="background:#C6E6CF"></i>Ledger green</button>
+      <button class="btn" data-paper="graph" aria-pressed="false"><i class="sw" style="background:#D3E5F3"></i>Graph blue</button>
+      <button class="btn" data-paper="kraft" aria-pressed="false"><i class="sw" style="background:#E6D2AE"></i>Kraft</button>
+    </div>
+    <label style="display:flex;gap:8px;align-items:center;font-weight:700;font-size:.9rem"><input type="checkbox" id="quiz"> Quiz mode: hide the answer panel until I guess</label>
+  </div>
+  <div id="strips" style="display:flex;flex-direction:column;gap:20px"></div>
+</section>
+
+<section id="statements">
+  <div class="stmt-head">
+    <div style="display:flex;flex-direction:column;gap:6px">
+      <span class="eyebrow">The scoreboard</span>
+      <h2>Watch the statements fill up</h2>
+    </div>
+    <div class="stepper">
+      <button class="btn" id="prev" aria-label="Previous transaction">◀</button>
+      <input type="range" id="step" min="0" max="13" value="13" aria-label="Show statements after transaction number">
+      <button class="btn" id="next" aria-label="Next transaction">▶</button>
+    </div>
+  </div>
+  <p class="now" id="now"></p>
+  <div class="stmts" id="stmts"></div>
+  <p class="bridge" id="bridge"></p>
+</section>
+
+<section id="ratios">
+  <span class="eyebrow">Analysing the statements: ratios</span>
+  <h2>Divide one number by another</h2>
+  <div class="idea" id="ratioBox"></div>
+</section>
+
+<footer><p class="src">Story, text and drawings are original. © 2026 Tatyana Emelyanova.</p></footer>
+
+</div>
+
+<script>
+/* ---------- drawing kit ---------- */
+const S=d=>`<path class="s" d="${d}"/>`;
+function fig(x,y,o={}){
+  const d=o.flip?-1:1,h=y-122;let g=`<circle class="w" cx="${x}" cy="${h}" r="14"/>`;
+  g+=`<circle class="dot" cx="${x-5+d*2}" cy="${h-2}" r="1.8"/><circle class="dot" cx="${x+5+d*2}" cy="${h-2}" r="1.8"/>`;
+  g+=o.mood==='wow'?`<circle class="s" cx="${x+d*2}" cy="${h+6}" r="3"/>`:S(`M${x-5+d} ${h+4} Q${x+d*2} ${h+10} ${x+7+d} ${h+4}`);
+  if(o.f){
+    g+=S(`M${x-13} ${h-5} Q${x} ${h-21} ${x+13} ${h-5}`)+S(`M${x-14} ${h-2} Q${x-17} ${h+12} ${x-11} ${h+19}`)+S(`M${x+14} ${h-2} Q${x+17} ${h+12} ${x+11} ${h+19}`);
+    g+=S(`M${x} ${y-108} L${x-19} ${y-50} L${x+19} ${y-50} Z`)+S(`M${x-7} ${y-50} L${x-11} ${y}`)+S(`M${x+7} ${y-50} L${x+11} ${y}`);
+  }else{
+    g+=S(`M${x-7} ${h-12} l-3 -6 M${x} ${h-14} l0 -7 M${x+7} ${h-12} l3 -6`);
+    if(o.tie)g+=S(`M${x} ${y-104} l-4 14 l4 8 l4 -8 z`);
+    g+=S(`M${x} ${y-108} L${x} ${y-55}`)+S(`M${x} ${y-55} L${x-14} ${y}`)+S(`M${x} ${y-55} L${x+14} ${y}`);
+  }
+  const P={idle:[[-18,30],[18,30]],wave:[[-18,30],[26,-28]],hold:[[24,12],[30,2]],point:[[-18,30],[36,-10]],cheer:[[-22,-28],[22,-28]],give:[[34,4],[-16,30]],think:[[-18,30],[10,-16]]};
+  (P[o.pose||'idle']).forEach(([dx,dy])=>g+=S(`M${x} ${y-96} L${x+dx*d} ${y-96+dy}`));
+  return g;
+}
+/* bubbles are placeholders sized later from the real text (see layout) */
+const lines=(txt)=>txt.split('|').map(l=>`<tspan>${l}</tspan>`).join('');
+const say=(x,y,txt,tx,ty,lo=0,hi=400)=>`<g class="bub" data-k="say" data-x="${x}" data-y="${y}" data-tx="${tx}" data-ty="${ty}" data-lo="${lo}" data-hi="${hi}"><text class="t" text-anchor="middle">${lines(txt)}</text></g>`;
+const think=(x,y,txt,tx,ty,lo=0,hi=400)=>`<g class="bub" data-k="think" data-x="${x}" data-y="${y}" data-tx="${tx}" data-ty="${ty}" data-lo="${lo}" data-hi="${hi}"><text class="t" text-anchor="middle">${lines(txt)}</text></g>`;
+const burst=(x,y,txt,lo=0,hi=400)=>`<g class="bub" data-k="burst" data-x="${x}" data-y="${y}" data-lo="${lo}" data-hi="${hi}"><text class="t" text-anchor="middle" style="font-size:17px">${lines(txt)}</text></g>`;
+const lbl=(x,y,t,max)=>`<text class="tl" x="${x}" y="${y}" text-anchor="middle" data-fit="${max}">${t}</text>`;
+const prop={
+  bag:(x,y,amt)=>`<path class="w" d="M${x-22} ${y} Q${x-30} ${y-30} ${x-10} ${y-40} L${x-14} ${y-50} L${x+14} ${y-50} L${x+10} ${y-40} Q${x+30} ${y-30} ${x+22} ${y} Z"/>`+S(`M${x-11} ${y-40} L${x+11} ${y-40}`)+(amt?lbl(x,y-17,amt,38).replace('class="tl"','class="tl" style="font-weight:700"')+lbl(x,y-6,'zł',20):lbl(x,y-13,'zł',24)),
+  bank:(x,y)=>`<path class="w" d="M${x-46} ${y-74} L${x} ${y-100} L${x+46} ${y-74} Z"/><rect class="w" x="${x-46}" y="${y-8}" width="92" height="8"/>`+lbl(x,y-80,'BANK',50)+S(`M${x-46} ${y-74} L${x+46} ${y-74}`)+[-30,-10,10,30].map(c=>S(`M${x+c} ${y-72} L${x+c} ${y-10}`)).join(''),
+  machine:(x,y,mood)=>`<rect class="w" x="${x-34}" y="${y-74}" width="68" height="74" rx="6"/>`+S(`M${x-34} ${y-50} L${x+34} ${y-50} M${x-5} ${y-50} L${x-5} ${y-40} L${x+5} ${y-40} L${x+5} ${y-50}`)+`<path class="w" d="M${x-9} ${y-30} L${x-7} ${y-12} L${x+7} ${y-12} L${x+9} ${y-30} Z"/>`+(mood?`<circle class="dot" cx="${x-10}" cy="${y-65}" r="2.2"/><circle class="dot" cx="${x+10}" cy="${y-65}" r="2.2"/>`+S(`M${x-7} ${y-55} Q${x} ${y-60} ${x+7} ${y-55}`):lbl(x,y-58,'ESPRESSO',60)),
+  sack:(x,y)=>`<path class="w" d="M${x-24} ${y} Q${x-32} ${y-34} ${x-15} ${y-50} L${x+15} ${y-50} Q${x+32} ${y-34} ${x+24} ${y} Z"/>`+S(`M${x-13} ${y-44} Q${x} ${y-38} ${x+13} ${y-44}`)+lbl(x,y-16,'BEANS',40),
+  cup:(x,y)=>`<path class="w" d="M${x-10} ${y-24} L${x-8} ${y} L${x+8} ${y} L${x+10} ${y-24} Z"/>`+S(`M${x+10} ${y-18} q8 2 0 10 M${x-3} ${y-30} q-4 -6 0 -12 M${x+4} ${y-30} q-4 -6 0 -12`),
+  paper:(x,y,l)=>`<path class="w" d="M${x-26} ${y-60} L${x+16} ${y-60} L${x+26} ${y-50} L${x+26} ${y} L${x-26} ${y} Z"/>`+lbl(x,y-42,l,44)+S(`M${x-16} ${y-30} L${x+16} ${y-30} M${x-16} ${y-20} L${x+16} ${y-20} M${x-16} ${y-10} L${x+6} ${y-10}`),
+  cal:(x,y,l,used=0)=>{let g=`<rect class="w" x="${x-38}" y="${y-64}" width="76" height="64" rx="4"/>`+S(`M${x-38} ${y-46} L${x+38} ${y-46} M${x-20} ${y-70} L${x-20} ${y-58} M${x+20} ${y-70} L${x+20} ${y-58}`)+lbl(x,y-51,l,66);let k=0;for(let r=0;r<3;r++)for(let c=0;c<5;c++){const cx=x-26+c*13,cy=y-35+r*12;g+=k<used?S(`M${cx-3} ${cy-3} L${cx+3} ${cy+3} M${cx+3} ${cy-3} L${cx-3} ${cy+3}`):`<circle class="dot" cx="${cx}" cy="${cy}" r="1.6"/>`;k++;}return g},
+  clock:(x,y)=>`<circle class="w" cx="${x}" cy="${y-24}" r="24"/>`+S(`M${x} ${y-24} L${x} ${y-40} M${x} ${y-24} L${x+11} ${y-19}`),
+  cart:(x,y,face)=>`<rect class="w" x="${x-52}" y="${y-62}" width="104" height="44" rx="4"/>`+S(`M${x-50} ${y-62} L${x-50} ${y-100} M${x+50} ${y-62} L${x+50} ${y-100}`)+`<path class="w" d="M${x-60} ${y-104} L${x+60} ${y-104} L${x+60} ${y-94} q-10 10 -20 0 q-10 10 -20 0 q-10 10 -20 0 q-10 10 -20 0 q-10 10 -20 0 q-10 10 -20 0 Z"/>`+`<circle class="w" cx="${x-30}" cy="${y-12}" r="11"/><circle class="w" cx="${x+30}" cy="${y-12}" r="11"/>`+(face?`<circle class="dot" cx="${x-10}" cy="${y-46}" r="2.2"/><circle class="dot" cx="${x+10}" cy="${y-46}" r="2.2"/>`+S(`M${x-8} ${y-36} Q${x} ${y-29} ${x+8} ${y-36}`):lbl(x,y-35,'COFFEE',80)),
+  book:(x,y)=>`<path class="w" d="M${x-62} ${y-62} L${x} ${y-52} L${x+62} ${y-62} L${x+62} ${y} L${x} ${y+8} L${x-62} ${y} Z"/>`+S(`M${x} ${y-52} L${x} ${y+8}`)+[0,1,2,3].map(i=>S(`M${x-50} ${y-40+i*10} L${x-10} ${y-34+i*10} M${x+10} ${y-34+i*10} L${x+50} ${y-40+i*10}`)).join('')+lbl(x-30,y-46,'ASSETS',40)+lbl(x+30,y-46,'L + E',40),
+  acct:(x,y,a,b)=>`<rect class="w" x="${x-38}" y="${y-50}" width="76" height="50" rx="6"/>`+S(`M${x-38} ${y-38} L${x+38} ${y-38}`)+lbl(x,y-19,a,64).replace('class="tl"','class="tl" style="font-weight:700"')+lbl(x,y-6,b,64),
+  arrow:(x1,y1,x2,y2)=>{const a=Math.atan2(y2-y1,x2-x1),h=9;return S(`M${x1} ${y1} L${x2} ${y2} M${x2} ${y2} L${x2-h*Math.cos(a-.5)} ${y2-h*Math.sin(a-.5)} M${x2} ${y2} L${x2-h*Math.cos(a+.5)} ${y2-h*Math.sin(a+.5)}`)}
+};
+/* scene: 400 × 270, feet at 256, heads near 134, speech band above y≈110 */
+const G=256;
+const scene=inner=>`<svg viewBox="0 0 400 270" role="img"><rect class="floor" x="-40" y="${G+2}" width="480" height="900"/>${S(`M-40 ${G+2} L440 ${G+2}`)}${inner}</svg>`;
+
+/* measure real text, then draw each bubble around it; tails always end above a head */
+function layout(root){
+  root.querySelectorAll('[data-fit]').forEach(t=>{let fs=11;t.style.fontSize=fs+'px';const m=+t.dataset.fit;while(t.getBBox().width>m&&fs>6){fs-=.5;t.style.fontSize=fs+'px';}});
+  root.querySelectorAll('g.bub').forEach(g=>{
+    g.querySelectorAll('.shape').forEach(e=>e.remove());
+    const t=g.querySelector('text'),sp=[...t.querySelectorAll('tspan')],n=sp.length,k=g.dataset.k;
+    const x=+g.dataset.x,y=+g.dataset.y,lo=+g.dataset.lo,hi=+g.dataset.hi;
+    sp.forEach((s,i)=>{s.setAttribute('x',x);s.setAttribute('y',y-(n-1)*9.5+6+i*19)});
+    const bb=t.getBBox(),w=bb.width+(k==='think'?40:28),h=n*19+(k==='think'?20:14);
+    const pad=k==='burst'?w*0.32+8:6;
+    const cx=Math.min(Math.max(x,lo+w/2+pad),hi-w/2-pad);
+    sp.forEach(s=>s.setAttribute('x',cx));
+    let sh='';
+    if(k==='say'){
+      const tx=+g.dataset.tx,ty=+g.dataset.ty,bot=y+h/2,top=y-h/2;
+      const bx=Math.min(Math.max(tx,cx-w/2+18),cx+w/2-18);
+      sh=`<rect class="w shape" x="${cx-w/2}" y="${top}" width="${w}" height="${h}" rx="${Math.min(h/2,16)}"/>`+
+         `<path class="w shape" d="M${bx-9} ${bot-3} L${tx} ${ty} L${bx+9} ${bot-3}"/>`+
+         `<rect class="wf shape" x="${bx-8}" y="${bot-5}" width="16" height="4"/>`;
+    }else if(k==='think'){
+      const tx=+g.dataset.tx,ty=+g.dataset.ty,m=10;
+      for(let i=0;i<m;i++){const a=i/m*Math.PI*2;sh+=`<ellipse class="w shape" cx="${cx+Math.cos(a)*w*.4}" cy="${y+Math.sin(a)*h*.36}" rx="${w*.17}" ry="${h*.3}"/>`;}
+      sh+=`<ellipse class="wf shape" cx="${cx}" cy="${y}" rx="${w*.46}" ry="${h*.44}"/>`;
+      const sy=y+h/2+6;
+      sh+=`<circle class="w shape" cx="${cx+(tx-cx)*.35}" cy="${sy+(ty-sy)*.15}" r="5"/><circle class="w shape" cx="${cx+(tx-cx)*.7}" cy="${sy+(ty-sy)*.6}" r="3.5"/><circle class="w shape" cx="${tx}" cy="${ty}" r="2.2"/>`;
+    }else{
+      const rx=w/2+20,ry=h/2+16,N=14,pts=[];
+      for(let i=0;i<N*2;i++){const a=i/(N*2)*Math.PI*2,r=i%2?.72:1+((i*7)%5)/30;pts.push((cx+Math.cos(a)*rx*r).toFixed(1)+','+(y+Math.sin(a)*ry*r).toFixed(1));}
+      sh=`<polygon class="w shape" points="${pts.join(' ')}"/>`;
+    }
+    g.insertAdjacentHTML('afterbegin',sh);
+  });
+}
+
+/* ---------- title page: original 3-panel strip ---------- */
+const hp=(x)=>{let g=`<rect class="pl" x="${x}" y="8" width="284" height="274" rx="5"/><g clip-path="url(#c${x})">`;for(let yy=32;yy<282;yy+=24)g+=`<path class="lg" d="M${x} ${yy} L${x+284} ${yy}"/>`;return g+`</g><clipPath id="c${x}"><rect x="${x}" y="8" width="284" height="274"/></clipPath>`};
+document.getElementById('hero').innerHTML=`<svg viewBox="0 0 900 290" role="img" aria-label="Three-panel comic: Ania decides to open a coffee cart, wonders where every złoty goes, and says follow the money">
+${hp(8)}${hp(308)}${hp(608)}
+${S('M12 262 L288 262 M312 262 L588 262 M612 262 L888 262')}
+${fig(150,260,{f:1,pose:'think'})}${think(150,66,'A coffee cart!|Let\'s do it.',152,116,8,292)}
+${fig(372,260,{f:1,pose:'point'})}${prop.cart(510,260,1)}${say(430,62,'Where does|every złoty go?',375,114,308,592)}
+${fig(670,260,{f:1,pose:'cheer'})}${prop.book(800,250)}${burst(770,70,'Follow the|money!',608,892)}
+</svg>`;
+
+/* ---------- transactions ---------- */
+const T=[
+ {n:1,title:'Opening the business account',pr:'Business entity convention',
+  story:'<b>Day 1.</b> Ania moves 10,000 zł of her own savings into a new bank account opened just for the cart.',
+  means:'From today the cart is treated as its own little “person”. The money now belongs to the business, and the business records that it came from its owner. That is equity. (In accounting, “cash” includes money in bank accounts, so the transfer is recorded as cash.)',
+  watch:'Ania\'s groceries are not cart expenses. Mixing personal and business money breaks this rule.',
+  je:[['Dr','Cash',10000],['Cr',"Owner's capital",10000]],
+  d:{cash:10000,cap:10000,cff:10000},
+  art:()=>fig(52,G,{f:1,pose:'point'})+prop.acct(138,G-62,'ANIA','personal account')+prop.arrow(180,G-87,212,G-87)+lbl(196,G-119,'10,000 zł',70).replace('class="tl"','class="tl" style="font-weight:700"')+prop.acct(252,G-62,'COFFEE CART','business account')+`<g transform="translate(345 ${G}) scale(.8) translate(-345 ${-G})">${prop.cart(345,G,1)}</g>`+say(105,62,'From my account|to the cart\'s account',56,112,0,250)+say(345,62,'Thanks,|boss!',345,168,250,400)},
+ {n:2,title:'Borrowing from the bank',pr:'Dual aspect convention',
+  story:'<b>Day 2.</b> Savings won\'t be enough, so Ania borrows 5,000 zł from the bank at 6% interest a year.',
+  means:'The cart has 5,000 zł more cash, but also owes 5,000 zł. Two sides, same amount, so Assets = Liabilities + Equity still balances.',
+  watch:'A loan is not income. Borrowed money must be paid back, so it is a liability, never revenue.',
+  je:[['Dr','Cash',5000],['Cr','Bank loan',5000]],
+  d:{cash:5000,loan:5000,cff:5000},
+  art:()=>prop.bank(340,G)+fig(255,G,{pose:'give',flip:1,tie:1})+prop.bag(212,G-40,'5,000')+fig(85,G,{f:1,pose:'hold'})+say(95,62,'Can I borrow|5,000 zł?',88,112)+say(290,60,'Yes. Pay it back|with 6% a year',258,112)},
+ {n:3,title:'Buying the espresso machine',pr:'Historic cost convention',
+  story:'<b>Day 3.</b> Ania finds a good second-hand espresso machine and pays 6,000 zł from the cart\'s account.',
+  means:'The machine goes on the books at the price paid: 6,000 zł. Cash turns into equipment, so total assets stay the same. It is not an expense yet, because the machine will make coffee for years.',
+  watch:'Don\'t record it at what you think it\'s worth (“it\'s a bargain, really 8,000”). Record what you paid.',
+  je:[['Dr','Equipment',6000],['Cr','Cash',6000]],
+  d:{eq:6000,cash:-6000,cfi:-6000},
+  art:()=>fig(105,G,{f:1,pose:'cheer'})+prop.machine(265,G)+burst(320,66,'NEW!')+say(110,60,'6,000 zł paid,|6,000 zł recorded',105,110,0,230)},
+ {n:4,title:'Paying rent three months ahead',pr:'Accruals convention',
+  story:'<b>Day 4.</b> The landlord wants rent for November, December and January up front: 1,500 zł in total.',
+  means:'Paying is not the same as using. Right now the cart owns the right to use the space for three months. That right is an asset called prepaid rent. It becomes an expense one month at a time (see strip 11).',
+  watch:'Booking all 1,500 zł as November rent would make November look worse and January look better than they really are.',
+  je:[['Dr','Prepaid rent',1500],['Cr','Cash',1500]],
+  d:{pre:1500,cash:-1500,cfo:-1500},
+  art:()=>fig(70,G,{f:1,pose:'give'})+prop.bag(134,G-40,'1,500')+prop.cal(222,G,'NOV · DEC · JAN')+fig(330,G,{pose:'hold',flip:1})+say(100,60,'Rent for Nov,|Dec and Jan',74,112,0,220)+say(330,62,'1,500 zł.|Thanks!',330,112,230,400)},
+ {n:5,title:'Buying beans on credit',pr:'Dual aspect convention',
+  story:'<b>Day 5.</b> A roaster delivers 2,000 zł of coffee beans. Ania can pay within 30 days.',
+  means:'The cart now has beans (inventory, an asset) and a bill to pay (trade payables, a liability). Both go up by 2,000 zł. No cash moved, so the cash flow statement does not change.',
+  watch:'Beans on the shelf are not an expense yet. They become one only when they are used to make coffee that is sold.',
+  je:[['Dr','Inventory',2000],['Cr','Trade payables',2000]],
+  d:{inv:2000,ap:2000},
+  art:()=>fig(75,G,{f:1,pose:'wave'})+prop.paper(165,G,'INVOICE')+prop.sack(245,G)+fig(335,G,{pose:'point',flip:1})+say(305,60,'2,000 zł of beans.|Pay in 30 days.',333,112,180,400)+say(75,64,'Deal!',78,112)},
+ {n:6,title:'Selling coffee for cash',pr:'Revenue recognition + matching convention',
+  story:'<b>Days 6–30.</b> Customers queue every morning. In November Ania sells 4,000 zł of coffee, paid on the spot.',
+  means:'Coffee was handed over, so 4,000 zł of revenue is earned. Beans worth 1,200 zł were used to make it, so that cost is matched to the same month as cost of sales. Profit from these sales is 2,800 zł.',
+  watch:'Forgetting the beans\' cost would show 4,000 zł profit. Revenue and the costs that produced it belong together.',
+  je:[['Dr','Cash',4000],['Cr','Revenue',4000],['Dr','Cost of sales',1200],['Cr','Inventory',1200]],
+  d:{cash:4000,rev:4000,cogs:1200,inv:-1200,cfo:4000},
+  art:()=>fig(70,G,{pose:'hold'})+prop.cup(100,G-80)+prop.cart(215,G)+fig(338,G,{f:1,pose:'cheer'})+say(80,62,'A latte,|please!',72,112,0,160)+burst(315,62,'4,000 zł|sold!',200,400)},
+ {n:7,title:'Catering an office party on credit',pr:'Revenue recognition',
+  story:'<b>Day 20.</b> A nearby office orders coffee for a party: 1,000 zł. Ania delivers today. The office will pay next month.',
+  means:'The work is done, so the revenue is earned today, even though no cash has arrived. The office now owes the cart money: trade receivables, an asset. The 300 zł of beans used become an expense this month.',
+  watch:'Waiting for the cash before recording revenue is cash accounting. Under accrual accounting, earning is what counts.',
+  je:[['Dr','Trade receivables',1000],['Cr','Revenue',1000],['Dr','Cost of sales',300],['Cr','Inventory',300]],
+  d:{ar:1000,rev:1000,cogs:300,inv:-300},
+  art:()=>fig(80,G,{f:1,pose:'hold'})+prop.cup(108,G-80)+prop.cup(132,G-80)+prop.paper(220,G,'INVOICE')+fig(330,G,{f:1,pose:'idle',flip:1})+say(305,60,'Great party! We\'ll|pay next month',330,112,170,400)+say(80,62,'Earned|today!',82,112,0,170)},
+ {n:8,title:'The office pays its bill',pr:'Revenue recognition',
+  story:'<b>Day 28.</b> The office pays the 1,000 zł catering bill early.',
+  means:'Cash goes up and the amount the office owes goes down to zero. There is no new revenue, because it was already counted in strip 7. One asset (receivable) simply turned into another (cash).',
+  watch:'Recording revenue again when the cash arrives would count the same party twice.',
+  je:[['Dr','Cash',1000],['Cr','Trade receivables',1000]],
+  d:{cash:1000,ar:-1000,cfo:1000},
+  art:()=>fig(330,G,{f:1,pose:'give',flip:1})+prop.bag(268,G-40,'1,000')+prop.arrow(236,G-62,194,G-62)+fig(95,G,{f:1,pose:'cheer'})+say(110,60,'Cash is in, but|it\'s no new sale!',95,112,0,220)+say(335,64,'As promised!',330,112,230,400)},
+ {n:9,title:'Paying the barista',pr:'Matching convention',
+  story:'<b>Day 30.</b> Ania\'s part-time barista, Tomek, worked all month. She pays him 800 zł.',
+  means:'Tomek\'s work helped earn November\'s sales, so his wages are a November expense. Cash goes down and profit goes down by the same 800 zł.',
+  watch:'Paying Ania herself is different: money the owner takes out is a withdrawal of equity, not a wage expense.',
+  je:[['Dr','Wages expense',800],['Cr','Cash',800]],
+  d:{wag:800,cash:-800,cfo:-800},
+  art:()=>fig(85,G,{f:1,pose:'give'})+prop.bag(148,G-40,'800')+fig(300,G,{pose:'cheer',flip:1})+prop.cup(356,G)+say(110,60,'800 zł for|a great month',88,112,0,220)+say(305,64,'Thank you!',300,112,220,400)},
+ {n:10,title:'Paying part of the bean bill',pr:'Dual aspect convention',
+  story:'<b>Day 30.</b> Ania pays the roaster 1,500 zł of the 2,000 zł she owes. 500 zł is still to pay.',
+  means:'Cash goes down and the debt to the roaster goes down by the same amount. Profit does not change: the beans were already counted as an expense when they were used in strips 6 and 7.',
+  watch:'Paying a bill is not the same as having an expense. The expense happened when the beans were used.',
+  je:[['Dr','Trade payables',1500],['Cr','Cash',1500]],
+  d:{ap:-1500,cash:-1500,cfo:-1500},
+  art:()=>fig(75,G,{f:1,pose:'give'})+prop.bag(138,G-40,'1,500')+prop.arrow(170,G-62,210,G-62)+prop.sack(248,G)+fig(338,G,{pose:'wave',flip:1})+say(100,60,'1,500 zł of the|2,000 I owe',78,112,0,215)+say(330,62,'500 left.|No rush!',338,112,225,400)},
+ {n:11,title:'Month end: using up a month of rent',pr:'Reporting period (adjusting entry)',
+  story:'<b>30 November.</b> The month is over. Ania sits down to close the books.',
+  means:'One of the three prepaid months has been used. An adjusting entry moves 500 zł from the prepaid rent asset into rent expense, so November carries exactly one month of rent.',
+  watch:'Adjusting entries never involve cash. They fix the timing so each month shows what really belongs to it.',
+  je:[['Dr','Rent expense',500],['Cr','Prepaid rent',500]],
+  d:{rent:500,pre:-500},
+  art:()=>fig(90,G,{f:1,pose:'point'})+prop.cal(240,G-30,'NOV',30)+say(110,60,'November\'s rent|is used up',92,112,0,215)+burst(330,66,'500 zł',225,400)},
+ {n:12,title:'The machine wears out a little',pr:'Matching + going concern conventions',
+  story:'<b>30 November.</b> The espresso machine should last about 5 years (60 months), then it will be worth nothing.',
+  means:'Because the cart will keep going (going concern), the 6,000 zł cost is spread across the months the machine helps earn money: 6,000 ÷ 60 = 100 zł each month. This is depreciation. The machine\'s book value drops to 5,900 zł.',
+  watch:'Depreciation uses no cash. That\'s why profit and cash are different numbers.',
+  je:[['Dr','Depreciation expense',100],['Cr','Accumulated depreciation',100]],
+  d:{dep:100,ad:-100},
+  art:()=>fig(85,G,{f:1,pose:'think'})+prop.machine(235,G,'sad')+prop.clock(340,G)+think(130,64,'6,000 zł ÷ 60 months|= 100 zł a month',96,114,0,320)},
+ {n:13,title:'Interest builds up on the loan',pr:'Accruals convention',
+  story:'<b>30 November.</b> The bank only collects interest later, but every day of the loan costs a little.',
+  means:'One month of interest: 5,000 × 6% ÷ 12 = 25 zł. It is owed already, so it is recorded now as an expense and as an accrued expense, even though nothing has been paid.',
+  watch:'Ignoring costs until the bill arrives would make this month look more profitable than it was.',
+  je:[['Dr','Interest expense',25],['Cr','Accrued interest',25]],
+  d:{int:25,ip:25},
+  art:()=>prop.bank(335,G)+prop.clock(235,G)+fig(85,G,{f:1,pose:'idle'})+say(240,64,'Tick, tock:|25 zł owed',236,204,170,300)+say(85,64,'Fair enough.',87,112,0,165)}
+];
+const LBL={cash:'Cash',ar:'Trade receivables',inv:'Inventory',pre:'Prepaid rent',eq:'Equipment (PPE)',ad:'Accumulated depreciation',ap:'Trade payables',ip:'Accrued interest',loan:'Bank loan',cap:"Owner's capital",rev:'Revenue',cogs:'Cost of sales',rent:'Rent expense',wag:'Wages expense',dep:'Depreciation expense',int:'Interest expense',cfo:'Operating',cfi:'Investing',cff:'Financing'};
+const ASSET=['cash','ar','inv','pre','eq','ad'],LIAB=['ap','ip','loan'],EXP=['cogs','rent','wag','dep','int'],CF=['cfo','cfi','cff'];
+const f=n=>n.toLocaleString('en-US'),sg=n=>(n>0?'+':n<0?'−':'')+f(Math.abs(n));
+
+/* ---------- principles ---------- */
+const PR=[
+ ['Business entity convention','economic entity','Zasada odrębności jednostki gospodarczej','Принцип имущественной обособленности','The business and the owner are separate. Keep their money apart.','Ania\'s savings become the cart\'s money and she becomes an owner.',1,'cart'],
+ ['Money measurement','monetary unit','Zasada pomiaru wartości w pieniądzu','Принцип денежного измерения','Only things you can measure in money go in the books.','Tomek\'s great smile is valuable, but it has no line in the accounts.',null,'bag'],
+ ['Reporting period','time period','Zasada okresowości','Принцип периодичности','Chop the life of a business into months or years so you can report on each one.','At month end, one month of prepaid rent becomes an expense.',11,'cal'],
+ ['Going concern convention','going concern','Zasada kontynuacji działalności','Принцип непрерывности деятельности','Assume the business will keep running and has no plan to sell off its assets.','The machine is shown at cost less depreciation, not at the lower price it would fetch in a quick sale.',12,'clock'],
+ ['Historic cost convention','historical cost','Zasada kosztu historycznego','Принцип исторической стоимости','Record things at what you actually paid.','The machine stays at 6,000 zł even if a friend says it is worth 8,000.',3,'machine'],
+ ['Dual aspect convention','duality, double entry','Zasada podwójnego zapisu','Принцип двойственности (двойной записи)','Every transaction has two sides, so A = L + E always balances.','A loan raises cash and debt by the same 5,000 zł.',2,'bank'],
+ ['Accruals convention','accrual basis','Zasada memoriału','Принцип начисления','Profit is revenue earned minus expenses used up, not cash in minus cash out.','Interest owed for November is recorded in November, even if paid later.',13,'paper'],
+ ['Revenue recognition','realisation','Zasada realizacji przychodów','Принцип признания выручки','Count revenue when you have earned it by delivering the goods or service.','Catering delivered today is revenue today; payment next month is just cash catching up.',7,'cup'],
+ ['Matching convention','expense recognition','Zasada współmierności przychodów i kosztów','Принцип соответствия доходов и расходов','Put expenses in the same period as the revenue they helped earn.','Beans used to make this month\'s coffee are this month\'s expense.',6,'sack'],
+ ['Prudence convention','conservatism','Zasada ostrożności','Принцип осмотрительности','When unsure, don\'t overstate what you have or what you earned. Record losses early, gains only when sure.','If 200 zł of beans went stale, write them down now; don\'t wait.',null,'sack'],
+ ['Materiality convention','materiality','Zasada istotności','Принцип существенности','Small amounts that would not change anyone\'s decision can be handled the simple way.','A 15 zł stapler is just an expense, not a 5-year asset.',null,'paper'],
+ ['Consistency convention','consistency','Zasada ciągłości','Принцип последовательности','Once you pick a method, keep using it, so periods can be compared.','If the machine is depreciated straight-line this year, it stays straight-line next year.',null,'clock']
+];
+const icon=t=>`<svg viewBox="0 0 120 120" aria-hidden="true" class="ledger">${({cart:prop.cart(60,114,1),bag:`<g transform="translate(-60 -90) scale(2)">${prop.bag(60,96)}</g>`,cal:prop.cal(60,94,'NOV',5),clock:`<g transform="translate(-60 -60) scale(2)">${prop.clock(60,84)}</g>`,machine:prop.machine(60,98),bank:prop.bank(60,108),paper:`<g transform="translate(-36 -46) scale(1.6)">${prop.paper(60,100,'NOTE')}</g>`,cup:`<g transform="translate(-60 -86) scale(2)">${prop.cup(60,96)}</g>`,sack:`<g transform="translate(-36 -50) scale(1.6)">${prop.sack(60,98)}</g>`})[t]}</svg>`;
+document.getElementById('prGrid').innerHTML=PR.map(([n,aka,pl,ru,m,ex,s,ic])=>`<article class="pr"><div class="ico">${icon(ic)}</div><h3>${n}</h3><span class="ru">Also called: ${aka}</span><span class="ru"><b>PL</b> ${pl}<br><b>RU</b> ${ru}</span><p>${m}</p><p class="ex"><b>Example:</b> ${ex}</p>${s?`<a href="#strip-${s}">See it in strip ${s} ↓</a>`:''}</article>`).join('');
+
+/* ---------- strips ---------- */
+function effects(d){
+  const bs=[...ASSET,...LIAB,'cap'].filter(k=>d[k]).map(k=>`${LBL[k]} ${sg(d[k])}`);
+  const isL=['rev',...EXP].filter(k=>d[k]).map(k=>k==='rev'?`Revenue +${f(d[k])}`:`${LBL[k]} −${f(d[k])}`);
+  const ni=(d.rev||0)-EXP.reduce((a,k)=>a+(d[k]||0),0);
+  if(isL.length)bs.push(`Retained earnings ${sg(ni)}`);
+  const cf=CF.filter(k=>d[k]).map(k=>`${LBL[k]} ${sg(d[k])}`);
+  const A=ASSET.reduce((a,k)=>a+(d[k]||0),0),L=LIAB.reduce((a,k)=>a+(d[k]||0),0),E=(d.cap||0)+ni;
+  return {bs,isL,cf,ni,A,L,E};
+}
+document.getElementById('strips').innerHTML=T.map(t=>{
+  const e=effects(t.d);
+  return `<article class="strip" id="strip-${t.n}">
+   <div class="strip-head"><span class="no">No. ${t.n}</span><h3>${t.title}</h3><span class="pchip">Principle: ${t.pr}</span></div>
+   <div class="panels">
+   <div class="scene"><p class="narr">${t.story}</p><div class="ledger">${scene(t.art())}</div></div>
+   <div class="land">
+     <div class="box"><span class="lbl">What it means</span>${t.means}</div>
+     <div class="box je"><span class="lbl">What the accountant writes</span>${t.je.map(([s,a,v])=>`<span>${s}</span><span class="${s==='Cr'?'cr':''}">${a}</span><span>${f(v)}</span>`).join('')}</div>
+     <div class="box fx"><span class="lbl">Where it lands</span>
+       <b class="bs">Balance sheet</b><span>${e.bs.join(' · ')||'no change'}</span>
+       <b class="is">Income statement</b><span>${e.isL.length?e.isL.join(' · ')+` → profit ${sg(e.ni)}`:'no change'}</span>
+       <b class="cf">Cash flow</b><span>${e.cf.join(' · ')||'no cash moved'}</span>
+       <span style="margin-top:4px">Check: assets ${sg(e.A)} = liabilities ${sg(e.L)} + equity ${sg(e.E)}</span>
+     </div>
+     <div class="box warn"><span class="lbl">Watch out</span>${t.watch}</div>
+     <button class="go" data-go="${t.n}">See it on the statements ↓</button>
+     <button class="cover" data-reveal>Which statements move?<span style="font-size:1rem">Tap to reveal</span></button>
+   </div></div></article>`}).join('');
+
+const doLayout=()=>layout(document);
+doLayout();
+if(document.fonts&&document.fonts.ready)document.fonts.ready.then(doLayout);
+
+/* ---------- paper switcher ---------- */
+function setPaper(p){document.body.dataset.paper=p;document.querySelectorAll('[data-paper]').forEach(b=>{if(b.tagName==='BUTTON')b.setAttribute('aria-pressed',b.dataset.paper===p)});try{localStorage.setItem('paper',p)}catch(e){}}
+document.querySelectorAll('button[data-paper]').forEach(b=>b.addEventListener('click',()=>setPaper(b.dataset.paper)));
+try{const p=localStorage.getItem('paper');if(p)setPaper(p)}catch(e){}
+
+/* ---------- statements ---------- */
+const stepEl=document.getElementById('step');
+function render(n){
+  const s={};T.slice(0,n).forEach(t=>Object.entries(t.d).forEach(([k,v])=>s[k]=(s[k]||0)+v));
+  const v=k=>s[k]||0,hit=new Set(n?Object.keys(T[n-1].d):[]);
+  const exp=EXP.reduce((a,k)=>a+v(k),0),ni=v('rev')-exp;
+  if(n&&(T[n-1].d.rev||EXP.some(k=>T[n-1].d[k])))['re','ni','gp','te','tle'].forEach(k=>hit.add(k));
+  const row=(k,label,val,cls='')=>`<tr class="${cls} ${hit.has(k)?'hit':''}"><td>${label}</td><td class="n">${val<0?'('+f(-val)+')':f(val)}</td></tr>`;
+  const A=ASSET.reduce((a,k)=>a+v(k),0),L=LIAB.reduce((a,k)=>a+v(k),0),E=v('cap')+ni;
+  const is=`<div class="st"><span class="chip c-is">Income statement</span><h3>November</h3><div class="sub">Performance over the month</div><table>
+   ${row('rev','Revenue',v('rev'))}${row('cogs','Cost of sales',-v('cogs'))}${row('gp','Gross profit',v('rev')-v('cogs'),'tot')}
+   ${row('rent','Rent expense',-v('rent'))}${row('wag','Wages expense',-v('wag'))}${row('dep','Depreciation',-v('dep'))}${row('int','Interest expense',-v('int'))}
+   ${row('ni','Profit for the period',ni,'tot')}</table></div>`;
+  const bs=`<div class="st"><span class="chip c-bs">Statement of financial position</span><h3>30 November</h3><div class="sub">The balance sheet: a snapshot on the last day</div><table>
+   <tr class="grp"><td colspan="2">Assets</td></tr>${row('cash','Cash',v('cash'))}${row('ar','Trade receivables',v('ar'))}${row('inv','Inventory',v('inv'))}${row('pre','Prepaid rent',v('pre'))}${row('eq','Equipment (PPE)',v('eq'))}${row('ad','Accumulated depreciation',v('ad'))}${row('ta','Total assets',A,'tot')}
+   <tr class="grp"><td colspan="2">Liabilities</td></tr>${row('ap','Trade payables',v('ap'))}${row('ip','Accrued interest',v('ip'))}${row('loan','Bank loan',v('loan'))}${row('tl','Total liabilities',L,'tot')}
+   <tr class="grp"><td colspan="2">Equity</td></tr>${row('cap',"Owner's capital",v('cap'))}${row('re','Retained earnings',ni)}${row('te','Total equity',E,'tot')}
+   ${row('tle','Liabilities + equity',L+E,'tot')}</table><p class="bal ${A===L+E?'ok':''}">${A===L+E?'✓ Balanced: '+f(A)+' = '+f(L+E):'Not balanced'}</p></div>`;
+  const cf=`<div class="st"><span class="chip c-cf">Statement of cash flows</span><h3>November</h3><div class="sub">Where real cash came from and went</div><table>
+   ${row('cfo','Operating activities',v('cfo'))}${row('cfi','Investing activities',v('cfi'))}${row('cff','Financing activities',v('cff'))}
+   ${row('cash','Net change in cash',v('cfo')+v('cfi')+v('cff'),'tot')}</table>
+   <p class="bridge" style="margin-top:10px">Ends at cash on the balance sheet: ${f(v('cash'))} zł.</p></div>`;
+  document.getElementById('stmts').innerHTML=is+bs+cf;
+  document.getElementById('now').textContent=n?`After No. ${n}: ${T[n-1].title} (rows that just moved are highlighted)`:'Before the business starts: everything is zero';
+  const nc=ni+v('dep')-v('inv')-v('pre')-v('ar')+v('ap')+v('ip');
+  document.getElementById('bridge').textContent=n?`Why is profit (${f(ni)}) different from operating cash (${f(v('cfo'))})? Profit counts what was earned and used up; cash counts what was paid. Profit ${f(ni)} + depreciation ${f(v('dep'))} − cash tied up in inventory, prepaid rent and receivables (${f(v('inv')+v('pre')+v('ar'))}) + bills not yet paid (${f(v('ap')+v('ip'))}) = ${f(nc)}.`:'';
+  stepEl.value=n;
+  document.getElementById('ratioBox').innerHTML=[['Profit margin','Net income ÷ revenue',v('rev')?(ni/v('rev')*100).toFixed(1)+'%':'—','Out of every 100 zł of sales, how much is profit.'],
+   ['Current ratio','Current assets ÷ current liabilities',(v('ap')+v('ip'))?((v('cash')+v('ar')+v('inv')+v('pre'))/(v('ap')+v('ip'))).toFixed(1)+'×':'—','Can the cart pay its short-term bills? Above 1 is comfortable. (The bank loan is treated as long-term.)'],
+   ['Debt to equity','Total liabilities ÷ total equity',E?(L/E).toFixed(2):'—','How much of the business is funded by borrowing versus by the owner.']]
+   .map(([a,b,c,d])=>`<div><span class="chip" style="color:var(--fg)">${a}</span><h3 style="font-family:var(--f-num);font-size:1.6rem">${c}</h3><p style="font-size:.85rem;color:var(--muted)">${b}</p><p style="font-size:.92rem">${d}</p></div>`).join('');
+}
+stepEl.addEventListener('input',()=>render(+stepEl.value));
+document.getElementById('prev').onclick=()=>render(Math.max(0,+stepEl.value-1));
+document.getElementById('next').onclick=()=>render(Math.min(13,+stepEl.value+1));
+document.getElementById('strips').addEventListener('click',e=>{
+  const g=e.target.closest('[data-go]');if(g){render(+g.dataset.go);document.getElementById('statements').scrollIntoView();}
+  const c=e.target.closest('[data-reveal]');if(c)c.closest('.land').classList.add('shown');
+});
+document.getElementById('quiz').addEventListener('change',e=>{document.body.classList.toggle('quiz',e.target.checked);document.querySelectorAll('.land').forEach(l=>l.classList.remove('shown'));});
+render(13);
+</script>
+
+</body>
+</html>
