@@ -386,6 +386,26 @@ body{font-size:var(--t-m)}
 
 .subtitle{font-family:var(--f-comic);font-size:1.45rem;line-height:1.25;color:var(--muted);margin:-4px 0 0;max-width:none;text-wrap:balance}
 @media (max-width:600px){.subtitle{font-size:1.2rem}.subtitle br{display:none}}
+
+.happen{background:var(--narr);color:var(--line);border:2.5px solid var(--line);border-radius:8px;padding:12px 14px;display:flex;flex-direction:column;gap:6px}
+.happen .ht{font-family:var(--f-comic);font-size:1.35rem;line-height:1.15}
+.happen .hs{font-size:.95rem}
+.happen .hs b{font-weight:700}
+.happen .hj{font-family:var(--f-num);font-size:.82rem}
+.happen .hc{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:.85rem}
+.happen .hc span b{font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;margin-right:4px}
+.happen .hc .bs b{color:#1F5490}.happen .hc .is b{color:#1E6B41}.happen .hc .cf b{color:#8E3A1A}
+.happen .hint{font-size:.8rem;opacity:.75}
+.tl{display:flex;flex-wrap:wrap;gap:6px}
+.tl button{font:inherit;font-size:.82rem;line-height:1.25;text-align:left;border:1.5px solid var(--rule);border-radius:8px;background:var(--card);color:var(--fg);padding:5px 9px;cursor:pointer;display:flex;gap:6px;align-items:baseline}
+.tl button .k{font-family:var(--f-num);font-size:.75rem;color:var(--muted)}
+.tl button .a{font-family:var(--f-num);font-size:.78rem;font-weight:500}
+.tl button.done{border-color:var(--fg)}
+.tl button.cur{background:var(--panel);color:var(--line);border:2.5px solid var(--line)}
+.tl button.cur .k{color:var(--line)}
+.tl button.todo{opacity:.5}
+.tl button:hover{opacity:1;border-color:var(--fg)}
+.tl button:focus-visible{outline:3px solid var(--bs);outline-offset:2px}
 </style>
 
 </head>
@@ -498,7 +518,8 @@ body{font-size:var(--t-m)}
       <button class="btn" id="next" aria-label="Next transaction">▶</button>
     </div>
   </div>
-  <p class="now" id="now"></p>
+  <div class="happen" id="now" aria-live="polite"></div>
+  <div class="tl" id="tl" aria-label="All transactions"></div>
   <div class="stmts" id="stmts"></div>
   <p class="bridge" id="bridge"></p>
 </section>
@@ -817,7 +838,7 @@ function render(n){
   const v=k=>s[k]||0,hit=new Set(n?Object.keys(T[n-1].d):[]);
   const exp=EXP.reduce((a,k)=>a+v(k),0),ni=v('rev')-exp;
   if(n&&(T[n-1].d.rev||EXP.some(k=>T[n-1].d[k])))['re','ni','gp','te','tle'].forEach(k=>hit.add(k));
-  const row=(k,label,val,cls='')=>`<tr class="${cls} ${hit.has(k)?'hit':''}"><td>${label}</td><td class="n">${val<0?'('+f(-val)+')':f(val)}</td></tr>`;
+  const row=(k,label,val,cls='')=>`<tr class="${cls} ${hit.has(k)?'hit':''}"><td>${label}</td><td class="n">${(val||0)<0?'('+f(-val)+')':f(val||0)}</td></tr>`;
   const A=ASSET.reduce((a,k)=>a+v(k),0),L=LIAB.reduce((a,k)=>a+v(k),0),E=v('cap')+ni;
   const is=`<div class="st"><span class="chip c-is">Income statement</span><h3>November</h3><div class="sub">Performance over the month</div><table>
    ${row('rev','Revenue',v('rev'))}${row('cogs','Cost of sales',-v('cogs'))}${row('gp','Gross profit',v('rev')-v('cogs'),'tot')}
@@ -833,7 +854,17 @@ function render(n){
    ${row('cash','Net change in cash',v('cfo')+v('cfi')+v('cff'),'tot')}</table>
    <p class="bridge" style="margin-top:10px">Ends at cash on the balance sheet: ${f(v('cash'))} zł.</p></div>`;
   document.getElementById('stmts').innerHTML=is+bs+cf;
-  document.getElementById('now').textContent=n?`After No. ${n}: ${T[n-1].title} (rows that just moved are highlighted)`:'Before the business starts: everything is zero';
+  {const SHORT=['Owner puts in savings','Bank loan','Espresso machine','Rent paid ahead','Beans on credit','Coffee sales','Catering on credit','Office pays its bill','Barista wages','Part of bean bill paid','Rent used up','Depreciation','Interest owed'];
+   const now=document.getElementById('now');
+   if(!n){now.innerHTML=`<div class="ht">Before day 1</div><div class="hs">The cart doesn't exist yet, so every line is zero. Press ▶ or pick a step below.</div>`;}
+   else{const t=T[n-1],e=effects(t.d);
+     now.innerHTML=`<div class="ht">Step ${n} of ${T.length}: ${t.title}</div><div class="hs">${t.story}</div>
+      <div class="hj">${t.je.map(([s,a,v])=>`${s} ${a} ${f(v)}`).join(' · ')}</div>
+      <div class="hc"><span class="bs"><b>Balance sheet</b>${e.bs.join(' · ')||'no change'}</span><span class="is"><b>Income statement</b>${e.isL.length?e.isL.join(' · '):'no change'}</span><span class="cf"><b>Cash flow</b>${e.cf.join(' · ')||'no cash moved'}</span></div>
+      <div class="hint">Rows that just changed are highlighted below.</div>`;}
+   const tl=document.getElementById('tl');
+   if(!tl.childElementCount)tl.innerHTML=T.map((t,i)=>`<button type="button" data-step="${i+1}"><span class="k">${i+1}</span><span>${SHORT[i]}</span><span class="a">${f(t.je[0][2])}</span></button>`).join('');
+   tl.querySelectorAll('button').forEach(b=>{const k=+b.dataset.step;b.className=k<n?'done':k===n?'cur':'todo';b.setAttribute('aria-current',k===n?'step':'false')});}
   const nc=ni+v('dep')-v('inv')-v('pre')-v('ar')+v('ap')+v('ip');
   document.getElementById('bridge').textContent=n?`Why is profit (${f(ni)}) different from operating cash (${f(v('cfo'))})? Profit counts what was earned and used up; cash counts what was paid. Profit ${f(ni)} + depreciation ${f(v('dep'))} − cash tied up in inventory, prepaid rent and receivables (${f(v('inv')+v('pre')+v('ar'))}) + bills not yet paid (${f(v('ap')+v('ip'))}) = ${f(nc)}.`:'';
   stepEl.value=n;
@@ -843,6 +874,7 @@ function render(n){
    .map(([a,b,c,d])=>`<div><span class="chip" style="color:var(--fg)">${a}</span><h3 style="font-family:var(--f-num);font-size:1.6rem">${c}</h3><p style="font-size:.85rem;color:var(--muted)">${b}</p><p style="font-size:.92rem">${d}</p></div>`).join('');
 }
 stepEl.addEventListener('input',()=>render(+stepEl.value));
+document.getElementById('tl').addEventListener('click',e=>{const b=e.target.closest('[data-step]');if(b)render(+b.dataset.step)});
 document.getElementById('prev').onclick=()=>render(Math.max(0,+stepEl.value-1));
 document.getElementById('next').onclick=()=>render(Math.min(13,+stepEl.value+1));
 document.getElementById('strips').addEventListener('click',e=>{
