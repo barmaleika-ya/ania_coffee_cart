@@ -13,4 +13,4 @@ on the statement of financial position, the income statement and the statement o
 
 © 2026 Tatyana Emelyanova. All rights reserved.
 
-The story, text and drawings are original. The accounting behind it (the formulas, the statements and the accounting cycle) is standard theory from the books, articles and courses we study at Kozminski University.
+This is my attempt to make the accounting basics stick by turning them into a story. The story, text and drawings are original; the accounting behind them is standard theory, pieced together from textbooks, courses and articles. Made with a little help from my AI pal, Claude.
