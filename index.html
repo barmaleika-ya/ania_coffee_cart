@@ -485,6 +485,12 @@ header .lede{margin-top:20px}
 
 .sitefoot .fbot span{line-height:1.6;max-width:60em}
 .sitefoot .fbot b{color:var(--fg)}
+
+/* footer note uses the full width at any screen size */
+.sitefoot .fbot{flex-wrap:wrap;align-items:flex-end}
+.sitefoot .fbot span{flex:1 1 0;min-width:min(100%,280px);max-width:none}
+.sitefoot .fbot>a{flex:none}
+.sitefoot{padding-bottom:64px}
 </style>
 
 </head>
