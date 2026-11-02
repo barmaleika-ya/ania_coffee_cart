@@ -376,6 +376,7 @@ const prop={
   umbrella:(x,y)=>`<path class="w" d="M${x-42} ${y-52} Q${x-40} ${y-96} ${x} ${y-98} Q${x+40} ${y-96} ${x+42} ${y-52} q-10.5 -9 -21 0 q-10.5 -9 -21 0 q-10.5 -9 -21 0 q-10.5 -9 -21 0 Z"/>`+S(`M${x} ${y-98} L${x} ${y-104} M${x} ${y-52} L${x} ${y-12} q0 10 -10 10 q-8 0 -8 -8`),
   magnifier:(x,y)=>`<circle class="w" cx="${x-10}" cy="${y-58}" r="30"/>`+S(`M${x+11} ${y-37} L${x+36} ${y-10}`)+`<path class="s" style="stroke-width:6" d="M${x+16} ${y-32} L${x+34} ${y-12}"/>`+lbl(x-10,y-53,'15 zł',40),
   loop:(x,y)=>{const cx=x,cy=y-50,r=32;return S(`M${cx+r} ${cy} A${r} ${r} 0 0 1 ${cx-r*0.5} ${cy+r*0.87}`)+S(`M${cx-r} ${cy} A${r} ${r} 0 0 1 ${cx+r*0.5} ${cy-r*0.87}`)+`<path class="dot" d="M${cx-r*0.5-7} ${cy+r*0.87-9} l7 9 l-11 3 z"/><path class="dot" d="M${cx+r*0.5+7} ${cy-r*0.87+9} l-7 -9 l11 -3 z"/>`+lbl(cx,cy+4,'SAME',40)},
+  countdown:(x,y)=>S(`M${x} ${y} L${x} ${y-46}`)+`<rect class="w" x="${x-34}" y="${y-104}" width="68" height="60" rx="5"/>`+S(`M${x-34} ${y-88} L${x+34} ${y-88}`)+lbl(x,y-92,'COUNTDOWN',58)+`<text class="t" x="${x}" y="${y-60}" text-anchor="middle" style="font-size:26px">59</text>`+lbl(x,y-49,'months left',56),
   arrow:(x1,y1,x2,y2)=>{const a=Math.atan2(y2-y1,x2-x1),h=9;return S(`M${x1} ${y1} L${x2} ${y2} M${x2} ${y2} L${x2-h*Math.cos(a-.5)} ${y2-h*Math.sin(a-.5)} M${x2} ${y2} L${x2-h*Math.cos(a+.5)} ${y2-h*Math.sin(a+.5)}`)}
 };
 /* scene: 400 × 270, feet at 256, heads near 134, speech band above y≈110 */
@@ -508,10 +509,10 @@ const T=[
  {n:12,title:'The machine wears out a little',pr:'Matching + going concern conventions',
   story:'<b>30 November.</b> The espresso machine should last about 5 years (60 months), then it will be worth nothing.',
   means:'Because the cart will keep going (going concern), the 6,000 zł cost is spread across the months the machine helps earn money: 6,000 ÷ 60 = 100 zł each month. This is depreciation. The machine\'s book value drops to 5,900 zł.',
-  watch:'Depreciation uses no cash. That\'s why profit and cash are different numbers.',
+  watch:'Depreciation uses no cash. That\'s why profit and cash are different numbers. And the machine is fine: “worth zero on paper” after 5 years doesn\'t mean it stops making coffee.',
   je:[['Dr','Depreciation expense',100],['Cr','Accumulated depreciation',100]],
   d:{dep:100,ad:-100},
-  art:()=>fig(85,G,{f:1,pose:'think'})+prop.machine(235,G,'sad')+prop.clock(340,G)+think(130,64,'6,000 zł ÷ 60 months|= 100 zł a month',96,114,0,320)},
+  art:()=>fig(70,G,{f:1,pose:'point'})+prop.machine(232,G,'sad')+`<path class="w" d="M272 ${G-90} q5 9 0 13 q-5 -4 0 -13 z"/><path class="w" d="M190 ${G-84} q4 8 0 11 q-4 -3 0 -11 z"/>`+prop.countdown(346,G)+say(104,60,'Relax, you\'ll be fine!|Just 100 zł a month.',74,112,0,205)+say(300,64,'Wait... am I|dying?!',236,G-82,205,400)},
  {n:13,title:'Interest builds up on the loan',pr:'Accruals convention',
   story:'<b>30 November.</b> The bank only collects interest later, but every day of the loan costs a little.',
   means:'One month of interest: 5,000 × 6% ÷ 12 = 25 zł. It is owed already, so it is recorded now as an expense and as an accrued expense, even though nothing has been paid.',
