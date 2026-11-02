@@ -220,7 +220,7 @@ ol.steps{margin:0;padding-left:1.3em;display:flex;flex-direction:column;gap:8px}
   <div class="eq ledger">Assets = Liabilities + Equity</div>
   <p>What the business <b>has</b> (assets) was paid for either by <b>borrowing</b> (liabilities) or by the <b>owners</b> (equity, which also includes profit kept in the business). Every transaction keeps this equation balanced, because each one touches at least two places. That is double-entry bookkeeping.</p>
   <div class="idea">
-    <div><span class="chip c-bs">Statement of financial position</span><h3>A photo</h3><p>What the business has and owes on one specific day. “On 30 November the cart has 10,200 zł in cash and owes the bank 5,000 zł.”</p></div>
+    <div><span class="chip c-bs">Balance sheet</span><h3>A photo</h3><p>What the business has and owes on one specific day. Its official IFRS name is the statement of financial position. “On 30 November the cart has 10,200 zł in cash and owes the bank 5,000 zł.”</p></div>
     <div><span class="chip c-is">Income statement</span><h3>A movie</h3><p>Did the business earn more than it used up during the month? Revenue minus expenses equals profit. Profit then moves into equity on the balance sheet.</p></div>
     <div><span class="chip c-cf">Statement of cash flows</span><h3>The bank story</h3><p>Where real cash came from and went: operating (selling coffee, paying bills), investing (buying the machine) and financing (owner and bank money).</p></div>
   </div>
@@ -282,8 +282,8 @@ ol.steps{margin:0;padding-left:1.3em;display:flex;flex-direction:column;gap:8px}
     <thead><tr><th>Statement</th><th>Shows</th><th>Covers</th><th>Starts with</th><th>Ends with</th></tr></thead>
     <tbody>
       <tr><td>Income statement</td><td>Performance: did the business earn more than it used up?</td><td>A period (November)</td><td>Revenue</td><td>Profit for the period</td></tr>
-      <tr><td>Statement of financial position</td><td>Position: what it has and who funded it</td><td>One day (30 November)</td><td>Assets</td><td>Liabilities + equity, equal to assets</td></tr>
-      <tr><td>Statement of cash flows</td><td>Where real cash came from and went</td><td>A period (November)</td><td>Profit (indirect method)</td><td>Closing cash, equal to cash on the statement of financial position</td></tr>
+      <tr><td>Balance sheet (statement of financial position)</td><td>Position: what it has and who funded it</td><td>One day (30 November)</td><td>Assets</td><td>Liabilities + equity, equal to assets</td></tr>
+      <tr><td>Statement of cash flows</td><td>Where real cash came from and went</td><td>A period (November)</td><td>Profit (indirect method)</td><td>Closing cash, equal to cash on the balance sheet</td></tr>
     </tbody></table></div>
 </section>
 
@@ -571,7 +571,7 @@ function render(n){
    ${row('rev','Revenue',v('rev'))}${row('cogs','Cost of sales',-v('cogs'))}${row('gp','Gross profit',v('rev')-v('cogs'),'tot')}
    ${row('rent','Rent expense',-v('rent'))}${row('wag','Wages expense',-v('wag'))}${row('dep','Depreciation',-v('dep'))}${row('int','Interest expense',-v('int'))}
    ${row('ni','Profit for the period',ni,'tot')}</table></div>`;
-  const bs=`<div class="st"><span class="chip c-bs">Statement of financial position</span><h3>30 November</h3><div class="sub">The balance sheet: a snapshot on the last day</div><table>
+  const bs=`<div class="st"><span class="chip c-bs">Balance sheet</span><h3>30 November</h3><div class="sub">Snapshot on the last day. Official IFRS name: statement of financial position</div><table>
    <tr class="grp"><td colspan="2">Assets</td></tr>${row('cash','Cash',v('cash'))}${row('ar','Trade receivables',v('ar'))}${row('inv','Inventory',v('inv'))}${row('pre','Prepaid rent',v('pre'))}${row('eq','Equipment (PPE)',v('eq'))}${row('ad','Accumulated depreciation',v('ad'))}${row('ta','Total assets',A,'tot')}
    <tr class="grp"><td colspan="2">Liabilities</td></tr>${row('ap','Trade payables',v('ap'))}${row('ip','Accrued interest',v('ip'))}${row('loan','Bank loan',v('loan'))}${row('tl','Total liabilities',L,'tot')}
    <tr class="grp"><td colspan="2">Equity</td></tr>${row('cap',"Owner's capital",v('cap'))}${row('re','Retained earnings',ni)}${row('te','Total equity',E,'tot')}
@@ -612,9 +612,9 @@ render(13);
   const arr=(d,hx,hy,ang)=>`<path class="ar" d="${d}"/><path class="ah" d="M${hx} ${hy} l${-10*Math.cos(ang-.45)} ${-10*Math.sin(ang-.45)} l${10*Math.cos(ang-.45)-10*Math.cos(ang+.45)} ${10*Math.sin(ang-.45)-10*Math.sin(ang+.45)} z"/>`;
   const num=(x,y,n)=>`<circle class="num" cx="${x}" cy="${y}" r="11"/><text class="numt" x="${x}" y="${y+4}">${n}</text>`;
   const lab=(x,y,t,a='middle')=>`<text x="${x}" y="${y}" text-anchor="${a}">${t}</text>`;
-  document.getElementById('ovDiagram').innerHTML=`<svg viewBox="0 0 720 330" role="img" aria-label="Diagram: profit flows from the income statement to equity and to the first line of the cash flow statement; balance changes explain operating cash; closing cash equals cash on the statement of financial position">
+  document.getElementById('ovDiagram').innerHTML=`<svg viewBox="0 0 720 330" role="img" aria-label="Diagram: profit flows from the income statement to equity and to the first line of the cash flow statement; balance changes explain operating cash; closing cash equals cash on the balance sheet">
    ${box(20,20,220,'Income statement','November: what was earned','--is')}
-   ${box(480,20,220,'Financial position','30 November: what it has','--bs')}
+   ${box(480,20,220,'Balance sheet','30 November: what it has','--bs')}
    ${box(250,248,220,'Cash flows','November: where cash went','--cf')}
    ${arr('M240 51 L478 51',478,51,0)}${num(359,51,2)}${lab(359,38,'profit '+f(ni)+' → equity')}
    ${arr('M120 82 L300 246',300,246,Math.atan2(164,180))}${num(205,160,1)}${lab(186,190,'profit is the',"end")}${lab(186,206,'first line',"end")}
@@ -630,7 +630,7 @@ render(13);
    ${L('Investing activities','',[],'sub')}${L('Espresso machine bought',v('cfi'),[5])}
    ${L('Financing activities','',[],'sub')}${L("Owner's money in",v('cap'),[6])}${L('Bank loan',v('loan'),[6])}
    ${L('Change in cash',v('cfo')+v('cfi')+v('cff'),[],'t')}${L('Opening cash',0)}${L('Closing cash',v('cash'),[7],'t')}</div>`;
-  const BS=`<div class="lk"><span class="chip c-bs">Statement of financial position</span><h3>30 November</h3>
+  const BS=`<div class="lk"><span class="chip c-bs">Balance sheet</span><h3>30 November</h3><div class="sub" style="font-size:.8rem;color:var(--muted);margin:-4px 0 6px">IFRS name: statement of financial position</div>
    ${L('Assets','',[],'sub')}${L('Cash',v('cash'),[7])}${L('Inventory',v('inv'),[4])}${L('Prepaid rent',v('pre'),[4])}${L('Equipment at cost',v('eq'),[5])}${L('Accumulated depreciation',v('ad'),[3])}${L('Total assets',ASSET.reduce((a,k)=>a+v(k),0),[],'t')}
    ${L('Liabilities','',[],'sub')}${L('Trade payables',v('ap'),[4])}${L('Accrued interest',v('ip'),[4])}${L('Bank loan',v('loan'),[6])}
    ${L('Equity','',[],'sub')}${L("Owner's capital",v('cap'),[6])}${L('Profit for the period',ni,[2])}${L('Total liabilities + equity',LIAB.reduce((a,k)=>a+v(k),0)+v('cap')+ni,[],'t')}</div>`;
@@ -640,9 +640,9 @@ render(13);
    [2,`<b>Profit belongs to the owner.</b> The same ${f(ni)} zł is added to equity: ${f(v('cap'))} capital + ${f(ni)} profit = ${f(v('cap')+ni)} zł. In a company this line is retained earnings, after any dividends.`],
    [3,`<b>Depreciation is a cost without cash.</b> The ${f(v('dep'))} zł lowers profit, so it is added back in cash flows. On the other side it builds up as accumulated depreciation, so the machine shows ${f(v('eq')+v('ad'))} zł.`],
    [4,`<b>Balance changes explain the gap.</b> Cash went into beans (${f(v('inv'))}) and rent paid ahead (${f(v('pre'))}), while some bills are still unpaid (${f(v('ap')+v('ip'))}). Together they turn ${f(ni+v('dep'))} into ${f(opCash)} zł of operating cash.`],
-   [5,`<b>Buying long-lasting assets is investing.</b> The ${f(-v('cfi'))} zł machine is a cash outflow and appears as equipment on the statement of financial position.`],
+   [5,`<b>Buying long-lasting assets is investing.</b> The ${f(-v('cfi'))} zł machine is a cash outflow and appears as equipment on the balance sheet.`],
    [6,`<b>Owner and bank money is financing.</b> The ${f(v('cap'))} zł from Ania and the ${f(v('loan'))} zł loan come in as cash and appear as capital and debt.`],
-   [7,`<b>Closing cash must match.</b> ${f(v('cash'))} zł at the end of the cash flow statement equals cash on the statement of financial position. This is the first check an accountant makes.`]];
+   [7,`<b>Closing cash must match.</b> ${f(v('cash'))} zł at the end of the cash flow statement equals cash on the balance sheet. This is the first check an accountant makes.`]];
   const lg=document.getElementById('legend');
   lg.innerHTML=LG.map(([n,t])=>`<li><button type="button" data-n="${n}" aria-pressed="false"><span class="b">${n}</span><span>${t}</span></button></li>`).join('');
   lg.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;const on=b.getAttribute('aria-pressed')!=='true';
@@ -676,7 +676,7 @@ render(13);
    ['Unadjusted trial balance','List every balance and check that debits equal credits.',`Debits ${f(tbU.dr)} = credits ${f(tbU.cr)}.`],
    ['Adjusting entries','At month end, fix timing: costs used up, income earned, costs owed but not yet billed.',`Rent used ${f(a('rent'))}, depreciation ${f(a('dep'))}, interest ${f(a('int'))} (strips 11–13).`],
    ['Adjusted trial balance','List the balances again, now including the adjustments.',`Debits ${f(tbJ.dr)} = credits ${f(tbJ.cr)}.`],
-   ['Prepare the statements','Income statement first, then the statement of financial position, then cash flows.',`Profit ${f(ni)} zł; total assets ${f(ASSET.reduce((s,k)=>s+v(k),0))} zł; closing cash ${f(v('cash'))} zł.`],
+   ['Prepare the statements','Income statement first, then the balance sheet, then cash flows.',`Profit ${f(ni)} zł; total assets ${f(ASSET.reduce((s,k)=>s+v(k),0))} zł; closing cash ${f(v('cash'))} zł.`],
    ['Close the period','Reset revenue and expense accounts to zero and move the profit into equity.',`${f(ni)} zł moves into Ania's equity. December starts again at step 1.`]];
   document.getElementById('cycSteps').innerHTML=ST.map(([t,d,e],i)=>`<li id="cyc-${i+1}" class="${i===4?'adj':''}"><span class="n">${i+1}</span><div><b>${t}</b>${d}<div class="ex">Ania: ${e}</div></div></li>`).join('');
   const short=['Analyse','Journal','Ledger','Trial|balance','Adjust','Adjusted|TB','Statements','Close'];
