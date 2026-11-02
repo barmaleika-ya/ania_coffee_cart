@@ -9,7 +9,8 @@ on the statement of financial position, the income statement and the statement o
 - Quiz mode: guess first, then reveal
 - Statements that build step by step
 - Glossary in UK/EU (IFRS), US, Polish and Russian terms
-- Swipeable PDF version: [ania-coffee-cart.pdf](ania-coffee-cart.pdf)
+- PDF version with clickable navigation: [ania-coffee-cart.pdf](ania-coffee-cart.pdf)
+- Swipeable LinkedIn carousel: [ania-coffee-cart-carousel.pdf](ania-coffee-cart-carousel.pdf)
 
 © 2026 Tatyana Emelyanova. All rights reserved.
 
