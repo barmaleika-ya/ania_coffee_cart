@@ -638,7 +638,7 @@ header .storybox .lede.narr{margin:0;color:var(--line);background:var(--narr);bo
   <h2>The comics</h2>
   <p class="sub2">One month at the coffee cart</p>
   <div class="toolbar">
-    <label class="quizt"><input type="checkbox" id="quiz"><span>Quiz mode!<small>Guess what changes before you look</small></span></label>
+    <label class="quizt"><input type="checkbox" id="quiz" checked><span>Quiz mode!<small>Guess what changes before you look</small></span></label>
   </div>
   <nav class="stripnav" id="stripnav" aria-label="Jump to a strip"><span>Jump to strip:</span></nav>
   <div id="strips" style="display:flex;flex-direction:column;gap:20px"></div>
@@ -1037,6 +1037,7 @@ document.getElementById('strips').addEventListener('click',e=>{
   const c=e.target.closest('[data-reveal]');if(c){const l=c.closest('.land');l.classList.add('shown');const h=l.querySelector('[data-hide]');if(h)h.focus({preventScroll:true});}
   const hd=e.target.closest('[data-hide]');if(hd){const l=hd.closest('.land');l.classList.remove('shown');const vv=l.querySelector('.verdict');if(vv)vv.hidden=true;const cv=l.querySelector('[data-reveal],[data-guess]');if(cv)cv.focus({preventScroll:true});}
 });
+document.body.classList.toggle('quiz',document.getElementById('quiz').checked);
 document.getElementById('quiz').addEventListener('change',e=>{document.body.classList.toggle('quiz',e.target.checked);document.querySelectorAll('.land').forEach(l=>l.classList.remove('shown'));});
 render(13);
 
