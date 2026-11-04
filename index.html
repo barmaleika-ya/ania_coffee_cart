@@ -491,11 +491,39 @@ header .lede{margin-top:20px}
 .sitefoot .fbot span{flex:1 1 0;min-width:min(100%,280px);max-width:none}
 .sitefoot .fbot>a{flex:none}
 .sitefoot{padding-bottom:64px}
+
+/* ===== review round ===== */
+.hook{font-family:var(--f-comic);font-size:clamp(1.3rem,1.1rem + .6vw,1.6rem);line-height:1.25;color:var(--fg);margin:0}
+.hook b{background:var(--narr);padding:0 4px;border-radius:4px;font-weight:400}
+.disclaimer{font-size:.82rem;color:var(--muted);margin:0}
+.prgroups{display:flex;flex-direction:column;gap:var(--s6,32px)}
+.prgrp{display:flex;flex-direction:column;gap:var(--s4,16px)}
+.prgrp>h3{font-size:1.5rem;margin:0;padding-bottom:6px;border-bottom:1.5px solid var(--rule)}
+.metag{display:inline-block;font-size:.72rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;background:var(--narr);color:var(--line);border:1.5px solid var(--line);border-radius:999px;padding:2px 9px}
+.st tr.key td{background:var(--panel);color:var(--line);font-weight:700}
+.extra{display:inline-block;font-family:var(--f-body);font-size:.7rem;color:var(--muted);border:1px solid var(--rule);border-radius:999px;padding:0 6px;margin-left:4px;vertical-align:middle}
+.guess{flex-direction:column;gap:10px;align-items:center;cursor:default}
+.guess .q{font-family:var(--f-comic);font-size:1.4rem}
+.guess .opts{display:grid;grid-template-columns:1fr 1fr;gap:8px;width:min(100%,360px)}
+.guess .opts button{font:inherit;font-size:.95rem;font-weight:700;padding:9px 10px;border:2px solid var(--line);border-radius:8px;background:var(--bubble);color:var(--line);cursor:pointer}
+.guess .opts button:hover{background:var(--narr)}
+.guess .opts button:focus-visible{outline:3px solid var(--bs);outline-offset:2px}
+.verdict{font-size:.9rem;font-weight:700}
+.verdict.ok{border-color:#2E8B57!important}.verdict.no{border-color:#B5532E!important}
+.inshort{font-family:var(--f-body);font-weight:700;display:block;margin-bottom:4px}
+.bridgetbl{width:100%;border-collapse:collapse;font-size:.95rem}
+.bridgetbl td{padding:7px 8px;border-bottom:1px dashed var(--rule)}
+.bridgetbl td.n{text-align:right;font-family:var(--f-num);white-space:nowrap}
+.bridgetbl tr.tot td{font-weight:700;border-bottom:2px solid var(--fg);background:var(--panel);color:var(--line)}
+.bridgewrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:var(--s5,24px)}
+.bridgewrap .st h3{margin-bottom:4px}
+.tblock{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:var(--s5,24px);align-items:start}
+@media (max-width:820px){.bridgewrap,.tblock{grid-template-columns:minmax(0,1fr)}}
 </style>
 
 </head>
 <body>
-<nav class="topnav" aria-label="Sections"><div class="in"><a class="brand" href="#top">Ania's Coffee Cart</a><button class="menubtn" type="button" aria-expanded="false" aria-controls="navlinks">☰ <span id="navcur">Menu</span></button><div class="links" id="navlinks"><a class="navlink" href="#big-idea" data-sec="big-idea">The big idea</a><a class="navlink" href="#principles" data-sec="principles">12 conventions</a><a class="navlink" href="#drcr" data-sec="drcr">Debit &amp; credit</a><a class="navlink" href="#comics" data-sec="comics">The comics</a><a class="navlink" href="#statements" data-sec="statements">The statements</a><a class="navlink" href="#links" data-sec="links">How they connect</a><a class="navlink" href="#cycle" data-sec="cycle">Accounting cycle</a><a class="navlink" href="#traps" data-sec="traps">Easy to mix up</a><a class="navlink" href="#ratios" data-sec="ratios">Ratios</a></div></div></nav>
+<nav class="topnav" aria-label="Sections"><div class="in"><a class="brand" href="#top">Ania's Coffee Cart</a><button class="menubtn" type="button" aria-expanded="false" aria-controls="navlinks">☰ <span id="navcur">Menu</span></button><div class="links" id="navlinks"><a class="navlink" href="#big-idea" data-sec="big-idea">The big idea</a><a class="navlink" href="#principles" data-sec="principles">12 key ideas</a><a class="navlink" href="#drcr" data-sec="drcr">Debit &amp; credit</a><a class="navlink" href="#comics" data-sec="comics">The comics</a><a class="navlink" href="#statements" data-sec="statements">The statements</a><a class="navlink" href="#links" data-sec="links">How they connect</a><a class="navlink" href="#cycle" data-sec="cycle">Accounting cycle</a><a class="navlink" href="#traps" data-sec="traps">Easy to mix up</a><a class="navlink" href="#ratios" data-sec="ratios">Ratios</a></div></div></nav>
 <a class="totop" href="#top" aria-label="Back to top">↑ Top</a>
 <div class="wrap" id="top">
 
@@ -506,7 +534,9 @@ header .lede{margin-top:20px}
     <p class="subtitle">An illustrated guide to the basic accounting conventions, or how to remember what you read, hear and practise when you study accounting</p>
     <p class="byline">by Tatyana Emelyanova · © 2026</p>
     <p class="lede">Ania opens a coffee cart and runs it for one month. Each comic strip is one thing that happens to her business. The left panel tells the story; the right panel shows what an accountant writes down and where it lands on the balance sheet, income statement and cash flow statement. At the bottom, the three statements fill up step by step.</p>
+    <p class="hook">How can a business make <b>2,075 zł</b> in profit and end the month with <b>10,200 zł</b> in cash?</p>
     <div class="theory-row"><p class="theory-t"><b>First, a little theory.</b> The next three short sections (the big idea, the 12 accounting conventions, and debit and credit) make the comics much easier to follow. About 5 minutes.</p><a class="skipbtn" href="#comics"><span>Nah, skip the boring stuff →<small>Straight to the comics. You can always come back.</small></span></a></div>
+    <p class="disclaimer">Simplified educational example. VAT and income tax are excluded. Actual accounting requirements depend on the business structure and reporting framework.</p>
   </div>
 </header>
 
@@ -529,17 +559,17 @@ header .lede{margin-top:20px}
 
 <section id="principles">
   <a class="skiplink" href="#comics">Skip to the comics ↓</a>
-  <h2>12 conventions</h2>
-  <p class="sub2">The rules of the game, in plain English</p>
-  <p class="lede">Each card gives the meaning in one line, a tiny example, and a link to the strip where it happens to Ania. Under each name: the other name you may meet, then the Polish and Russian terms.</p>
-  <div class="grid" id="prGrid"></div>
+  <h2>12 key ideas</h2>
+  <p class="sub2">Twelve accounting ideas to keep in mind, in four groups</p>
+  <p class="lede">Not all of these are formal “conventions” in today's reporting standards, but together they explain how the numbers are built. Each card gives the meaning in one line, a tiny example and the strip where it happens to Ania, plus the other name you may meet and the Polish and Russian terms.</p>
+  <div class="prgroups" id="prGrid"></div>
 </section>
 
 <section id="drcr">
   <a class="skiplink" href="#comics">Skip to the comics ↓</a>
   <h2>Debit & credit</h2>
   <p class="sub2">Dr and Cr in one minute</p>
-  <p class="lede">Every strip shows what the accountant writes, with <b>Dr</b> and <b>Cr</b> in front of each line. They are just the two sides of an account, nothing more.</p>
+  <p class="lede">Every strip shows what the accountant writes, with <b>Dr</b> and <b>Cr</b> in front of each line. They are just the two sides of an account. <b>Debit and credit mean left and right, not money in and money out.</b></p>
   <div class="dc">
     <div style="display:flex;flex-direction:column;gap:14px;min-width:0">
       <div class="sides">
@@ -563,14 +593,12 @@ header .lede{margin-top:20px}
       </div>
     </div>
     <div style="display:flex;flex-direction:column;gap:12px;min-width:0">
-      <div class="taccount page" id="tacc"></div>
-      <p class="bridge" id="taccNote"></p>
-    </div>
-  </div>
-  <div class="read">
+      <div class="read">
     <code>Dr Cash 10,000</code><span>Cash is an asset. It goes up, so it is a debit.</span>
     <code>Cr Owner's capital 10,000</code><span>Capital is equity. It goes up, so it is a credit. 10,000 = 10,000, so the entry balances.</span>
-    <span style="grid-column:1 / -1;color:var(--muted);font-size:.86rem">That is strip 1, read out loud. Statements never print “Dr” or “Cr”: each account's final balance simply becomes one line, as the Cash account on the right shows.</span>
+    <span style="grid-column:1 / -1;color:var(--muted);font-size:.86rem">That is strip 1, read out loud. Statements never print “Dr” or “Cr”: each account's final balance simply becomes one line, as the Cash T-account in The statements section shows.</span>
+  </div>
+    </div>
   </div>
 </section>
 
@@ -578,7 +606,7 @@ header .lede{margin-top:20px}
   <h2>The comics</h2>
   <p class="sub2">One month at the coffee cart</p>
   <div class="toolbar">
-    <label class="quizt"><input type="checkbox" id="quiz"><span>Quiz mode!<small>Hide the answers until I guess</small></span></label>
+    <label class="quizt"><input type="checkbox" id="quiz"><span>Quiz mode!<small>Guess what changes before you look</small></span></label>
   </div>
   <nav class="stripnav" id="stripnav" aria-label="Jump to a strip"><span>Jump to strip:</span></nav>
   <div id="strips" style="display:flex;flex-direction:column;gap:20px"></div>
@@ -601,6 +629,8 @@ header .lede{margin-top:20px}
   <div class="tl" id="tl" aria-label="All transactions"></div>
   <div class="stmts" id="stmts"></div>
   <p class="bridge" id="bridge"></p>
+  <p class="bridge" id="invcheck">Inventory check: beans bought 2,000 − used for walk-up sales 1,200 − used for catering 300 = <b>500 zł</b> still on the shelf.</p>
+  <div class="tblock"><div class="taccount page" id="tacc"></div><div style="display:flex;flex-direction:column;gap:10px"><h3>Where the cash number comes from</h3><p class="bridge" id="taccNote"></p></div></div>
 </section>
 
 <section id="links">
@@ -608,6 +638,7 @@ header .lede{margin-top:20px}
   <h2>How they connect</h2>
   <p class="sub2">Where each of Ania's sums travels between the three statements</p>
   <p class="lede">The three statements are one story told three ways. The same numbers travel between them, and if one is wrong, the others stop agreeing. Here is where each of Ania's November sums goes.</p>
+  <div class="bridgewrap" id="bridgeTbl"></div>
   <div class="ov" id="ovDiagram"></div>
   <ul class="legend" id="legend"></ul>
   <p class="bridge">Tap a number to light up where that sum appears in each statement.</p>
@@ -634,6 +665,7 @@ header .lede{margin-top:20px}
   <p>A trial balance lists every account with its debit or credit balance. Debits must equal credits. The adjustments column shows the three month-end entries from strips 11–13.</p>
   <div class="tblwrap"><table class="ws" id="ws"></table></div>
   <p class="bridge" id="wsNote"></p>
+  <div class="box warn" style="border:1.5px dashed var(--fg);border-radius:8px;padding:10px 12px;background:var(--card)"><b>Watch out:</b> a trial balance can balance and still contain mistakes. If an entry goes to the wrong account, debits and credits still match.</div>
 </section>
 
 <section id="traps">
@@ -643,9 +675,9 @@ header .lede{margin-top:20px}
   <p class="lede">These feel obvious but are wrong, and they catch most people who are new to accounting. Each one shows what people often think, what is actually true, and a number from Ania's cart.</p>
   <div class="traps">
     <div class="tgrp"><h3>Loans and interest</h3><div class="tgrid"><article class="trap"><div class="myth"><span class="x" aria-label="Myth">✗</span><span>“Taking a loan is income”</span></div><p class="real"><b>Actually:</b> A loan is money you must give back, so it is a liability. Profit does not change.</p><p class="ex">Strip 2: cash +5,000 zł and bank loan +5,000 zł. Revenue stays 0.</p><a href="#strip-2">See strip 2 ↓</a></article><article class="trap"><div class="myth"><span class="x" aria-label="Myth">✗</span><span>“All the interest is recorded on the day you borrow”</span></div><p class="real"><b>Actually:</b> Interest is the price of using money over time. Only the 5,000 zł you received is recorded on day 2. Interest builds up month by month and is recorded as it accrues.</p><p class="ex">November's share is 5,000 × 6% ÷ 12 = 25 zł, recorded on 30 November, not 300 zł on day 2.</p><a href="#strip-13">See strip 13 ↓</a></article><article class="trap"><div class="myth"><span class="x" aria-label="Myth">✗</span><span>“A loan repayment is an expense”</span></div><p class="real"><b>Actually:</b> Each repayment has two parts. The principal part only reduces the debt. Only the interest part is an expense.</p><p class="ex">If Ania later pays the bank 1,025 zł: 1,000 zł only reduces the loan. The 25 zł is interest, the only expense part, and it was already recorded as it built up (strip 13), so the payment just clears it.</p></article></div></div>
-    <div class="tgrp"><h3>Spending money</h3><div class="tgrid"><article class="trap"><div class="myth"><span class="x" aria-label="Myth">✗</span><span>“Buying a machine is an expense”</span></div><p class="real"><b>Actually:</b> Something that will serve for years is an asset. Its cost reaches the income statement slowly, through depreciation.</p><p class="ex">Strip 3: 6,000 zł becomes equipment. November's expense is only 100 zł of depreciation.</p><a href="#strip-3">See strip 3 ↓</a></article><article class="trap"><div class="myth"><span class="x" aria-label="Myth">✗</span><span>“Buying stock is an expense”</span></div><p class="real"><b>Actually:</b> Goods on the shelf are inventory, an asset. They become an expense (cost of sales) only when they are sold.</p><p class="ex">2,000 zł of beans bought, 1,500 zł used, 500 zł still an asset on 30 November.</p><a href="#strip-5">See strip 5 ↓</a></article><article class="trap"><div class="myth"><span class="x" aria-label="Myth">✗</span><span>“Paying a bill is when the expense happens”</span></div><p class="real"><b>Actually:</b> The expense happens when something is used up. Paying the bill only settles the debt.</p><p class="ex">Strip 10: paying the roaster 1,500 zł changes cash and payables, not profit.</p><a href="#strip-10">See strip 10 ↓</a></article><article class="trap"><div class="myth"><span class="x" aria-label="Myth">✗</span><span>“Rent paid ahead is this month's cost”</span></div><p class="real"><b>Actually:</b> Only the part used this month is an expense. The rest is prepaid, an asset.</p><p class="ex">1,500 zł paid for three months: 500 zł expense in November, 1,000 zł asset.</p><a href="#strip-4">See strip 4 ↓</a></article><article class="trap"><div class="myth"><span class="x" aria-label="Myth">✗</span><span>“The price of an asset is just its sticker price”</span></div><p class="real"><b>Actually:</b> The cost of an asset includes what it takes to get it working: delivery, installation, set-up.</p><p class="ex">If delivering the machine had cost 200 zł, equipment would be 6,200 zł.</p></article></div></div>
-    <div class="tgrp"><h3>Money coming in</h3><div class="tgrid"><article class="trap"><div class="myth"><span class="x" aria-label="Myth">✗</span><span>“Cash from a customer is always revenue”</span></div><p class="real"><b>Actually:</b> Revenue is what you have earned. Cash for a sale you already recorded is not new revenue.</p><p class="ex">Strip 8: the office pays 1,000 zł, but the revenue was counted in strip 7.</p><a href="#strip-8">See strip 8 ↓</a></article><article class="trap"><div class="myth"><span class="x" aria-label="Myth">✗</span><span>“A customer's deposit is revenue”</span></div><p class="real"><b>Actually:</b> Money for something you have not delivered yet is owed back in goods or services, so it is a liability (deferred revenue).</p><p class="ex">If the office prepaid 600 zł for December coffee, November revenue stays the same; a 600 zł liability appears.</p></article><article class="trap"><div class="myth"><span class="x" aria-label="Myth">✗</span><span>“VAT on a sale is part of the revenue”</span></div><p class="real"><b>Actually:</b> VAT is collected for the tax office and passed on. Revenue is the amount without VAT.</p><p class="ex">A 123 zł bill with 23% VAT is 100 zł of revenue and 23 zł owed to the tax office.</p></article></div></div>
-    <div class="tgrp"><h3>Profit, cash and value</h3><div class="tgrid"><article class="trap"><div class="myth"><span class="x" aria-label="Myth">✗</span><span>“Profit means cash in the bank”</span></div><p class="real"><b>Actually:</b> Profit counts what was earned and used up; cash counts what was paid. They differ almost every month.</p><p class="ex">November profit 2,075 zł, but operating cash only 1,200 zł.</p></article><article class="trap"><div class="myth"><span class="x" aria-label="Myth">✗</span><span>“Depreciation puts money aside for a new machine”</span></div><p class="real"><b>Actually:</b> Depreciation is only an accounting entry. No cash moves, and no savings pot is created.</p><p class="ex">The 100 zł depreciation in strip 12 leaves the bank balance untouched.</p><a href="#strip-12">See strip 12 ↓</a></article><article class="trap"><div class="myth"><span class="x" aria-label="Myth">✗</span><span>“The balance sheet shows what the business is worth”</span></div><p class="real"><b>Actually:</b> Most assets are shown at cost less depreciation, not at market price.</p><p class="ex">The machine shows 5,900 zł even if it could sell for more, or less.</p><a href="#strip-3">See strip 3 ↓</a></article><article class="trap"><div class="myth"><span class="x" aria-label="Myth">✗</span><span>“Equity is money the owner can take out”</span></div><p class="real"><b>Actually:</b> Equity is a claim, not a pile of cash. It is spread across all the assets.</p><p class="ex">Ania's equity is 12,075 zł, but only 10,200 zł of the assets are cash.</p></article></div></div>
+    <div class="tgrp"><h3>Spending money</h3><div class="tgrid"><article class="trap"><div class="myth"><span class="x" aria-label="Myth">✗</span><span>“Buying a machine is an expense”</span></div><p class="real"><b>Actually:</b> Something that will serve for years is an asset. Its cost reaches the income statement slowly, through depreciation.</p><p class="ex">Strip 3: 6,000 zł becomes equipment. November's expense is only 100 zł of depreciation.</p><a href="#strip-3">See strip 3 ↓</a></article><article class="trap"><div class="myth"><span class="x" aria-label="Myth">✗</span><span>“Buying coffee beans (inventory) is an expense”</span></div><p class="real"><b>Actually:</b> Goods on the shelf are inventory, an asset. They become an expense (cost of sales) only when they are sold.</p><p class="ex">2,000 zł of beans bought, 1,500 zł used, 500 zł still an asset on 30 November.</p><a href="#strip-5">See strip 5 ↓</a></article><article class="trap"><div class="myth"><span class="x" aria-label="Myth">✗</span><span>“Paying a bill is when the expense happens”</span></div><p class="real"><b>Actually:</b> The expense happens when something is used up. Paying the bill only settles the debt.</p><p class="ex">Strip 10: paying the roaster 1,500 zł changes cash and payables, not profit.</p><a href="#strip-10">See strip 10 ↓</a></article><article class="trap"><div class="myth"><span class="x" aria-label="Myth">✗</span><span>“Rent paid ahead is this month's cost”</span></div><p class="real"><b>Actually:</b> Only the part used this month is an expense. The rest is prepaid, an asset.</p><p class="ex">1,500 zł paid for three months: 500 zł expense in November, 1,000 zł asset.</p><a href="#strip-4">See strip 4 ↓</a></article><article class="trap"><div class="myth"><span class="x" aria-label="Myth">✗</span><span>“The price of an asset is just its sticker price”</span></div><p class="real"><b>Actually:</b> The cost of an asset includes what it takes to get it working: delivery, installation, set-up.</p><p class="ex">If delivering the machine had cost 200 zł, equipment would be 6,200 zł.</p></article></div></div>
+    <div class="tgrp"><h3>Money coming in</h3><div class="tgrid"><article class="trap"><div class="myth"><span class="x" aria-label="Myth">✗</span><span>“Cash from a customer is always revenue”</span></div><p class="real"><b>Actually:</b> Revenue is what you have earned. Cash for a sale you already recorded is not new revenue.</p><p class="ex">Strip 8: the office pays 1,000 zł, but the revenue was counted in strip 7.</p><a href="#strip-8">See strip 8 ↓</a></article><article class="trap"><div class="myth"><span class="x" aria-label="Myth">✗</span><span>“A customer's deposit is revenue” <small class="extra">not in Ania's story</small></span></div><p class="real"><b>Actually:</b> Money for something you have not delivered yet is owed back in goods or services, so it is a liability (deferred revenue).</p><p class="ex">If the office prepaid 600 zł for December coffee, November revenue stays the same; a 600 zł liability appears.</p></article><article class="trap"><div class="myth"><span class="x" aria-label="Myth">✗</span><span>“VAT on a sale is part of the revenue” <small class="extra">not in Ania's story</small></span></div><p class="real"><b>Actually:</b> VAT is collected for the tax office and passed on. Revenue is the amount without VAT.</p><p class="ex">A 123 zł bill with 23% VAT is 100 zł of revenue and 23 zł owed to the tax office.</p></article></div></div>
+    <div class="tgrp"><h3>Profit, cash and value</h3><div class="tgrid"><article class="trap"><div class="myth"><span class="x" aria-label="Myth">✗</span><span>“Profit means cash in the bank”</span></div><p class="real"><b>Actually:</b> Profit counts what was earned and used up; cash counts what was paid. They differ almost every month.</p><p class="ex">November profit is 2,075 zł, but the bank balance is 10,200 zł, and operating cash flow only 1,200 zł.</p></article><article class="trap"><div class="myth"><span class="x" aria-label="Myth">✗</span><span>“Depreciation puts money aside for a new machine”</span></div><p class="real"><b>Actually:</b> Depreciation is only an accounting entry. No cash moves, and no savings pot is created.</p><p class="ex">The 100 zł depreciation in strip 12 leaves the bank balance untouched.</p><a href="#strip-12">See strip 12 ↓</a></article><article class="trap"><div class="myth"><span class="x" aria-label="Myth">✗</span><span>“The balance sheet shows what the business is worth”</span></div><p class="real"><b>Actually:</b> Most assets are shown at cost less depreciation, not at market price.</p><p class="ex">The machine shows 5,900 zł even if it could sell for more, or less.</p><a href="#strip-3">See strip 3 ↓</a></article><article class="trap"><div class="myth"><span class="x" aria-label="Myth">✗</span><span>“Equity is money the owner can take out”</span></div><p class="real"><b>Actually:</b> Equity is a claim, not a pile of cash. It is spread across all the assets.</p><p class="ex">Ania's equity is 12,075 zł, but only 10,200 zł of the assets are cash.</p></article></div></div>
     <div class="tgrp"><h3>Owner and bookkeeping words</h3><div class="tgrid"><article class="trap"><div class="myth"><span class="x" aria-label="Myth">✗</span><span>“The owner's own pay is a wage expense”</span></div><p class="real"><b>Actually:</b> In a sole-trader business, money the owner takes out is a drawing: it reduces equity, not profit.</p><p class="ex">Tomek's 800 zł is an expense; if Ania took 800 zł for herself, it would not be.</p><a href="#strip-9">See strip 9 ↓</a></article><article class="trap"><div class="myth"><span class="x" aria-label="Myth">✗</span><span>“Debit means bad, credit means good”</span></div><p class="real"><b>Actually:</b> Debit is just the left side, credit the right. Assets and expenses grow with debits; liabilities, equity and revenue grow with credits.</p><p class="ex">Dr Cash 10,000 in strip 1 is good news: the cart's cash went up.</p><a href="#strip-1">See strip 1 ↓</a></article><article class="trap"><div class="myth"><span class="x" aria-label="Myth">✗</span><span>““Credit” on my bank statement is the same as a credit in my books”</span></div><p class="real"><b>Actually:</b> Your bank writes from its own side: your deposit is money it owes you, so it calls it a credit. In your books the same cash is a debit.</p><p class="ex">The 10,000 zł arriving shows as a credit on the bank statement and Dr Cash in Ania's books.</p><a href="#strip-1">See strip 1 ↓</a></article><article class="trap"><div class="myth"><span class="x" aria-label="Myth">✗</span><span>“Accumulated depreciation is a liability”</span></div><p class="real"><b>Actually:</b> It is a minus line under the asset it belongs to, not money owed to anyone.</p><p class="ex">Equipment 6,000 less accumulated depreciation 100 = 5,900 zł.</p><a href="#strip-12">See strip 12 ↓</a></article></div></div>
   </div>
 </section>
@@ -657,7 +689,7 @@ header .lede{margin-top:20px}
   <div class="idea" id="ratioBox"></div>
 </section>
 
-<footer class="sitefoot"><b style="font-family:var(--f-comic);font-size:1.4rem;font-weight:400">Jump to a section</b><div class="fl"><a class="navlink" href="#big-idea">The big idea</a><a class="navlink" href="#principles">12 conventions</a><a class="navlink" href="#drcr">Debit &amp; credit</a><a class="navlink" href="#comics">The comics</a><a class="navlink" href="#statements">The statements</a><a class="navlink" href="#links">How they connect</a><a class="navlink" href="#cycle">Accounting cycle</a><a class="navlink" href="#traps">Easy to mix up</a><a class="navlink" href="#ratios">Ratios</a></div><div class="fbot"><span><b>© 2026 Tatyana Emelyanova</b><br>This is my attempt to make the accounting basics stick by turning them into a story. The story, text and drawings are original; the accounting behind them is standard theory, pieced together from textbooks, courses and articles. Made with a little help from my AI pal, Claude.</span><a href="#top">↑ Back to top</a></div></footer>
+<footer class="sitefoot"><b style="font-family:var(--f-comic);font-size:1.4rem;font-weight:400">Jump to a section</b><div class="fl"><a class="navlink" href="#big-idea">The big idea</a><a class="navlink" href="#principles">12 key ideas</a><a class="navlink" href="#drcr">Debit &amp; credit</a><a class="navlink" href="#comics">The comics</a><a class="navlink" href="#statements">The statements</a><a class="navlink" href="#links">How they connect</a><a class="navlink" href="#cycle">Accounting cycle</a><a class="navlink" href="#traps">Easy to mix up</a><a class="navlink" href="#ratios">Ratios</a></div><div class="fbot"><span><b>© 2026 Tatyana Emelyanova</b><br>This is my attempt to make the accounting basics stick by turning them into a story. The story, text and drawings are original; the accounting behind them is standard theory, pieced together from textbooks, courses and articles. Made with a little help from my AI pal, Claude.<br>Simplified educational example. VAT and income tax are excluded. Actual accounting requirements depend on the business structure and reporting framework.</span><a href="#top">↑ Back to top</a></div></footer>
 
 </div>
 
@@ -774,7 +806,7 @@ const T=[
   art:()=>prop.bank(340,G)+fig(255,G,{pose:'give',flip:1,tie:1})+prop.bag(212,G-40,'5,000')+fig(85,G,{f:1,pose:'hold'})+say(95,62,'Can I borrow|5,000 zł?',88,112)+say(290,60,'Sure, at 6%|interest a year',258,112)},
  {n:3,title:'Buying the espresso machine',pr:'Historic cost convention',
   story:'<b>Day 3.</b> Ania finds a good second-hand espresso machine on Allegro and pays 6,000 zł from the cart\'s account.',
-  means:'The machine goes on the books at the price paid: 6,000 zł. Cash turns into equipment, so total assets stay the same. It is not an expense yet, because the machine will make coffee for years.',
+  means:'The machine goes on the books at the price paid: 6,000 zł. Cash turns into equipment, so total assets stay the same. It is not an expense yet, because the machine will make coffee for years. In the cash flow statement this is an investing activity: buying equipment for long-term use counts as investing, even though it is not a financial investment.',
   watch:'Don\'t record it at what you think it\'s worth (“it\'s a bargain, it\'s really worth 8,000”). Record what you paid.',
   je:[['Dr','Equipment',6000],['Cr','Cash',6000]],
   d:{eq:6000,cash:-6000,cfi:-6000},
@@ -794,21 +826,21 @@ const T=[
   d:{inv:2000,ap:2000},
   art:()=>fig(75,G,{f:1,pose:'wave'})+prop.paper(165,G,'INVOICE')+prop.sack(245,G)+fig(335,G,{pose:'point',flip:1})+say(305,60,'2,000 zł of beans.|Pay in 30 days.',333,112,180,400)+say(75,64,'Deal!',78,112)},
  {n:6,title:'Selling coffee for cash',pr:'Revenue recognition + matching convention',
-  story:'<b>Days 6–30.</b> Customers queue every morning. In November Ania sells 4,000 zł of coffee, paid on the spot.',
+  story:'<b>Days 6–30.</b> Customers queue every morning. In November Ania sells 4,000 zł of coffee to walk-up customers, paid on the spot. Those drinks used 1,200 zł worth of beans.',
   means:'Coffee was handed over, so 4,000 zł of revenue is earned. Beans worth 1,200 zł were used to make it, so that cost goes into the same month, as cost of sales. Profit from these sales is 2,800 zł.',
   watch:'Forgetting the beans\' cost would show 4,000 zł profit. Revenue and the costs that produced it belong together.',
   je:[['Dr','Cash',4000],['Cr','Revenue',4000],['Dr','Cost of sales',1200],['Cr','Inventory',1200]],
   d:{cash:4000,rev:4000,cogs:1200,inv:-1200,cfo:4000},
   art:()=>fig(70,G,{pose:'hold'})+prop.cup(100,G-80)+prop.cart(215,G)+fig(338,G,{f:1,pose:'cheer'})+say(80,62,'A latte,|please!',72,112,0,160)+burst(315,62,'4,000 zł|in sales!',200,400)},
  {n:7,title:'Catering an office party on credit',pr:'Revenue recognition',
-  story:'<b>Day 20.</b> A nearby office orders coffee for a party: 1,000 zł. Ania delivers today. The office will pay next month.',
+  story:'<b>Day 20.</b> A nearby office orders coffee for a party: 1,000 zł. Ania delivers today, and payment is due in December. The catering order used another 300 zł worth of beans.',
   means:'The work is done, so the revenue is earned today, even though no cash has arrived. The office now owes the cart money: trade receivables, an asset. The 300 zł of beans used become an expense this month.',
   watch:'Waiting for the cash before recording revenue is cash accounting. Under accrual accounting, earning is what counts.',
   je:[['Dr','Trade receivables',1000],['Cr','Revenue',1000],['Dr','Cost of sales',300],['Cr','Inventory',300]],
   d:{ar:1000,rev:1000,cogs:300,inv:-300},
   art:()=>fig(80,G,{f:1,pose:'hold'})+prop.cup(108,G-80)+prop.cup(132,G-80)+prop.paper(220,G,'INVOICE')+fig(330,G,{f:1,pose:'idle',flip:1})+say(305,60,'Great party! We\'ll|pay next month',330,112,170,400)+say(80,62,'Earned|today!',82,112,0,170)},
  {n:8,title:'The office pays its bill',pr:'Revenue recognition',
-  story:'<b>Day 28.</b> The office pays the 1,000 zł catering bill early.',
+  story:'<b>Day 28.</b> The office pays the 1,000 zł catering bill early, before it is due in December.',
   means:'Cash goes up and the amount the office owes goes down to zero. There is no new revenue, because it was already counted in strip 7. One asset (receivable) simply turned into another (cash).',
   watch:'Recording revenue again when the cash arrives would count the same party twice.',
   je:[['Dr','Cash',1000],['Cr','Trade receivables',1000]],
@@ -830,21 +862,21 @@ const T=[
   art:()=>fig(75,G,{f:1,pose:'give'})+prop.bag(138,G-40,'1,500')+prop.arrow(170,G-62,210,G-62)+prop.sack(248,G)+fig(338,G,{pose:'wave',flip:1})+say(100,60,'1,500 zł of the|2,000 I owe',78,112,0,215)+say(330,62,'500 left.|No rush!',338,112,225,400)},
  {n:11,title:'Month end: using up a month of rent',pr:'Reporting period (adjusting entry)',
   story:'<b>30 November.</b> The month is over. Ania sits down to close the books.',
-  means:'One of the three prepaid months has been used. An adjusting entry moves 500 zł from the prepaid rent asset into rent expense, so November carries exactly one month of rent.',
+  means:'Remember the prepaid rent from strip 4? One of the three prepaid months has been used. An adjusting entry moves 500 zł from the prepaid rent asset into rent expense, so November carries exactly one month of rent.',
   watch:'Adjusting entries never involve cash. They fix the timing so each month shows what really belongs to it.',
   je:[['Dr','Rent expense',500],['Cr','Prepaid rent',500]],
   d:{rent:500,pre:-500},
   art:()=>fig(90,G,{f:1,pose:'point'})+prop.cal(240,G-30,'NOV',30)+say(110,60,'November\'s rent|is used up',92,112,0,215)+burst(330,66,'500 zł',225,400)},
  {n:12,title:'The machine wears out a little',pr:'Matching + going concern conventions',
-  story:'<b>30 November.</b> The espresso machine should last about 5 years (60 months), then it will be worth nothing.',
-  means:'Because the cart will keep going (going concern), the 6,000 zł cost is spread across the months the machine helps earn money: 6,000 ÷ 60 = 100 zł each month. This is depreciation. The machine\'s book value drops to 5,900 zł.',
-  watch:'Depreciation uses no cash. That\'s why profit and cash are different numbers. And the machine is fine: “worth zero on paper” after 5 years doesn\'t mean it stops making coffee.',
+  story:'<b>30 November.</b> For this example, we assume the machine will be used for 5 years (60 months) and will have no residual value at the end.',
+  means:'Remember the espresso machine from strip 3? Because the cart will keep going (going concern), the 6,000 zł cost is spread across the months the machine helps earn money: 6,000 ÷ 60 = 100 zł each month. This is depreciation. The machine\'s book value drops to 5,900 zł.',
+  watch:'Depreciation uses no cash. That\'s why profit and cash are different numbers. And a book value of zero after 5 years doesn\'t mean the machine is worthless on the market, or that it stops making coffee.',
   je:[['Dr','Depreciation expense',100],['Cr','Accumulated depreciation',100]],
   d:{dep:100,ad:-100},
   art:()=>fig(70,G,{f:1,pose:'point'})+prop.machine(232,G,'sad')+`<path class="w" d="M272 ${G-90} q5 9 0 13 q-5 -4 0 -13 z"/><path class="w" d="M190 ${G-84} q4 8 0 11 q-4 -3 0 -11 z"/>`+prop.countdown(346,G)+say(104,60,'Relax, you\'ll be fine!|Just 100 zł a month.',74,112,0,205)+say(300,64,'Wait... am I|dying?!',236,G-82,205,400)},
  {n:13,title:'Interest builds up on the loan',pr:'Accruals convention',
   story:'<b>30 November.</b> The bank only collects interest later, but every day of the loan costs a little.',
-  means:'One month of interest: 5,000 × 6% ÷ 12 = 25 zł. It is owed already, so it is recorded now as interest expense and as accrued interest (a liability), even though nothing has been paid.',
+  means:'Remember the bank loan from strip 2? One month of interest: 5,000 × 6% ÷ 12 = 25 zł. This is simplified to a full month; the loan started on 2 November, so an exact calculation would count the days. It is owed already, so it is recorded now as interest expense and as accrued interest (a liability), even though nothing has been paid.',
   watch:'Ignoring costs until the bill arrives would make this month look more profitable than it was.',
   je:[['Dr','Interest expense',25],['Cr','Accrued interest',25]],
   d:{int:25,ip:25},
@@ -859,41 +891,48 @@ const PR=[
  ['Business entity convention','economic entity','Zasada odrębności jednostki gospodarczej','Принцип имущественной обособленности','The business and the owner are separate. Keep their money apart.','Ania\'s savings become the cart\'s money and she becomes an owner.',1,'cart'],
  ['Money measurement','monetary unit','Zasada pomiaru wartości w pieniądzu','Принцип денежного измерения','Only things you can measure in money go in the books.','Tomek\'s great smile is valuable, but it has no line in the accounts.',null,'bag'],
  ['Reporting period','time period','Zasada okresowości','Принцип периодичности','Chop the life of a business into months or years so you can report on each one.','At month end, one month of prepaid rent becomes an expense.',11,'cal'],
- ['Going concern convention','going concern','Zasada kontynuacji działalności','Принцип непрерывности деятельности','Assume the business will keep running and has no plan to sell off its assets.','The machine is shown at cost less depreciation, not at the lower price it would fetch in a quick sale.',12,'clock'],
+ ['Going concern convention','going concern','Zasada kontynuacji działalności','Принцип непрерывности деятельности','Assume the business will continue operating rather than being liquidated.','The machine is shown at cost less depreciation, not at the lower price it would fetch in a quick sale.',12,'clock'],
  ['Historic cost convention','historical cost','Zasada kosztu historycznego','Принцип исторической стоимости','Record things at what you actually paid.','The machine stays at 6,000 zł even if a friend says it is worth 8,000.',3,'machine'],
  ['Dual aspect convention','duality, double entry','Zasada podwójnego zapisu','Принцип двойственности (двойной записи)','Every transaction has two sides, so A = L + E always balances.','A loan raises cash and debt by the same 5,000 zł.',2,'bank'],
  ['Accruals convention','accrual basis','Zasada memoriału','Принцип начисления','Profit is revenue earned minus expenses used up, not cash in minus cash out.','Interest owed for November is recorded in November, even if paid later.',13,'paper'],
  ['Revenue recognition','realisation','Zasada realizacji przychodów','Принцип признания выручки','Count revenue when you have earned it by delivering the goods or service.','Catering delivered today is revenue today; payment next month is just cash catching up.',7,'cup'],
  ['Matching convention','expense recognition','Zasada współmierności przychodów i kosztów','Принцип соответствия доходов и расходов','Put expenses in the same period as the revenue they helped earn.','Beans used to make this month\'s coffee are this month\'s expense.',6,'sack'],
- ['Prudence convention','conservatism','Zasada ostrożności','Принцип осмотрительности','When unsure, don\'t overstate what you have or what you earned. Record losses early, gains only when sure.','If 200 zł of beans went stale, write them down now; don\'t wait.',null,'umbrella'],
+ ['Prudence convention','conservatism','Zasada ostrożności','Принцип осмотрительности','Use caution when estimates are uncertain. Don\'t deliberately overstate or understate the numbers.','If 200 zł of beans went stale, write them down now; don\'t wait.',null,'umbrella'],
  ['Materiality convention','materiality','Zasada istotności','Принцип существенности','Small amounts that would not change anyone\'s decision can be handled the simple way.','A 15 zł stapler is just an expense, not a 5-year asset.',null,'magnifier'],
- ['Consistency convention','consistency','Zasada ciągłości','Принцип последовательности','Once you pick a method, keep using it, so periods can be compared.','If the machine is depreciated straight-line this year, it stays straight-line next year.',null,'loop']
+ ['Consistency convention','consistency','Zasada ciągłości','Принцип последовательности','Apply accounting policies consistently unless there\'s a valid reason to change them, so periods can be compared.','If the machine is depreciated straight-line this year, it stays straight-line next year.',null,'loop']
 ];
 const icon=t=>`<svg viewBox="0 0 120 120" aria-hidden="true" class="ledger"><g class="icn">${({cart:prop.cart(60,110,1),bag:prop.bag(60,100),cal:prop.cal(60,100,'NOV',5),clock:prop.clock(60,100),machine:prop.machine(60,100),bank:prop.bank(60,100),paper:prop.paper(60,100,'NOTE'),cup:prop.cup(60,100),sack:prop.sack(60,100),umbrella:prop.umbrella(60,100),magnifier:prop.magnifier(60,100),loop:prop.loop(60,100)})[t]}</g></svg>`;
 /* fit every icon drawing into the same 72×72 box, centred in the 120×120 tile */
 function fitIcons(root){root.querySelectorAll('g.icn').forEach(g=>{g.removeAttribute('transform');const bb=g.getBBox();if(!bb.width)return;const pad=2,box=94,k=box/Math.max(bb.width+pad*2,bb.height+pad*2);const cx=bb.x+bb.width/2,cy=bb.y+bb.height/2;g.setAttribute('transform',`translate(60 60) scale(${k.toFixed(3)}) translate(${(-cx).toFixed(1)} ${(-cy).toFixed(1)})`);g.querySelectorAll('.tl').forEach(t=>{let fs=13/k;t.style.fontSize=fs+'px';const m=+t.dataset.fit||60;while(t.getBBox().width>m&&fs>5){fs-=.25;t.style.fontSize=fs+'px';}});});}
-document.getElementById('prGrid').innerHTML=PR.map(([n,aka,pl,ru,m,ex,s,ic])=>`<article class="pr"><div class="ico">${icon(ic)}</div><h3>${n}</h3><span class="ru">Also called: ${aka}</span><span class="ru"><b>PL</b> ${pl}<br><b>RU</b> ${ru}</span><p>${m}</p><p class="ex"><b>Example:</b> ${ex}</p>${s?`<a href="#strip-${s}">See it in strip ${s} ↓</a>`:''}</article>`).join('');
+const GROUPS=[['Whose money?',['Business entity convention']],['When do we recognise it?',['Accruals convention','Revenue recognition','Matching convention','Reporting period']],['How do we measure it?',['Historic cost convention','Prudence convention','Materiality convention','Money measurement']],['How do we keep the records meaningful?',['Dual aspect convention','Consistency convention','Going concern convention']]];
+const prCard=([n,aka,pl,ru,m,ex,s,ic])=>`<article class="pr"><div class="ico">${icon(ic)}</div><h3>${n}</h3><span class="ru">Also called: ${aka}</span><span class="ru"><b>PL</b> ${pl}<br><b>RU</b> ${ru}</span><p>${m}</p><p class="ex"><b>Example:</b> ${ex}</p>${s?`<a href="#strip-${s}">See it in strip ${s} ↓</a>`:''}</article>`;
+document.getElementById('prGrid').innerHTML=GROUPS.map(([g,names])=>`<div class="prgrp"><h3>${g}</h3><div class="grid">${names.map(nm=>prCard(PR.find(p=>p[0]===nm))).join('')}</div></div>`).join('');
 
 /* ---------- strips ---------- */
-function effects(d){
+const CFD={1:"owner's investment",2:'bank loan received',3:'purchase of equipment',4:'rent paid in advance',6:'cash sales',8:'cash from a customer',9:'wages paid',10:'payment to the supplier'};
+function effects(d,n){
   const bs=[...ASSET,...LIAB,'cap'].filter(k=>d[k]).map(k=>`${LBL[k]} ${sg(d[k])}`);
   const isL=['rev',...EXP].filter(k=>d[k]).map(k=>k==='rev'?`Revenue +${f(d[k])}`:`${LBL[k]} −${f(d[k])}`);
   const ni=(d.rev||0)-EXP.reduce((a,k)=>a+(d[k]||0),0);
-  if(isL.length)bs.push(`Retained earnings ${sg(ni)}`);
-  const cf=CF.filter(k=>d[k]).map(k=>`${LBL[k]} ${sg(d[k])}`);
+  if(isL.length)bs.push(`Profit for the period ${sg(ni)}`);
+  const cf=CF.filter(k=>d[k]).map(k=>`${LBL[k]} activities${n&&CFD[n]?' — '+CFD[n]:''}: ${sg(d[k])} zł`);
   const A=ASSET.reduce((a,k)=>a+(d[k]||0),0),L=LIAB.reduce((a,k)=>a+(d[k]||0),0),E=(d.cap||0)+ni;
   return {bs,isL,cf,ni,A,L,E};
 }
+const ANSTXT={cash:'cash changes, profit doesn\'t',profit:'profit changes, cash doesn\'t',both:'both cash and profit change',neither:'neither cash nor profit changes'};
+const ANSHORT={cash:'Cash only',profit:'Profit only',both:'Both',neither:'Neither'};
+function ans(t){const c=!!t.d.cash,pr=['rev',...EXP].some(k=>t.d[k]);return c&&pr?'both':c?'cash':pr?'profit':'neither'}
 document.getElementById('strips').innerHTML=T.map(t=>{
-  const e=effects(t.d);
+  const e=effects(t.d,t.n);
   return `<article class="strip" id="strip-${t.n}">
-   <div class="strip-head"><span class="no">No. ${t.n}</span><h3>${t.title}</h3><span class="pchip">Principle: ${t.pr}</span><span class="sn">${t.n>1?`<a href="#strip-${t.n-1}">← No. ${t.n-1}</a>`:`<a href="#drcr">← Dr &amp; Cr</a>`}${t.n<T.length?`<a href="#strip-${t.n+1}">No. ${t.n+1} →</a>`:`<a href="#statements">Statements →</a>`}</span></div>
+   <div class="strip-head"><span class="no">No. ${t.n}</span><h3>${t.title}</h3><span class="pchip">Principle: ${t.pr}</span>${t.n>=11?'<span class="metag">Month-end adjustment · no cash moves</span>':''}<span class="sn">${t.n>1?`<a href="#strip-${t.n-1}">← No. ${t.n-1}</a>`:`<a href="#drcr">← Dr &amp; Cr</a>`}${t.n<T.length?`<a href="#strip-${t.n+1}">No. ${t.n+1} →</a>`:`<a href="#statements">Statements →</a>`}</span></div>
    <div class="panels">
    <div class="scene"><p class="narr">${t.story}</p><div class="ledger">${scene(t.art())}</div></div>
-   <div class="land">
+   <div class="land" data-ans="${ans(t)}">
+     <div class="box verdict" hidden></div>
      <div class="box"><span class="lbl">What it means</span>${t.means}</div>
      <div class="box je"><span class="lbl">What the accountant writes</span>${t.je.map(([s,a,v])=>`<span>${s}</span><span class="${s==='Cr'?'cr':''}">${a}</span><span>${f(v)}</span>`).join('')}<span class="dcl">Dr = debit · Cr = credit</span></div>
-     <div class="box fx"><span class="lbl">Where it lands</span>
+     <div class="box fx"><span class="lbl">Where it lands</span><span class="inshort">In short: ${ANSTXT[ans(t)]}</span>
        <b class="bs">Balance sheet</b><span>${e.bs.join(' · ')||'no change'}</span>
        <b class="is">Income statement</b><span>${e.isL.length?e.isL.join(' · ')+` → profit ${sg(e.ni)}`:'no change'}</span>
        <b class="cf">Cash flow</b><span>${e.cf.join(' · ')||'no cash moved'}</span>
@@ -901,7 +940,7 @@ document.getElementById('strips').innerHTML=T.map(t=>{
      </div>
      <div class="box warn"><span class="lbl">Watch out</span>${t.watch}</div>
      <div class="btns"><button class="go" data-go="${t.n}">See it on the statements ↓</button><button class="go rehide" data-hide>Hide the answer ↺</button></div>
-     <button class="cover" data-reveal>Which statements move?<span style="font-size:1rem">Tap to reveal</span></button>
+     <div class="cover guess"><span class="q">Guess first: what changes?</span><div class="opts"><button type="button" data-guess="cash">Cash only</button><button type="button" data-guess="profit">Profit only</button><button type="button" data-guess="both">Both</button><button type="button" data-guess="neither">Neither</button></div></div>
    </div></div></article>`}).join('');
 
 const doLayout=()=>{layout(document);fitIcons(document)};
@@ -926,11 +965,11 @@ function render(n){
   const is=`<div class="st"><span class="chip c-is">Income statement</span><h3>November</h3><div class="sub">Performance over the month</div><table>
    ${row('rev','Revenue',v('rev'))}${row('cogs','Cost of sales',-v('cogs'))}${row('gp','Gross profit',v('rev')-v('cogs'),'tot')}
    ${row('rent','Rent expense',-v('rent'))}${row('wag','Wages expense',-v('wag'))}${row('dep','Depreciation',-v('dep'))}${row('int','Interest expense',-v('int'))}
-   ${row('ni','Profit for the period',ni,'tot')}</table></div>`;
+   ${row('ni','Profit for the period',ni,'tot key')}</table></div>`;
   const bs=`<div class="st"><span class="chip c-bs">Balance sheet</span><h3>30 November</h3><div class="sub">Snapshot on the last day. Official IFRS name: statement of financial position</div><table>
-   <tr class="grp"><td colspan="2">Assets</td></tr>${row('cash','Cash',v('cash'))}${row('ar','Trade receivables',v('ar'))}${row('inv','Inventory',v('inv'))}${row('pre','Prepaid rent',v('pre'))}${row('eq','Equipment (PPE)',v('eq'))}${row('ad','Accumulated depreciation',v('ad'))}${row('ta','Total assets',A,'tot')}
+   <tr class="grp"><td colspan="2">Assets</td></tr>${row('cash','Cash',v('cash'),'key')}${row('ar','Trade receivables',v('ar'))}${row('inv','Inventory',v('inv'))}${row('pre','Prepaid rent',v('pre'))}${row('eq','Equipment (PPE)',v('eq'))}${row('ad','Accumulated depreciation',v('ad'))}${row('ta','Total assets',A,'tot key')}
    <tr class="grp"><td colspan="2">Liabilities</td></tr>${row('ap','Trade payables',v('ap'))}${row('ip','Accrued interest',v('ip'))}${row('loan','Bank loan',v('loan'))}${row('tl','Total liabilities',L,'tot')}
-   <tr class="grp"><td colspan="2">Equity</td></tr>${row('cap',"Owner's capital",v('cap'))}${row('re','Retained earnings',ni)}${row('te','Total equity',E,'tot')}
+   <tr class="grp"><td colspan="2">Equity</td></tr>${row('cap',"Owner's capital",v('cap'))}${row('re','Profit for the period',ni)}${row('te','Total equity',E,'tot')}
    ${row('tle','Liabilities + equity',L+E,'tot')}</table><p class="bal ${A===L+E?'ok':''}">${A===L+E?'✓ Balanced: '+f(A)+' = '+f(L+E):'Not balanced'}</p></div>`;
   const cf=`<div class="st"><span class="chip c-cf">Statement of cash flows</span><h3>November</h3><div class="sub">Where real cash came from and went</div><table>
    ${row('cfo','Operating activities',v('cfo'))}${row('cfi','Investing activities',v('cfi'))}${row('cff','Financing activities',v('cff'))}
@@ -940,7 +979,7 @@ function render(n){
   {const SHORT=['Owner puts in savings','Bank loan','Espresso machine','Rent paid ahead','Beans on credit','Coffee sales','Catering on credit','Office pays its bill','Barista wages','Part of bean bill paid','Rent used up','Depreciation','Interest owed'];
    const now=document.getElementById('now');
    if(!n){now.innerHTML=`<div class="ht">Before day 1</div><div class="hs">The cart doesn't exist yet, so every line is zero. Press ▶ or pick a step below.</div>`;}
-   else{const t=T[n-1],e=effects(t.d);
+   else{const t=T[n-1],e=effects(t.d,t.n);
      now.innerHTML=`<div class="ht">Step ${n} of ${T.length}: ${t.title}</div><div class="hs">${t.story}</div>
       <div class="hj">${t.je.map(([s,a,v])=>`${s} ${a} ${f(v)}`).join(' · ')}</div>
       <div class="hc"><span class="bs"><b>Balance sheet</b>${e.bs.join(' · ')||'no change'}</span><span class="is"><b>Income statement</b>${e.isL.length?e.isL.join(' · '):'no change'}</span><span class="cf"><b>Cash flow</b>${e.cf.join(' · ')||'no cash moved'}</span></div>
@@ -962,8 +1001,9 @@ document.getElementById('prev').onclick=()=>render(Math.max(0,+stepEl.value-1));
 document.getElementById('next').onclick=()=>render(Math.min(13,+stepEl.value+1));
 document.getElementById('strips').addEventListener('click',e=>{
   const g=e.target.closest('[data-go]');if(g){render(+g.dataset.go);document.getElementById('statements').scrollIntoView();}
+  const gb=e.target.closest('[data-guess]');if(gb){const l=gb.closest('.land'),a=l.dataset.ans,ok=gb.dataset.guess===a,v=l.querySelector('.verdict');v.hidden=false;v.className='box verdict '+(ok?'ok':'no');v.textContent=(ok?'✓ Right: ':'✗ Not quite. The answer is: ')+ANSHORT[a]+'.';l.classList.add('shown');const h=l.querySelector('[data-hide]');if(h)h.focus({preventScroll:true});return;}
   const c=e.target.closest('[data-reveal]');if(c){const l=c.closest('.land');l.classList.add('shown');const h=l.querySelector('[data-hide]');if(h)h.focus({preventScroll:true});}
-  const hd=e.target.closest('[data-hide]');if(hd){const l=hd.closest('.land');l.classList.remove('shown');const cv=l.querySelector('[data-reveal]');if(cv)cv.focus({preventScroll:true});}
+  const hd=e.target.closest('[data-hide]');if(hd){const l=hd.closest('.land');l.classList.remove('shown');const vv=l.querySelector('.verdict');if(vv)vv.hidden=true;const cv=l.querySelector('[data-reveal],[data-guess]');if(cv)cv.focus({preventScroll:true});}
 });
 document.getElementById('quiz').addEventListener('change',e=>{document.body.classList.toggle('quiz',e.target.checked);document.querySelectorAll('.land').forEach(l=>l.classList.remove('shown'));});
 render(13);
@@ -999,7 +1039,7 @@ render(13);
   const sL=L.reduce((a,x)=>a+x[1],0),sR=R.reduce((a,x)=>a+x[1],0),rows=Math.max(L.length,R.length),rh=24,top=78,W=440,mid=W/2;
   const H=top+rows*rh+86;
   let g=`<text class="h" x="${mid}" y="32" text-anchor="middle">Cash</text>
-   <text class="lab" x="${mid-14}" y="58" text-anchor="end">Dr · money in</text><text class="lab" x="${mid+14}" y="58" text-anchor="start">Cr · money out</text>
+   <text class="lab" x="${mid-14}" y="58" text-anchor="end">Dr (left)</text><text class="lab" x="${mid+14}" y="58" text-anchor="start">Cr (right)</text>
    <line class="ln2" x1="20" y1="66" x2="${W-20}" y2="66"/><line class="ln2" x1="${mid}" y1="66" x2="${mid}" y2="${top+rows*rh+6}"/>`;
   L.forEach(([n,v],i)=>g+=`<text class="lab" x="30" y="${top+i*rh+12}">strip ${n}</text><text x="${mid-14}" y="${top+i*rh+12}" text-anchor="end">${f(v)}</text>`);
   R.forEach(([n,v],i)=>g+=`<text class="lab" x="${mid+14}" y="${top+i*rh+12}">strip ${n}</text><text x="${W-30}" y="${top+i*rh+12}" text-anchor="end">${f(v)}</text>`);
@@ -1009,7 +1049,7 @@ render(13);
    <rect x="20" y="${y2+32}" width="${W-40}" height="34" rx="8" style="fill:var(--hi);stroke:var(--fg);stroke-width:1.5"/>
    <text x="${mid}" y="${y2+54}" text-anchor="middle" style="font-family:var(--f-body);font-size:14px;font-weight:700">Balance ${f(sL-sR)} Dr → Cash on the balance sheet</text>`;
   document.getElementById('tacc').innerHTML=`<svg viewBox="0 0 ${W} ${y2+74}" role="img" aria-label="T-account for Cash: debits ${f(sL)}, credits ${f(sR)}, balance ${f(sL-sR)}">${g}</svg>`;
-  document.getElementById('taccNote').textContent=`This is a T-account: Ania's whole month of cash in one picture. Money in sits on the left (Dr), money out on the right (Cr). The difference, ${f(sL-sR)} zł, is the cash line on the balance sheet.`;
+  document.getElementById('taccNote').textContent=`This is a T-account: Ania's whole month of cash in one picture. For an asset like Cash, increases go on the left (Dr) and decreases on the right (Cr). The difference, ${f(sL-sR)} zł, is the cash line on the balance sheet.`;
 })();
 
 /* ---------- statement links + accounting cycle ---------- */
@@ -1047,6 +1087,12 @@ render(13);
    ${L('Liabilities','',[],'sub')}${L('Trade payables',v('ap'),[4])}${L('Accrued interest',v('ip'),[4])}${L('Bank loan',v('loan'),[6])}
    ${L('Equity','',[],'sub')}${L("Owner's capital",v('cap'),[6])}${L('Profit for the period',ni,[2])}${L('Total liabilities + equity',LIAB.reduce((a,k)=>a+v(k),0)+v('cap')+ni,[],'t')}</div>`;
   document.getElementById('lkgrid').innerHTML=IS+CF+BS;
+  {const r=(l,x,c='')=>`<tr class="${c}"><td>${l}</td><td class="n">${x<0?'−':(c&&c!=='first'?'':c==='first'?'':'+')}${f(Math.abs(x))} zł</td></tr>`;
+   document.getElementById('bridgeTbl').innerHTML=`<div class="st"><h3>Why profit isn't operating cash</h3><div class="sub">November · indirect method</div><table class="bridgetbl">
+     ${r('Profit for November',ni,'first')}${r('+ Depreciation (non-cash expense)',v('dep'))}${r('− Inventory still on hand',-v('inv'))}${r('− Rent paid in advance',-v('pre'))}${r('+ Unpaid supplier and interest bills',v('ap')+v('ip'))}${r('Operating cash flow',opCash,'tot')}</table></div>
+     <div class="st"><h3>From operating cash to cash in the bank</h3><div class="sub">November</div><table class="bridgetbl">
+     ${r('Operating cash flow',opCash,'first')}${r('Investing: machine purchase',v('cfi'))}${r('Financing: owner + bank',v('cff'))}${r('Closing cash',v('cash'),'tot')}</table>
+     <p class="bridge" style="margin-top:8px">Three different numbers, all correct: profit ${f(ni)} zł, operating cash flow ${f(opCash)} zł, cash in the bank ${f(v('cash'))} zł. The cash flow statement can also be shown with the direct method; this is the indirect one.</p></div>`;}
   const LG=[
    [1,`<b>Profit starts the cash story.</b> The statement of cash flows opens with the ${f(ni)} zł profit and then corrects it for everything that was not cash.`],
    [2,`<b>Profit belongs to the owner.</b> The same ${f(ni)} zł is added to equity: ${f(v('cap'))} capital + ${f(ni)} profit = ${f(v('cap')+ni)} zł. In a company this line is retained earnings, after any dividends.`],
